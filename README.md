@@ -1,2 +1,5 @@
-# Music-Licensing-Laboratory
-MSD Repo for CS4500 Spring 2017
+# MLL
+Media Licensing Lab
+
+Student run Media Licensing Project
+..

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 7, 2016 2:03:42 AM by Hibernate Tools 5.1.0.Alpha1 -->
+<hibernate-mapping>
+    <class name="mll.beans.PlaylistReference" table="PlaylistReference">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" />
+        </property>
+       <property name="playlistName">
+            <column name="playlist_name" length="200" not-null="true"/>
+        </property>
+        <property name="creationDate">
+			<column name="creation_date" not-null="true" />
+		</property>	
+		<property name="isShared">
+			<column name="is_shared" not-null="true" />
+		</property>
+		<property name="userName">
+			<column name="user_name" length="200" not-null="true" />
+		</property>
+		
+    </class>
+</hibernate-mapping>

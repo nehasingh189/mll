@@ -1,0 +1,59 @@
+<div>
+	<table
+		class="table table-responsive table-striped table-hover ng-scope">
+		<thead>
+			<tr>
+				<th
+					ng-click="ctrl.sortType='track'; ctrl.sortReverse = !ctrl.sortReverse">
+					<span ng-show="ctrl.sortType == 'track'"> <span
+						ng-show="!ctrl.sortReverse"
+						class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+						<span ng-show="ctrl.sortReverse"
+						class="glyphicon glyphicon-triangle-bottom"></span></span> Track
+				</th>
+				<th
+					ng-click="ctrl.sortType='playCount'; ctrl.sortReverse = !ctrl.sortReverse">
+					<span ng-show="ctrl.sortType == 'playCount'"> <span
+						ng-show="!ctrl.sortReverse"
+						class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+						<span ng-show="ctrl.sortReverse"
+						class="glyphicon glyphicon-triangle-bottom"></span></span> ADD TO
+					PLAYLIST
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="track in model.tracks">
+				<td>
+					<a class="gridColor">
+							{{track.fileName}} <br />
+					</a> 
+					<audio src={{track.source}} controls>
+					</audio>
+				</td>
+				<td>
+					<select ng-change=model.selectPlaylist(playlist) ng-model="playlist" class="gridColor" ng-show="model.playlistExist"> 
+      					<option ng-repeat="playlist in model.playlists" value="{{playlist}}">{{playlist.playlistName}}</option>
+			    	</select>
+			    	</br>
+			    	<div ng-show="!model.playlistExist">
+			    		You have no playlist
+			    		<button ng-click="model.addNewPlaylist()" class="btn tomatobttn"> Add new playlist</button>
+			    	</div>
+					<span class="glyphicon glyphicon-plus"
+						ng-click="model.addToPlayList(track.assetId)" ng-show="model.playlistExist">
+					</span>
+					</br>
+				</td>	
+			</tr>		
+
+		</tbody>
+	</table>
+	<div text-align="center" style="color:green; display:block;margin-left:20%;">
+		{{model.responseMessage}}		
+	</div>
+</div>
+
+
+
+
