@@ -11,18 +11,16 @@ public class Configuration
     
     
     //RAZUNA Configuration Details
-    public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
+    /*public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
     public final String Razuna_API_URL="http://35.163.173.243:8080/razuna/global/api2/";
-    public final String RAZUNA_KEY = "9F697883197D45EE987BEEB71510EC36";
-    
-    
+    public final String RAZUNA_KEY = "9F697883197D45EE987BEEB71510EC36";*/
 
     //RAZUNA Configuration Details local
-    /*public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
+    public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
     public final String Razuna_API_URL="http://localhost:8080/razuna/global/api2/";
-    public final String RAZUNA_KEY = "0488EB2CCA804FCCB1ECE1BBED7F91F4";*/
+    public final String RAZUNA_KEY = "0488EB2CCA804FCCB1ECE1BBED7F91F4";
     
-   //Custom Fields Asset IDs aws Razuna
+    //Custom Fields Asset IDs aws Razuna
     public final String RAZUNA_TITLE="B96CFCDD-5474-4256-A858CAD809A6140F";
     public final String RAZUNA_BITS_PER_RATE="C5D79238-589F-4351-9148717D00C34C7C";
     public final String RAZUNA_COPY_RIGHT_NUMBER="3959F6A0-6DDF-4F8B-A104D37119844E49";
@@ -58,9 +56,9 @@ public class Configuration
     public final String RAZUNA_SEARCH_METHOD="search.cfc";
     
     //Invite mail url
-public final String INVITE_URL= "http://35.163.135.77:8080/MLL/index.html#/";
+    //public final String INVITE_URL= "http://35.163.135.77:8080/MLL/index.html#/";
     
     //Invite mail url local
-    //public final String INVITE_URL= "http://localhost:9000/MLL/index.html#/";
+    public final String INVITE_URL= "http://localhost:8080/MLL-1.0/index.html#/";
     
 }

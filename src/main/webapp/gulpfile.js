@@ -39,10 +39,10 @@ gulp.task('usemin', ['templates'], function () {
         .pipe(usemin({
             cssBootstrap: [minifycss(), rev()],
             cssCustom: [minifycss(), rev()],
-            jsJQuery: [uglify(), rev()],
-            jsBootstrap: [uglify(), rev()],
-            jsAngular: [uglify(), rev()],
-            jsTemplates: [uglify(), rev()],
+            jsJQuery: [/*uglify(), */rev()],
+            jsBootstrap: [/*uglify(), */rev()],
+            jsAngular: [/*uglify(), */rev()],
+            jsTemplates: [/*uglify(), */rev()],
             jsCustom: [rev()]
         }))
         .pipe(gulp.dest('./'));
@@ -53,13 +53,15 @@ gulp.task('usemin', ['templates'], function () {
 */
 gulp.task('templates', () => {
     return gulp.src('./source/scripts/**/*.html')
-        .pipe(htmlmin({ collapseWhitespace: true }))
+    //.pipe(htmlmin({ collapseWhitespace: true }))
         .pipe(templateCache({
             module: 'mllApp.templates',
             standalone: true,
             filename: 'templates.module.js',
             /*transformUrl: (url) => url.slice(url.lastIndexOf('\\') + 1),*/
-	    transformUrl: (url) => url.substr(url.lastIndexOf('/') + 1)
+            transformUrl: (url) => {
+                return  url.substr(url.lastIndexOf('\\') + 1);
+            }
         }))
         .pipe(gulp.dest('./source/scripts/modules/templates/'));
 });
