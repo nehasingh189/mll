@@ -1,8 +1,10 @@
 'use strict';
 
+let argv = require('yargs').argv;
 let del = require('del');
 let gulp = require('gulp');
 let htmlmin = require('gulp-htmlmin');
+let gulpif = require('gulp-if');
 let jshint = require('gulp-jshint');
 let minifycss = require('gulp-minify-css');
 let rev = require('gulp-rev');
@@ -103,10 +105,10 @@ gulp.task('usemin', ['templates'], function () {
         .pipe(usemin({
             cssBootstrap: [minifycss(), rev()],
             cssCustom: [minifycss(), rev()],
-            jsJQuery: [/*uglify(), */rev()],
-            jsBootstrap: [/*uglify(), */rev()],
-            jsAngular: [/*uglify(), */rev()],
-            jsTemplates: [/*uglify(), */rev()],
+            jsJQuery: [gulpif(argv.prd, uglify()), rev()],
+            jsBootstrap: [gulpif(argv.prd, uglify()), rev()],
+            jsAngular: [gulpif(argv.prd, uglify()), rev()],
+            jsTemplates: [gulpif(argv.prd, uglify()), rev()],
             jsCustom: [rev()]
         }))
         .pipe(gulp.dest('./'));
