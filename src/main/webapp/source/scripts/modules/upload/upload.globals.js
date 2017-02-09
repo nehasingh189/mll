@@ -1,12 +1,37 @@
 (function(angular){
     'use strict';
 
-    let musicFormats = ['.mp3', '.wav'];
+    // Enumeration of the different music file formats
+    let musicFormats = [
+        '.mp3',
+        '.wav'
+    ];
 
-    let musicGenres = [ 'Alternative', 'Blues', 'Children\'s Music', 'Christian & Gospel', 'Comedy', 'Classical',
-        'Country', 'Dance', 'Electronic', 'Hip - Hop / Rap', 'Pop', 'Jazz', 'Latino', 'R & B / Soul', 'Reggae',
-        'Metal', 'Rock', 'Singer / Songwriter', 'Folk / Americana', 'Funk' ].sort();
+    // Enumeration of the different genres of music
+    let musicGenres = [
+        'Alternative',
+        'Blues',
+        'Children\'s Music',
+        'Christian & Gospel',
+        'Comedy',
+        'Classical',
+        'Country',
+        'Dance',
+        'Electronic',
+        'Hip - Hop / Rap',
+        'Pop',
+        'Jazz',
+        'Latino',
+        'R & B / Soul',
+        'Reggae',
+        'Metal',
+        'Rock',
+        'Singer / Songwriter',
+        'Folk / Americana',
+        'Funk'
+    ].sort();
 
+    // State of the music upload form
     let musicForms = {
         currentId: 0,
         submitFormId: 4,
@@ -16,21 +41,16 @@
             { title: 'Song Ownership Information', isActive: false },
             { title: 'Recording Upload', isActive: false },
             { title: 'Summary', isActive: false }
-        	
-//        	{ title: 'Ownership Information', isActive: true },
-//            { title: 'General Information', isActive: false },
-//            { title: 'Song Selection', isActive: false },
-//            { title: 'Sound Ownership Information', isActive: false },
-//            { title: 'Summary', isActive: false }
         ]
     };
 
+    // All the information associated with a piece of music
     let musicData = {
-        fileInformation: { name: '', file: null },
+        fileInformation: {name: '', file: null},
         generalInformation: {
             title: '',
             artists: [
-                { name: '' }
+                {name: ''}
             ],
             beatRate: 0,
             primaryGenre: '',
@@ -38,7 +58,15 @@
         },
         ownershipInformation: {
             songwriters: [
-                { name: '', primaryEmail: '', primaryPhone: '', secondaryPhone: '', contribution:'', ownershipPercent: 0, musicianRole:'' }
+                {
+                    name: '',
+                    primaryEmail: '',
+                    primaryPhone: '',
+                    secondaryPhone: '',
+                    contribution: '',
+                    ownershipPercent: 0,
+                    musicianRole: ''
+                }
             ],
             copyright: '',
             pubCompany: '',
@@ -46,19 +74,50 @@
         },
         soundInformation: {
             soundOwners: [
-                { name: '', primaryEmail: '', primaryPhone: '', secondaryPhone: '', contribution:'', ownershipPercent: 0, musicianRole:'' }
+                {
+                    name: '',
+                    primaryEmail: '',
+                    primaryPhone: '',
+                    secondaryPhone: '',
+                    contribution: '',
+                    ownershipPercent: 0,
+                    musicianRole: ''
+                }
             ]
         },
-        serverInformation: { }
+        serverInformation: {}
     };
 
+    // Maximum allowed size of a music file
     let musicSize = 10 * 1024 * 1024;
 
-    let musicContributions = ['Lyrics', 'Music', 'Lyrics and Music'].sort();
-    
-    let trackTypes = ['Vocal', 'Instrumental', 'Vocal/Instrumental'].sort();
-    
-    let musicianRoles = ['Vocals', 'Backup Vocals', 'Percussion', 'Guitar', 'Drums', 'Keyboard'].sort();
+    // Enumeration of the various types of contributions to a song
+    let musicContributions = [
+        'Lyrics',
+        'Music',
+        'Lyrics and Music'
+    ];
+
+    // Enumeration of the different track types
+    let trackTypes = [
+        'Vocal',
+        'Instrumental',
+        'Vocal/Instrumental'
+    ];
+
+    // Enumeration of the different roles/positions in a band
+    let musicianRoles = [
+        'Vocals',
+        'Guitar',
+        'Bass',
+        'Drums',
+        'Keyboard',
+        'Backup Vocals',
+        'Percussion',
+        'Brass',
+        'Woodwinds',
+        'Strings'
+    ];
     
     let musicUrl = {
         direct: '/MLL/SubmissionServlet',
