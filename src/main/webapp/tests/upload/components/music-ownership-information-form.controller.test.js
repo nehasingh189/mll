@@ -12,7 +12,6 @@ describe("Music Ownership Information form Controller:", function() {
     let data;
 
     beforeEach(inject(function ($controller) {
-        console.log('BEFORE EACH RUNNING');
         data = {
             songwriters: [ { name: '', primaryEmail: '', primaryPhone: '', secondaryPhone: '' } ],
             copyright: '',
