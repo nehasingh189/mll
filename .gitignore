@@ -167,6 +167,9 @@ hs_err_pid*
 # .nfs files are created when an open file is removed but is still being accessed
 .nfs*
 
+# Git config file
+.gitconfig
+
 # Project generated files
 src/main/webapp/index.html
 src/main/webapp/bower_components
@@ -177,3 +180,4 @@ src/main/webapp/node_modules
 #my own
 MLL.iml
 src/main/webapp/gulpfile.js
+src/main/webapp/source/scripts/modules/templates

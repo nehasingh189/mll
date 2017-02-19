@@ -105,6 +105,7 @@ describe('Registration Service:', function () {
     });
 
     it("'register' function should trigger call to 'registrationService' if the form is valid", function () {
+        ctrl.form.invalid = false;
         ctrl.registrationForm.$invalid = false;
 
         spyOn(service, 'register').and.returnValue(q.resolve({ isRegistered: true, userId: 0 }));

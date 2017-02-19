@@ -9,14 +9,19 @@ describe("Music Sound Information Form Controller:", function() {
     let onPrevious = () => { };
 
     let data;
+    let scope;
+
+    beforeEach(inject(function($rootScope) {
+        scope = $rootScope.$new();
+    }));
 
     beforeEach(inject(function ($controller) {
         data = {
             soundOwners: [ { name: '', primaryEmail: '', primaryPhone: '', secondaryPhone: '' } ]
         };
 
-        ctrl = $controller('MusicSoundInformationFormController', {},
-            {onNext: onNext, onPrevious: onPrevious, data: data }
+        ctrl = $controller('MusicSoundInformationFormController', { $scope: scope },
+            { onNext: onNext, onPrevious: onPrevious, data: data }
         );
 
         ctrl.soundForm = {

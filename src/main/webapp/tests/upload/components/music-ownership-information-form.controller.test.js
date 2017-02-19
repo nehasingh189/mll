@@ -1,6 +1,7 @@
 'use strict';
 
 describe("Music Ownership Information form Controller:", function() {
+    beforeEach(module('mllApp.home'));
     beforeEach(module('mllApp.upload'));
 
     let ctrl;
