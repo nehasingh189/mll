@@ -173,3 +173,7 @@ src/main/webapp/bower_components
 src/main/webapp/dist
 src/main/webapp/node
 src/main/webapp/node_modules
+
+#my own
+MLL.iml
+src/main/webapp/gulpfile.js

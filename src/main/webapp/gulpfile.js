@@ -58,10 +58,10 @@ gulp.task('templates', () => {
             module: 'mllApp.templates',
             standalone: true,
             filename: 'templates.module.js',
-            /*transformUrl: (url) => url.slice(url.lastIndexOf('\\') + 1),*/
-            transformUrl: (url) => {
+            transformUrl: (url) => url.slice(url.lastIndexOf('/') + 1)
+            /*transformUrl: (url) => {
                 return  url.substr(url.lastIndexOf('\\') + 1);
-            }
+            }*/
         }))
         .pipe(gulp.dest('./source/scripts/modules/templates/'));
 });
