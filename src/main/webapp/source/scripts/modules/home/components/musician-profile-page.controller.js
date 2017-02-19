@@ -17,7 +17,7 @@
        var userId = this.authService.details.data.id;
        var allBands = this.authService.details.data.bands;
        this.user = {
-               userId: +this.userId,
+               userId: + this.userId,
                details: '',
                bands: allBands
            };
