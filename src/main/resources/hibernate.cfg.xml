@@ -10,14 +10,14 @@
 
 	<!--  Database Configuration Local
     	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medialicencinglab</property>
+    	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medialicensinglab</property>
     	<property name="hibernate.connection.username">root</property>
     	<property name="hibernate.connection.password"></property>
     -->
     
     <!--  Database Configuration Server -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://medialicencinglab.chrkvax4awjg.us-west-2.rds.amazonaws.com:3306/medialicencinglab</property>
+    <property name="hibernate.connection.url">jdbc:mysql://medialicensinglab.chrkvax4awjg.us-west-2.rds.amazonaws.com:3306/medialicensinglab</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">12345678</property>
     

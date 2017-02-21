@@ -393,7 +393,7 @@ public class SubmissionService
 	    	JSONObject writer =  (JSONObject) songwriters.get(i);
 	    	Owner owner = new Owner();
 	    	
-	    	owner.setDivisonOfOwnership("Half");
+	    	owner.setDivisionOfOwnership("Half");
 			owner.setName((String)writer.get("name"));
 			owner.setOwnerType("WRITER");
 			owner.setPrimaryEmail((String)writer.get("primaryEmail"));
@@ -436,7 +436,7 @@ public class SubmissionService
 	    	JSONObject recorder =  (JSONObject) recorders.get(i);
 	    	Owner owner = new Owner();
 	    	
-	    	owner.setDivisonOfOwnership("Half");
+	    	owner.setDivisionOfOwnership("Half");
 			owner.setName((String)recorder.get("name"));
 			owner.setOwnerType("RECORDING");
 			owner.setPrimaryEmail((String)recorder.get("primaryEmail"));

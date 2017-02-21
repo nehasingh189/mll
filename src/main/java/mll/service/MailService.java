@@ -29,7 +29,7 @@ public class MailService
 		
 		try
 		{
-			sendMail(invite.getToken().getEmailId(), "Invite from Media Licencing Lab", "\n"+ invite.getToken().getMessageBody() + "<br/><br/>" + "<html><a href="+invite.getUrl()+"> Click Here </a></html>" + "for your personalized invitation link. Use it to create your profile in the platform.<br/><br/>If you received this message in error, or if you have a problem during the registration process, please contact "+ conf.EMAIL_ADDRESS_FOR_SUPPORT +".<br/><br/>Thanks,<br/>Media Team");
+			sendMail(invite.getToken().getEmailId(), "Invite from Media Licensing Lab", "\n"+ invite.getToken().getMessageBody() + "<br/><br/>" + "<html><a href="+invite.getUrl()+"> Click Here </a></html>" + "for your personalized invitation link. Use it to create your profile in the platform.<br/><br/>If you received this message in error, or if you have a problem during the registration process, please contact "+ conf.EMAIL_ADDRESS_FOR_SUPPORT +".<br/><br/>Thanks,<br/>Media Team");
 		}
 		catch(Exception e)
 		{

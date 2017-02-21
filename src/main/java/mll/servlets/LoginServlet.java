@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet
 		Login login = subService.validateLogin(request, response);
 		HttpSession session=request.getSession();
 		
-		//Create a new JSON resonse object 
+		//Create a new JSON response object
 		JSONObject responseObject = new JSONObject();
 		
 		/** Check if the error message is null , if not then check the user type.
