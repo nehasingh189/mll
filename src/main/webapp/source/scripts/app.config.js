@@ -58,9 +58,9 @@
                 views: {
                     left: { template: '' },
                     center: {
-                        controller: 'MusicianRegistrationController as ctrl',
+                        controller: 'MusicianRegistrationFormController as ctrl',
                         templateProvider: function($templateCache) {
-                            return $templateCache.get('musician-registration.view.html');
+                            return $templateCache.get('musician-registration-form.template.html');
                         }
                     },
                     right: { template: '' }

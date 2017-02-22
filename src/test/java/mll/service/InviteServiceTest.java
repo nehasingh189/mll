@@ -9,152 +9,83 @@ import mll.beans.Invite;
 import mll.beans.Token;
 
 
-public class InviteServiceTest 
-{
-	@Test
-	public void testPopulateInviteBeansFromRequest1() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest2() throws Exception
-	{
-		InviteService service = new InviteService();
-		Invite invite = new Invite();
-		assertEquals(true, service.populateInviteBeansFromRequest(invite, null) == invite);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest3() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(null, new JSONObject()) == null);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest4() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getActiontype().equals("generate"));
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest5() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getEmailId().equals("abc@xyz.com"));
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest6() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getToken().equals(""));
+public class InviteServiceTest {
+    @Test
+    public void testPopulateInviteBeansFromEmptyRequest() throws Exception {
+        InviteService service = new InviteService();
+        Invite invite = new Invite();
+        assertEquals(true, service.populateInviteBeansFromRequest(null, null) == null);
+        assertEquals(true, service.populateInviteBeansFromRequest(invite, null) == invite);
+        assertEquals(true, service.populateInviteBeansFromRequest(null, new JSONObject()) == null);
+    }
 
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest7() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getInviteType().equals("user"));
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest8() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getUserId() == 1);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest9() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getIsUsed() == false);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest10() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject()).getToken().getIssueDate() != null);
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest11() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteValidateJsonObject()).getActiontype().equals("validate"));
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest12() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteValidateJsonObject()).getToken().getToken().equals("MLLTCKN11"));
-	}
-	
-	@Test
-	public void testPopulateInviteBeansFromRequest13() throws Exception
-	{
-		InviteService service = new InviteService();
-		assertEquals(true, service.populateInviteBeansFromRequest(new Invite(), getInviteValidateJsonObject()).getToken().getInviteType().equals("user"));
-	}
-	
-	
-	@Test 
-	public void testIsEmailDuplicate1() throws Exception 
-	{
-		InviteService service = new InviteService();
-		Invite invite = new Invite();
-		Token token = new Token();
-		token.setEmailId(null);
-		invite.setToken(token);
-		invite.setActiontype("generate");
-		assertEquals(true, service.isEmailDuplicate(invite) == true);
-	}
-	
-	@Test
-	public void testIsEmailDuplicate2() throws Exception {
-		InviteService service = new InviteService();
-		Invite invite = new Invite();
-		Token token = new Token();
-		token.setEmailId("");
-		invite.setToken(token);
-		invite.setActiontype("generate");
-		assertEquals(true, service.isEmailDuplicate(invite) == true);
+    @Test
+    public void testInitialStateForPopulateInviteBeansFromRequest() throws Exception {
+        InviteService service = new InviteService();
+        Invite invite = service.populateInviteBeansFromRequest(new Invite(), getInviteGenerateJsonObject());
+        assertEquals(true, invite.getActiontype().equals("generate"));
+        assertEquals(true, invite.getToken().getEmailId().equals("abc@xyz.com"));
+        assertEquals(true, invite.getToken().getToken().equals(""));
+        assertEquals(true, invite.getToken().getInviteType().equals("user"));
+        assertEquals(true, invite.getToken().getUserId() == 1);
+        assertEquals(true, invite.getToken().getIsUsed() == false);
+        assertEquals(true, invite.getToken().getIssueDate() != null);
+    }
 
-	}
-	
-	
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getInviteGenerateJsonObject()
-	{
-		JSONObject tokenJsonObject = new JSONObject();
-		
-		tokenJsonObject.put("actionType","generate");
-		tokenJsonObject.put("email","abc@xyz.com");
-		tokenJsonObject.put("inviteType","user");
-		tokenJsonObject.put("userId",1L);
-		
-		return tokenJsonObject;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getInviteValidateJsonObject()
-	{
-		JSONObject tokenJsonObject = new JSONObject();
-		
-		tokenJsonObject.put("actionType","validate");
-		tokenJsonObject.put("token","MLLTCKN11");
-		tokenJsonObject.put("inviteType","user");
-		
-		return tokenJsonObject;
-	}
+    @Test
+    public void testPopulateInviteBeansFromRequest11() throws Exception {
+        InviteService service = new InviteService();
+        Invite invite = service.populateInviteBeansFromRequest(new Invite(), getInviteValidateJsonObject());
+        assertEquals(true, invite.getActiontype().equals("validate"));
+        assertEquals(true, invite.getToken().getToken().equals("MLLTCKN11"));
+        assertEquals(true, invite.getToken().getInviteType().equals("user"));
+    }
+
+    @Test
+    public void testIsEmailDuplicate1() throws Exception {
+        InviteService service = new InviteService();
+        Invite invite = new Invite();
+        Token token = new Token();
+        token.setEmailId(null);
+        invite.setToken(token);
+        invite.setActiontype("generate");
+        assertEquals(true, service.isEmailDuplicate(invite) == true);
+    }
+
+    @Test
+    public void testIsEmailDuplicate2() throws Exception {
+        InviteService service = new InviteService();
+        Invite invite = new Invite();
+        Token token = new Token();
+        token.setEmailId("");
+        invite.setToken(token);
+        invite.setActiontype("generate");
+        assertEquals(true, service.isEmailDuplicate(invite) == true);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getInviteGenerateJsonObject() {
+        JSONObject tokenJsonObject = new JSONObject();
+
+        tokenJsonObject.put("actionType", "generate");
+        tokenJsonObject.put("email", "abc@xyz.com");
+        tokenJsonObject.put("inviteType", "user");
+        tokenJsonObject.put("userId", 1L);
+
+        return tokenJsonObject;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getInviteValidateJsonObject() {
+        JSONObject tokenJsonObject = new JSONObject();
+
+        tokenJsonObject.put("actionType", "validate");
+        tokenJsonObject.put("token", "MLLTCKN11");
+        tokenJsonObject.put("inviteType", "user");
+
+        return tokenJsonObject;
+    }
 }
 
 	

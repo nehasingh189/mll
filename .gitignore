@@ -176,8 +176,9 @@ src/main/webapp/bower_components
 src/main/webapp/dist
 src/main/webapp/node
 src/main/webapp/node_modules
+src/main/webapp/source/scripts/modules/templates
 
-#my own
+# Project files that are specific to each developer
 MLL.iml
 src/main/webapp/gulpfile.js
-src/main/webapp/source/scripts/modules/templates
+/src/main/java/mll/utility/Configuration.java

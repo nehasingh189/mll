@@ -5,11 +5,11 @@
         .module('mllApp.home')
         .controller('InviteFormController', InviteFormController);
 
-    InviteFormController.$inject = ['$timeout', 'inviteTokenService'];
+    InviteFormController.$inject = ['$timeout', 'inviteTokenService', 'authenticationService'];
 
-    function InviteFormController($timeout, inviteTokenService) {
+    function InviteFormController($timeout, inviteTokenService, authenticationService) {
         this.data = {
-            userId: +this.userId
+            userId: +authenticationService.details.data.id
         };
 
         this.types = [
