@@ -19,6 +19,16 @@ let usemin = require('gulp-usemin');
  * Build Task
  *      Cleans the dist and rebuilds files
  */
+gulp.task('default', (done) => {
+    runSequence('build', function() {
+        done();
+    })
+});
+
+/**
+ * Build Task
+ *      Cleans the dist and rebuilds files
+ */
 gulp.task('build', (done) => {
     runSequence('cleanup', ['fonts', 'templates'], 'usemin', function() {
         done();
