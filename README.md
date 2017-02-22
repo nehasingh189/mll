@@ -7,7 +7,6 @@ Student run Media Licensing Project
 ### Local Development
 
 #### Set up Razuna and Database Configurations
-
 You will need to manually configure Razuna and Database to point either locally or at the aws server.  
 Razuna configurations are at 'src/main.java/mll/utility/Configuration.java'  
 Database configurations are at 'src/main/resources/hibernate.cfg.xml'  
@@ -25,4 +24,15 @@ Run these commands from the src/main/webapp directory.
 **gulp build --prd** - builds the code minified for deploying to production  
 **gulp develop** - automatically watches for file changes and rebuilds each time. Useful for making small UI tweaks    
 **gulp test** - runs the karma tests. Test configurations (browser, etc.) are specified in karma.conf.js  
+
+#### Test Account Information
+Here are some existing credentials that can be used for testing and development:
+
+**Admin**  
+email: testAdmin@gmail.com   
+password: 12345678  
+
+**Musician**  
+email: testMusician@gmail.com  
+password: 12345678  
 
