@@ -16,23 +16,24 @@
             else {
                 this.service.login(this.data)
                     .then((data) => {
-                    	console.log("login");
-                    	console.log(data);
+                        console.log("login");
+                        console.log(data);
                         this.processResponse(data);
                     })
-                    .catch(() => { });
+                    .catch(() => {
+                    });
             }
         };
 
         this.processResponse = (data) => {
-        	
+
             if (data.isValidUser) this.redirect(data.userId, data.type);
 
             else this.displayError(data.errorMessage);
         };
 
         this.redirect = (id, type) => {
-            $state.go(type, { id: id });
+            $state.go(type, {id: id});
         };
 
         this.displayError = (errorMessage) => {

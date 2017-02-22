@@ -84,8 +84,8 @@
                     }
                 }
             })
-            .state('user', {
-                url: '/user/profile/id/:id',
+            .state('admin', {
+                url: '/admin/profile/id/:id',
                 views: {
                     left: {
                         controller: 'SidebarController as ctrl',
