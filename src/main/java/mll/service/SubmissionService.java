@@ -26,333 +26,292 @@ import mll.beans.SongMetadata;
 import mll.dao.SubmissionDAO;
 import mll.utility.Configuration;
 
-public class SubmissionService
-{
-	SubmissionDAO dao;
-	Configuration conf = new Configuration();
-	
-	public SubmissionService() 
-	{
-		dao = new SubmissionDAO();
-	}
-	
-	/**
-	* This method takes http request and response objects as input and 
-	* first validates the request and if it is valid then save the media
-	* files and related media information.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-24 
-	* 
-	* @author  Shivani Gowrishankar
-	* @version 1.1
-	* @since   2016-10-28 
-	*/
-	@SuppressWarnings("unchecked")
-	public JSONObject uploadMedia(HttpServletRequest request, HttpServletResponse response)
-	{
-		JSONObject responseObject = new JSONObject();
-		HttpSession session=request.getSession();
-		String folder_id=(String) session.getAttribute("folder_id");
-		System.out.println("folder id is "+folder_id);
-		ArrayList<String> AssetIds = null;
-		try
-		{
-			// Validate the request and populate the metadata beans for all songs if request is valid
-			List<Metadata> metadatas = null;
-			if(ServletFileUpload.isMultipartContent(request))
-			{
-				metadatas = populateMetadataBeansFromMultipartRequest(request);
-			}
-			else
-			{
-				metadatas = populateMetadataBeansFromRequest(request);
-			}
-			
-			if(null != metadatas && !metadatas.isEmpty())
-			{
-				// Save all media files with metadata
-			
-				
-				RazunaService razunaService = new RazunaService();
-				//TO DO: Check if serviceResponse is true/false and echo it in UI
-				AssetIds = razunaService.uploadMedia(metadatas,folder_id);
-				
-				metadatas = dao.saveMetadata(metadatas,AssetIds,folder_id);
-				responseObject.put("isUploaded", true);
-				responseObject.put("message", "Media files uploaded successfully.");
-			}
-			else
-			{
-				responseObject.put("isUploaded", false);
-				responseObject.put("message", "Request does not contain valid data. Please upload with proper metadata information.");
-			}
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-			responseObject.put("isUploaded", false);
-			responseObject.put("message", "Error while saving the data. Please upload with proper metadata information.");
-		}
-		
-		return responseObject;
-	}
-	
-	/**
-	* This method takes http request as input and validates the 
-	* request and if it is valid then creates the metadata list 
-	* from the request object.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-24 
-	*/
-	public List<Metadata> populateMetadataBeansFromRequest(HttpServletRequest request) throws Exception
-	{
-		List<Metadata> metadatas = new ArrayList<Metadata>();
-		Metadata metadata =  new Metadata();
-		
-		StringBuffer requestStr = new StringBuffer();
-	   	BufferedReader reader = request.getReader();
-    	String line = null;
-    	while ((line = reader.readLine()) != null)
-    	{
-    		requestStr.append(line);
-    	}
-    	
-    	JSONParser parser = new JSONParser();
-    	JSONObject mainObject = (JSONObject) parser.parse(requestStr.toString());
-	    JSONObject generalInformation =  (JSONObject) mainObject.get("generalInformation");
-	    JSONObject ownershipInformation =  (JSONObject) mainObject.get("ownershipInformation");
-	    JSONObject soundInformation =  (JSONObject) mainObject.get("soundInformation");
-	    
-	    // Populate Song Information	    
-	    populateSong(metadata, generalInformation, ownershipInformation, (String) mainObject.get("file"), null, null);
-	    
-	    // Populate Song Artists Information	 
-	  //  populateSongArtists(metadata, generalInformation);
-	    
-	    // Populate Song Genres Information	 
-	   // populateSongGenres(metadata, generalInformation);
-	    
-	    // Populate Song Writers Information	 
-	    populateSongWriters(metadata, ownershipInformation);
-	    
-	    // Populate Song Recorders Information	 
-	    populateSongRecorders(metadata, soundInformation);
-	    
-	    // set Json Object For Nuxeo
-	    metadata.setMetadataJson(mainObject);
-	    
-		metadatas.add(metadata);
-		return metadatas;
-	}
-	
-	/**
-	* This method takes http multipart request as input and validates  
-	* the request and if it is valid then creates the metadata list 
-	* from the request object.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-24 
-	*/
-	@SuppressWarnings("unchecked")
-	public List<Metadata> populateMetadataBeansFromMultipartRequest(HttpServletRequest request) throws Exception
-	{
-		List<Metadata> metadatas = new ArrayList<Metadata>();
-		Metadata metadata =  new Metadata();
+public class SubmissionService {
+    SubmissionDAO dao;
+    Configuration conf = new Configuration();
 
-		JSONParser parser = new JSONParser();
-	    JSONObject generalInformation =  null;
-	    JSONObject ownershipInformation =  null;
-	    JSONObject soundInformation =  null;
-	    
-	    
-	    byte[] hardDriveContent = null;
-	    String fileName = null;
-	    
-		List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
-		
-		for (FileItem item : multiparts) 
-		{
-			if (!item.isFormField()) 
-	        {
-				
-				InputStream filecontent = item.getInputStream();
-				int available = filecontent.available();
-				hardDriveContent = new byte[available];
-				fileName = item.getName();
-				int readBytes = filecontent.read(hardDriveContent,0,available);
-				
-				if(readBytes != available) 
-	     	   	{
-					return null;
-	     	   	}
-	     	   	filecontent.close();
-	        } 
-	        else 
-	        {
-	        	if(item.getFieldName().equalsIgnoreCase("generalInformation"))
-	        	{
-	        		generalInformation = (JSONObject) parser.parse(item.getString());
-	        	}
-	        	else if(item.getFieldName().equalsIgnoreCase("ownershipInformation"))
-	        	{
-	        		ownershipInformation = (JSONObject) parser.parse(item.getString());
-	        	}
-	        	else if(item.getFieldName().equalsIgnoreCase("soundInformation"))
-	        	{
-	        		soundInformation = (JSONObject) parser.parse(item.getString());
-	        	}
-	        }
-	    }
-		
-	    // Populate Song Information	    
-	    populateSong(metadata, generalInformation, ownershipInformation, null, hardDriveContent, fileName);
-	    
-	    // Populate Song Artists Information	 
-	   
-	    
-	    // Populate Song Genres Information	 
-	   
-	    
-	    // Populate Song Writers Information	 
-	    populateSongWriters(metadata, ownershipInformation);
-	    
-	    // Populate Song Recorders Information	 
-	    populateSongRecorders(metadata, soundInformation);
-	    
-	    // createJsonObject For Nuxeo
-	    JSONObject mainObject = new JSONObject();
-	    mainObject.put("generalInformation", generalInformation);
-	    mainObject.put("ownershipInformation", ownershipInformation);
-	    mainObject.put("soundInformation", soundInformation);
-	    metadata.setMetadataJson(mainObject);
-	    
-		metadatas.add(metadata);
-		return metadatas;
-	}
-	
-	
-	/**
-	* This method takes metadata object and json objects as input 
-	* and fetches the song information from those objects.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-25 
-	*/
-	public Metadata populateSong(Metadata metadata,  JSONObject generalInformation, JSONObject ownershipInformation, String dropboxURL, byte[] hardDriveContent, String fileName) throws Exception
-	{
-		if(null == metadata)
-		{
-			return null;
-		}
-		
-		if(null == generalInformation || null == ownershipInformation)
-		{
-			return metadata;
-		}
-		
-		SongMetadata song = new SongMetadata();
-	    song.setBeats_per_rate((Long)generalInformation.get("beatRate"));
-	    song.setTitle((String) generalInformation.get("title"));
-	    song.setCopyright_number((String) ownershipInformation.get("copyright"));    
-	    song.setPublishing_company((String) ownershipInformation.get("pubCompany")); 
-	    song.setPro((String) ownershipInformation.get("pbo"));
-	    song.setPrimary_genre((String)generalInformation.get("primaryGenre"));
-	    song.setSecondary_genre((String)generalInformation.get("secondaryGenre"));
-	    song.setFileName(fileName);
-	    song.setArtists(populateSongArtists(metadata, generalInformation));
-	    if(null != generalInformation.get("userId"))
-	    {
-	    	song.setUserId(((Long)generalInformation.get("userId")).intValue());
-	    }
-	    
-	    
-	    if(null != dropboxURL && !"".equals(dropboxURL))
-	    {
-	    	song.setContentURL(dropboxURL);
-			song.setSourceOfContent("DROPBOX");
-			
-			// Get File Content from Drop Box
-			DropboxService ds = new DropboxService();
-			song.setContent(ds.getContentFromDropbox(dropboxURL));
-	    }
-	    else
-	    {
-	    	song.setContentURL(null);
-			song.setSourceOfContent("HARDDRIVE");
-			song.setContent(hardDriveContent);
-	    }
-	    
-	    metadata.setSong(song);
-	    
-	    return metadata;
-	}
-	
-	/**
-	* This method takes metadata object and json object as input 
-	* and fetches the song artist information from json array.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-25 
-	*/
-	public String populateSongArtists(Metadata metadata, JSONObject generalInformation) throws Exception
-	{
-		if(null == metadata)
-		{
-			return null;
-		}
-		
-		if(null == generalInformation)
-		{
-			return null;
-		}
-		
-		JSONArray artistsarr= (JSONArray) generalInformation.get("artists");
-		StringBuffer artists=new StringBuffer();
-	    for(int i=0; i<artistsarr.size(); i++)
-	    {
-	    	
-	    	artists.append(((JSONObject)artistsarr.get(i)).get("name"));
-	    
-	    }
-	    
-	    return artists.toString();
-	}
-	
-	/**
-	* This method takes metadata object and json object as input 
-	* and fetches the song genres information from json array.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-25 
-	*/
-	public Metadata populateSongGenres(Metadata metadata, JSONObject generalInformation) throws Exception
-	{
-		if(null == metadata)
-		{
-			return null;
-		}
-		
-		if(null == generalInformation)
-		{
-			return metadata;
-		}
-		
-		Genre primaryGenre = new Genre();
-		primaryGenre.setGenre((String) generalInformation.get("primaryGenre"));
-    	metadata.getGenres().add(primaryGenre);
-    	
-		Genre secondaryGenre = new Genre();
-		secondaryGenre.setGenre((String) generalInformation.get("secondaryGenre"));
-    	metadata.getGenres().add(secondaryGenre);
-		
+    public SubmissionService() {
+        dao = new SubmissionDAO();
+    }
+
+    /**
+     * This method takes http request and response objects as input and
+     * first validates the request and if it is valid then save the media
+     * files and related media information.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @author Shivani Gowrishankar
+     * @version 1.1
+     * @since 2016-10-28
+     */
+    @SuppressWarnings("unchecked")
+    public JSONObject uploadMedia(HttpServletRequest request, HttpServletResponse response) {
+        JSONObject responseObject = new JSONObject();
+        HttpSession session = request.getSession();
+        String folder_id = (String) session.getAttribute("folder_id");
+        System.out.println("folder id is " + folder_id);
+        ArrayList<String> AssetIds = null;
+        try {
+            // Validate the request and populate the metadata beans for all songs if request is valid
+            List<Metadata> metadatas = null;
+            if (ServletFileUpload.isMultipartContent(request)) {
+                metadatas = populateMetadataBeansFromMultipartRequest(request);
+            } else {
+                metadatas = populateMetadataBeansFromRequest(request);
+            }
+
+            if (null != metadatas && !metadatas.isEmpty()) {
+                // Save all media files with metadata
+
+
+                RazunaService razunaService = new RazunaService();
+                //TO DO: Check if serviceResponse is true/false and echo it in UI
+                AssetIds = razunaService.uploadMedia(metadatas, folder_id);
+
+                metadatas = dao.saveMetadata(metadatas, AssetIds, folder_id);
+                responseObject.put("isUploaded", true);
+                responseObject.put("message", "Media files uploaded successfully.");
+            } else {
+                responseObject.put("isUploaded", false);
+                responseObject.put("message", "Request does not contain valid data. Please upload with proper metadata information.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            responseObject.put("isUploaded", false);
+            responseObject.put("message", "Error while saving the data. Please upload with proper metadata information.");
+        }
+
+        return responseObject;
+    }
+
+    /**
+     * This method takes http request as input and validates the
+     * request and if it is valid then creates the metadata list
+     * from the request object.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-24
+     */
+    public List<Metadata> populateMetadataBeansFromRequest(HttpServletRequest request) throws Exception {
+        List<Metadata> metadatas = new ArrayList<Metadata>();
+        Metadata metadata = new Metadata();
+
+        StringBuffer requestStr = new StringBuffer();
+        BufferedReader reader = request.getReader();
+        String line = null;
+        while ((line = reader.readLine()) != null) {
+            requestStr.append(line);
+        }
+
+        JSONParser parser = new JSONParser();
+        JSONObject mainObject = (JSONObject) parser.parse(requestStr.toString());
+        JSONObject generalInformation = (JSONObject) mainObject.get("generalInformation");
+        JSONObject ownershipInformation = (JSONObject) mainObject.get("ownershipInformation");
+        JSONObject soundInformation = (JSONObject) mainObject.get("soundInformation");
+
+        // Populate Song Information
+        populateSong(metadata, generalInformation, ownershipInformation, (String) mainObject.get("file"), null, null);
+
+        // Populate Song Artists Information
+        //  populateSongArtists(metadata, generalInformation);
+
+        // Populate Song Genres Information
+        // populateSongGenres(metadata, generalInformation);
+
+        // Populate Song Writers Information
+        populateSongWriters(metadata, ownershipInformation);
+
+        // Populate Song Recorders Information
+        populateSongRecorders(metadata, soundInformation);
+
+        // set Json Object For Nuxeo
+        metadata.setMetadataJson(mainObject);
+
+        metadatas.add(metadata);
+        return metadatas;
+    }
+
+    /**
+     * This method takes http multipart request as input and validates
+     * the request and if it is valid then creates the metadata list
+     * from the request object.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-24
+     */
+    @SuppressWarnings("unchecked")
+    public List<Metadata> populateMetadataBeansFromMultipartRequest(HttpServletRequest request) throws Exception {
+        List<Metadata> metadatas = new ArrayList<Metadata>();
+        Metadata metadata = new Metadata();
+
+        JSONParser parser = new JSONParser();
+        JSONObject generalInformation = null;
+        JSONObject ownershipInformation = null;
+        JSONObject soundInformation = null;
+
+
+        byte[] hardDriveContent = null;
+        String fileName = null;
+
+        List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
+
+        for (FileItem item : multiparts) {
+            if (!item.isFormField()) {
+
+                InputStream filecontent = item.getInputStream();
+                int available = filecontent.available();
+                hardDriveContent = new byte[available];
+                fileName = item.getName();
+                int readBytes = filecontent.read(hardDriveContent, 0, available);
+
+                if (readBytes != available) {
+                    return null;
+                }
+                filecontent.close();
+            } else {
+                if (item.getFieldName().equalsIgnoreCase("generalInformation")) {
+                    generalInformation = (JSONObject) parser.parse(item.getString());
+                } else if (item.getFieldName().equalsIgnoreCase("ownershipInformation")) {
+                    ownershipInformation = (JSONObject) parser.parse(item.getString());
+                } else if (item.getFieldName().equalsIgnoreCase("soundInformation")) {
+                    soundInformation = (JSONObject) parser.parse(item.getString());
+                }
+            }
+        }
+
+        // Populate Song Information
+        populateSong(metadata, generalInformation, ownershipInformation, null, hardDriveContent, fileName);
+
+        // Populate Song Artists Information
+
+
+        // Populate Song Genres Information
+
+
+        // Populate Song Writers Information
+        populateSongWriters(metadata, ownershipInformation);
+
+        // Populate Song Recorders Information
+        populateSongRecorders(metadata, soundInformation);
+
+        // createJsonObject For Nuxeo
+        JSONObject mainObject = new JSONObject();
+        mainObject.put("generalInformation", generalInformation);
+        mainObject.put("ownershipInformation", ownershipInformation);
+        mainObject.put("soundInformation", soundInformation);
+        metadata.setMetadataJson(mainObject);
+
+        metadatas.add(metadata);
+        return metadatas;
+    }
+
+
+    /**
+     * This method takes metadata object and json objects as input
+     * and fetches the song information from those objects.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-25
+     */
+    public Metadata populateSong(Metadata metadata, JSONObject generalInformation, JSONObject ownershipInformation, String dropboxURL, byte[] hardDriveContent, String fileName) throws Exception {
+        if (null == metadata) {
+            return null;
+        }
+
+        if (null == generalInformation || null == ownershipInformation) {
+            return metadata;
+        }
+
+        SongMetadata song = new SongMetadata();
+        song.setBeats_per_rate((Long) generalInformation.get("beatRate"));
+        song.setTitle((String) generalInformation.get("title"));
+        song.setCopyright_number((String) ownershipInformation.get("copyright"));
+        song.setPublishing_company((String) ownershipInformation.get("pubCompany"));
+        song.setPro((String) ownershipInformation.get("pro"));
+        song.setPrimary_genre((String) generalInformation.get("primaryGenre"));
+        song.setSecondary_genre((String) generalInformation.get("secondaryGenre"));
+        song.setFileName(fileName);
+        song.setArtists(populateSongArtists(metadata, generalInformation));
+        if (null != generalInformation.get("userId")) {
+            song.setUserId(((Long) generalInformation.get("userId")).intValue());
+        }
+
+
+        if (null != dropboxURL && !"".equals(dropboxURL)) {
+            song.setContentURL(dropboxURL);
+            song.setSourceOfContent("DROPBOX");
+
+            // Get File Content from Drop Box
+            DropboxService ds = new DropboxService();
+            song.setContent(ds.getContentFromDropbox(dropboxURL));
+        } else {
+            song.setContentURL(null);
+            song.setSourceOfContent("HARDDRIVE");
+            song.setContent(hardDriveContent);
+        }
+
+        metadata.setSong(song);
+
+        return metadata;
+    }
+
+    /**
+     * This method takes metadata object and json object as input
+     * and fetches the song artist information from json array.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-25
+     */
+    public String populateSongArtists(Metadata metadata, JSONObject generalInformation) throws Exception {
+        if (null == metadata) {
+            return null;
+        }
+
+        if (null == generalInformation) {
+            return null;
+        }
+
+        JSONArray artistsarr = (JSONArray) generalInformation.get("artists");
+        StringBuffer artists = new StringBuffer();
+        for (int i = 0; i < artistsarr.size(); i++) {
+
+            artists.append(((JSONObject) artistsarr.get(i)).get("name"));
+
+        }
+
+        return artists.toString();
+    }
+
+    /**
+     * This method takes metadata object and json object as input
+     * and fetches the song genres information from json array.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-25
+     */
+    public Metadata populateSongGenres(Metadata metadata, JSONObject generalInformation) throws Exception {
+        if (null == metadata) {
+            return null;
+        }
+
+        if (null == generalInformation) {
+            return metadata;
+        }
+
+        Genre primaryGenre = new Genre();
+        primaryGenre.setGenre((String) generalInformation.get("primaryGenre"));
+        metadata.getGenres().add(primaryGenre);
+
+        Genre secondaryGenre = new Genre();
+        secondaryGenre.setGenre((String) generalInformation.get("secondaryGenre"));
+        metadata.getGenres().add(secondaryGenre);
+
 		/*
 		If Genre are send as an array from UI side - Previous Code
 		JSONArray genres = (JSONArray) generalInformation.get("genres");
@@ -363,93 +322,85 @@ public class SubmissionService
 	    	metadata.getGenres().add(genre);
 	    }
 	    */
-	    
-	    return metadata;
-	}
-	
-	/**
-	* This method takes metadata object and json object as input 
-	* and fetches the sound writers information from json array.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-25 
-	*/
-	public Metadata populateSongWriters(Metadata metadata, JSONObject ownershipInformation) throws Exception
-	{
-		if(null == metadata)
-		{
-			return null;
-		}
-		
-		if(null == ownershipInformation)
-		{
-			return metadata;
-		}
-		
-		JSONArray songwriters = (JSONArray) ownershipInformation.get("songwriters");
-	    for(int i=0; i<songwriters.size(); i++)
-	    {
-	    	JSONObject writer =  (JSONObject) songwriters.get(i);
-	    	Owner owner = new Owner();
-	    	
-	    	owner.setDivisonOfOwnership("Half");
-			owner.setName((String)writer.get("name"));
-			owner.setOwnerType("WRITER");
-			owner.setPrimaryEmail((String)writer.get("primaryEmail"));
-			owner.setSecondaryEmail((String)writer.get("secondaryEmail"));
-			owner.setPrimaryPhone((String)writer.get("primaryPhone"));
-			owner.setSecondaryPhone((String)writer.get("secondaryPhone"));
-			owner.setContribution((String)writer.get("contribution"));
-			owner.setOwner_percent((Long)writer.get("ownershipPercent"));
-			owner.setRole((String)writer.get("MusicianRole"));
-	    	
-	    	metadata.getOwners().add(owner);
-	    }
-	    
-	    return metadata;
-	}
-	
-	/**
-	* This method takes metadata object and json object as input 
-	* and fetches the sound recorders information from json array.
-	*
-	* @author  Dhaval Patel
-	* @version 1.0
-	* @since   2016-03-25 
-	*/
-	public Metadata populateSongRecorders(Metadata metadata, JSONObject soundInformation) throws Exception
-	{
-		if(null == metadata)
-		{
-			return null;
-		}
-		
-		if(null == soundInformation)
-		{
-			return metadata;
-		}
-		
-		JSONArray recorders = (JSONArray) soundInformation.get("soundOwners");
-	    for(int i=0; i<recorders.size(); i++)
-	    {
-	    	JSONObject recorder =  (JSONObject) recorders.get(i);
-	    	Owner owner = new Owner();
-	    	
-	    	owner.setDivisonOfOwnership("Half");
-			owner.setName((String)recorder.get("name"));
-			owner.setOwnerType("RECORDING");
-			owner.setPrimaryEmail((String)recorder.get("primaryEmail"));
-			owner.setSecondaryEmail((String)recorder.get("secondaryEmail"));
-			owner.setPrimaryPhone((String)recorder.get("primaryPhone"));
-			owner.setSecondaryPhone((String)recorder.get("secondaryPhone"));
-			owner.setContribution((String)recorder.get("contribution"));
-			owner.setOwner_percent((Long)recorder.get("ownershipPercent"));
-			owner.setRole((String)recorder.get("MusicianRole"));
-			
-	    	metadata.getOwners().add(owner);
-	    }
-	    
-	    return metadata;
-	}
+
+        return metadata;
+    }
+
+    /**
+     * This method takes metadata object and json object as input
+     * and fetches the sound writers information from json array.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-25
+     */
+    public Metadata populateSongWriters(Metadata metadata, JSONObject ownershipInformation) throws Exception {
+        if (null == metadata) {
+            return null;
+        }
+
+        if (null == ownershipInformation) {
+            return metadata;
+        }
+
+        JSONArray songwriters = (JSONArray) ownershipInformation.get("songwriters");
+        for (int i = 0; i < songwriters.size(); i++) {
+            JSONObject writer = (JSONObject) songwriters.get(i);
+            Owner owner = new Owner();
+
+            owner.setDivisonOfOwnership("Half");
+            owner.setName((String) writer.get("name"));
+            owner.setOwnerType("WRITER");
+            owner.setPrimaryEmail((String) writer.get("primaryEmail"));
+            owner.setSecondaryEmail((String) writer.get("secondaryEmail"));
+            owner.setPrimaryPhone((String) writer.get("primaryPhone"));
+            owner.setSecondaryPhone((String) writer.get("secondaryPhone"));
+            owner.setContribution((String) writer.get("contribution"));
+            owner.setOwner_percent((Long) writer.get("ownershipPercent"));
+            owner.setRole((String) writer.get("MusicianRole"));
+
+            metadata.getOwners().add(owner);
+        }
+
+        return metadata;
+    }
+
+    /**
+     * This method takes metadata object and json object as input
+     * and fetches the sound recorders information from json array.
+     *
+     * @author Dhaval Patel
+     * @version 1.0
+     * @since 2016-03-25
+     */
+    public Metadata populateSongRecorders(Metadata metadata, JSONObject soundInformation) throws Exception {
+        if (null == metadata) {
+            return null;
+        }
+
+        if (null == soundInformation) {
+            return metadata;
+        }
+
+        JSONArray recorders = (JSONArray) soundInformation.get("soundOwners");
+        for (int i = 0; i < recorders.size(); i++) {
+            JSONObject recorder = (JSONObject) recorders.get(i);
+            Owner owner = new Owner();
+
+            owner.setDivisonOfOwnership("Half");
+            owner.setName((String) recorder.get("name"));
+            owner.setOwnerType("RECORDING");
+            owner.setPrimaryEmail((String) recorder.get("primaryEmail"));
+            owner.setSecondaryEmail((String) recorder.get("secondaryEmail"));
+            owner.setPrimaryPhone((String) recorder.get("primaryPhone"));
+            owner.setSecondaryPhone((String) recorder.get("secondaryPhone"));
+            owner.setContribution((String) recorder.get("contribution"));
+            owner.setOwner_percent((Long) recorder.get("ownershipPercent"));
+            owner.setRole((String) recorder.get("MusicianRole"));
+
+            metadata.getOwners().add(owner);
+        }
+
+        return metadata;
+    }
 }

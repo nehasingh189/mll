@@ -9,310 +9,160 @@ import org.junit.Test;
 import mll.beans.Metadata;
 
 
-public class SubmissionServiceTest 
-{
-	@Test
-	public void testPopulateSong1() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		assertEquals(true, service.populateSong(null, null, null, null, null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSong2() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), null, null, null, null) == metadata);
-	}
-	
-	@Test
-	public void testPopulateSong3() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, null, getOwnerInfoJsonObject(), null, null, null) == metadata);
-	}
-	
-	@Test
-	public void testPopulateSong4() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), "dropboxURL", null, null).getSongMetadata().getTitle().equals("My heart will go on"));
-	}
-	
-	@Test
-	public void testPopulateSong5() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), "dropboxURL", null, null).getSongMetadata().getCopyright_number().equals("copyright"));
-	}
-	
-	@Test
-	public void testPopulateSong6() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), "dropboxURL", null, null).getSongMetadata().getSourceOfContent().equals("DROPBOX"));
-	}
-	
-	@Test
-	public void testPopulateSong7() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), null, new byte[1024], null).getSongMetadata().getSourceOfContent().equals("HARDDRIVE"));
-	}
-	
-	@Test
-	public void testPopulateSongGenres1() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		assertEquals(true, service.populateSongGenres(null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSongGenres2() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongGenres(metadata, null) == metadata);
-	}
-	
-	@Test
-	public void testPopulateSongGenres3() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().size() == 2);
-	}
-	
-	@Test
-	public void testPopulateSongGenres4() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("Alternative", service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().get(0).getGenre());
-	}
-	
-	@Test
-	public void testPopulateSongGenres5() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("Classical", service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().get(1).getGenre());
-	}
-	
-	@Test
-	public void testPopulateSongArtists1() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		assertEquals(true, service.populateSongArtists(null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSongArtists2() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongArtists(metadata, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSongArtists3() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(false, service.populateSongArtists(metadata, getArtistJsonObject()).length() == 1);
-	}
-	
-	@Test
-	public void testPopulateSongArtists4() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongArtists(metadata, getArtistJsonObject()).equals("ArtistName"));
-	}
-	
-	@Test
-	public void testPopulateSongRecorders1() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		assertEquals(true, service.populateSongRecorders(null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSongRecorders2() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongRecorders(metadata, null) == metadata);
-	}
-	
-	@Test
-	public void testPopulateSongRecorders3() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().size() == 1);
-	}
-	
-	@Test
-	public void testPopulateSongRecorders4() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("Test", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getName());
-	}
-	
-	@Test
-	public void testPopulateSongRecorders5() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("primary@neu.edu", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryEmail());
-	}
-	
-	@Test
-	public void testPopulateSongRecorders6() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("123-456-7890", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryPhone());
-	}
-	
-	@Test
-	public void testPopulateSongWriters1() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		assertEquals(true, service.populateSongWriters(null, null) == null);
-	}
-	
-	@Test
-	public void testPopulateSongWriters2() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongWriters(metadata, null) == metadata);
-	}
-	
-	@Test
-	public void testPopulateSongWriters3() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals(true, service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().size() == 1);
-	}
-	
-	@Test
-	public void testPopulateSongWriters4() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("Test", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getName());
-	}
-	
-	@Test
-	public void testPopulateSongWriters5() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("primary@neu.edu", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getPrimaryEmail());
-	}
-	
-	@Test
-	public void testPopulateSongWriters6() throws Exception
-	{
-		SubmissionService service = new SubmissionService();
-		Metadata metadata = new Metadata();
-		assertEquals("123-456-7890", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getPrimaryPhone());
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getGeneralInfoJsonObject()
-	{	
-		JSONObject jor = new JSONObject();
-		jor.put("name", "ArtistName");
-		JSONArray artists = new JSONArray();
-		artists.add(jor); 
-		JSONObject jo = new JSONObject();
-		jo.put("beatRate", 3L);
-		jo.put("title", "My heart will go on");
-		jo.put("artists", artists);
-		jo.put("userId", 1L);
-		return jo;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getOwnerInfoJsonObject()
-	{
-		JSONObject jo = new JSONObject();
-		jo.put("copyright", "copyright");
-		jo.put("pubCompany", "pubCompany");
-		jo.put("pbo", "pro");
-		return jo;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getGenresJsonObject()
-	{
-		JSONObject jo = new JSONObject();
-		jo.put("primaryGenre", "Alternative");
-		jo.put("secondaryGenre", "Classical");
-		return jo;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getArtistJsonObject()
-	{
-		JSONObject jo = new JSONObject();
-		jo.put("name", "ArtistName");
+public class SubmissionServiceTest {
+    @Test
+    public void testPopulateSong() throws Exception {
+        SubmissionService service = new SubmissionService();
+        Metadata metadata = new Metadata();
 
-		JSONArray artists = new JSONArray();
-		artists.add(jo);
-		
-		JSONObject input = new JSONObject();
-		input.put("artists", artists);
-		return input;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getRecorderJsonObject()
-	{
-		JSONObject jo = new JSONObject();
-		jo.put("name", "Test");
-		jo.put("primaryEmail", "primary@neu.edu");
-		jo.put("secondaryEmail", "secondary@neu.edu");
-		jo.put("primaryPhone", "123-456-7890");
-		jo.put("secondaryPhone", "012-345-6789");
-		
-		JSONArray recorders = new JSONArray();
-		recorders.add(jo);
-		
-		JSONObject input = new JSONObject();
-		input.put("soundOwners", recorders);
-		return input;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public JSONObject getWriterJsonObject()
-	{
-		JSONObject jo = new JSONObject();
-		jo.put("name", "Test");
-		jo.put("primaryEmail", "primary@neu.edu");
-		jo.put("secondaryEmail", "secondary@neu.edu");
-		jo.put("primaryPhone", "123-456-7890");
-		jo.put("secondaryPhone", "012-345-6789");
-		
-		JSONArray recorders = new JSONArray();
-		recorders.add(jo);
-		
-		JSONObject input = new JSONObject();
-		input.put("songwriters", recorders);
-		return input;
-	}
+        // Tests for the empty cases
+        assertEquals(true, service.populateSong(null, null, null, null, null, null) == null);
+        assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), null, null, null, null) == metadata);
+        assertEquals(true, service.populateSong(metadata, null, getOwnerInfoJsonObject(), null, null, null) == metadata);
+
+        // Tests that each metadata field is set properly
+        Metadata populatedMetadata1 = service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), "dropboxURL", null, "myFilename");
+        assertEquals(true, populatedMetadata1.getSongMetadata().getBeats_per_rate() == 3L);
+        assertEquals(true, populatedMetadata1.getSongMetadata().getTitle().equals("testSongTitle"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getCopyright_number().equals("copyright"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getPublishing_company().equals("pubCompany"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getPro().equals("pro"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getPrimary_genre().equals("Alternative"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getSecondary_genre().equals("Classical"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getSourceOfContent().equals("DROPBOX"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getFileName().equals("myFilename"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getArtists().equals("ArtistName"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getUserId() == 1L);
+        assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), null, new byte[1024], null).getSongMetadata().getSourceOfContent().equals("HARDDRIVE"));
+        assertEquals(true, service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), null, new byte[1024], null).getSongMetadata().getSourceOfContent().equals("HARDDRIVE"));
+    }
+
+    @Test
+    public void testPopulateSongGenres() throws Exception {
+        SubmissionService service = new SubmissionService();
+        Metadata metadata = new Metadata();
+        assertEquals(true, service.populateSongGenres(null, null) == null);
+        assertEquals(true, service.populateSongGenres(metadata, null) == metadata);
+        assertEquals(true, service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().size() == 2);
+        assertEquals("Alternative", service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().get(0).getGenre());
+        assertEquals("Classical", service.populateSongGenres(metadata, getGenresJsonObject()).getGenres().get(1).getGenre());
+    }
+
+    @Test
+    public void testPopulateSongArtists() throws Exception {
+        SubmissionService service = new SubmissionService();
+        Metadata metadata = new Metadata();
+        assertEquals(true, service.populateSongArtists(null, null) == null);
+        assertEquals(true, service.populateSongArtists(metadata, null) == null);
+        assertEquals(false, service.populateSongArtists(metadata, getArtistJsonObject()).length() == 1);
+        assertEquals(true, service.populateSongArtists(metadata, getArtistJsonObject()).equals("ArtistName"));
+    }
+
+    @Test
+    public void testPopulateSongRecorders() throws Exception {
+        SubmissionService service = new SubmissionService();
+        Metadata metadata = new Metadata();
+        assertEquals(true, service.populateSongRecorders(null, null) == null);
+        assertEquals(true, service.populateSongRecorders(metadata, null) == metadata);
+        assertEquals(true, service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().size() == 1);
+        assertEquals("Test", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getName());
+        assertEquals("primary@neu.edu", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryEmail());
+        assertEquals("123-456-7890", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryPhone());
+    }
+
+    @Test
+    public void testPopulateSongWriters() throws Exception {
+        SubmissionService service = new SubmissionService();
+        Metadata metadata = new Metadata();
+        assertEquals(true, service.populateSongWriters(null, null) == null);
+        assertEquals(true, service.populateSongWriters(metadata, null) == metadata);
+        assertEquals(true, service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().size() == 1);
+        assertEquals("Test", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getName());
+        assertEquals("primary@neu.edu", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getPrimaryEmail());
+        assertEquals("123-456-7890", service.populateSongWriters(metadata, getWriterJsonObject()).getOwners().get(0).getPrimaryPhone());
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getGeneralInfoJsonObject() {
+        JSONObject jor = new JSONObject();
+        jor.put("name", "ArtistName");
+        JSONArray artists = new JSONArray();
+        artists.add(jor);
+        JSONObject jo = new JSONObject();
+        jo.put("beatRate", 3L);
+        jo.put("title", "testSongTitle");
+        jo.put("artists", artists);
+        jo.put("userId", 1L);
+        jo.put("primaryGenre", "Alternative");
+        jo.put("secondaryGenre", "Classical");
+        jo.put("pubCompany", "pubCompany");
+        jo.put("pro", "pro");
+        return jo;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getOwnerInfoJsonObject() {
+        JSONObject jo = new JSONObject();
+        jo.put("copyright", "copyright");
+        jo.put("pubCompany", "pubCompany");
+        jo.put("pro", "pro");
+        return jo;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getGenresJsonObject() {
+        JSONObject jo = new JSONObject();
+        jo.put("primaryGenre", "Alternative");
+        jo.put("secondaryGenre", "Classical");
+        return jo;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getArtistJsonObject() {
+        JSONObject jo = new JSONObject();
+        jo.put("name", "ArtistName");
+
+        JSONArray artists = new JSONArray();
+        artists.add(jo);
+
+        JSONObject input = new JSONObject();
+        input.put("artists", artists);
+        return input;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getRecorderJsonObject() {
+        JSONObject jo = new JSONObject();
+        jo.put("name", "Test");
+        jo.put("primaryEmail", "primary@neu.edu");
+        jo.put("secondaryEmail", "secondary@neu.edu");
+        jo.put("primaryPhone", "123-456-7890");
+        jo.put("secondaryPhone", "012-345-6789");
+
+        JSONArray recorders = new JSONArray();
+        recorders.add(jo);
+
+        JSONObject input = new JSONObject();
+        input.put("soundOwners", recorders);
+        return input;
+    }
+
+    @SuppressWarnings("unchecked")
+    public JSONObject getWriterJsonObject() {
+        JSONObject jo = new JSONObject();
+        jo.put("name", "Test");
+        jo.put("primaryEmail", "primary@neu.edu");
+        jo.put("secondaryEmail", "secondary@neu.edu");
+        jo.put("primaryPhone", "123-456-7890");
+        jo.put("secondaryPhone", "012-345-6789");
+
+        JSONArray recorders = new JSONArray();
+        recorders.add(jo);
+
+        JSONObject input = new JSONObject();
+        input.put("songwriters", recorders);
+        return input;
+    }
 }
 
 	
