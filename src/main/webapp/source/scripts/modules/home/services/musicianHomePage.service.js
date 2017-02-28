@@ -50,7 +50,7 @@
 
         	return $http.post(editUrl, data)
             .then((response) => {
-            	//console.log("after servlet hit");
+            	//console.log("after servlets hit");
                 //	console.log(response);
                     //return response;
                 })

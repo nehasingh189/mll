@@ -29,7 +29,7 @@
         	var bandUrl = getBandDetailsUrl + id;
         	return $http.post(bandUrl)
         	.then((response) => {
-            	//console.log("after servlet hit");
+            	//console.log("after servlets hit");
                 //	console.log(response);
                     return response.data;
                 })
@@ -41,7 +41,7 @@
         	console.log(data);
         	return $http.post(addBandUrl, data)
         	.then((response) => {
-            	console.log("after servlet hit");
+            	console.log("after servlets hit");
                 	console.log(response);
                     return response.data;
                 })
@@ -108,7 +108,7 @@
 //
 //        	return $http.post(editUrl, data)
 //            .then((response) => {
-//            	console.log("after servlet hit");
+//            	console.log("after servlets hit");
 //                	console.log(response);
 //                    //return response;
 //                })

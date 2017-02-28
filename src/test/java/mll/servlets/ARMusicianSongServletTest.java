@@ -1,4 +1,4 @@
-package mll.servlet;
+package mll.servlets;
 
 public class ARMusicianSongServletTest {
 
