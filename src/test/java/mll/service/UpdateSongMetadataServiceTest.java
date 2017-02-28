@@ -43,7 +43,7 @@ public class UpdateSongMetadataServiceTest {
 		ArrayList<String> assetids=razunaservice.uploadMedia(metadatas, "40E5FD89FF8945B5A94719E8613217D8");
 		assertEquals(1, assetids.size());
 		JSONObject dataobj=new JSONObject();
-		dataobj.put("primayPhone", "8578299424");
+		dataobj.put("primaryPhone", "8578299424");
 		dataobj.put("Name","sai mahanth");
 		dataobj.put("divisionOfOwnership","full");
 		dataobj.put("Id","2");

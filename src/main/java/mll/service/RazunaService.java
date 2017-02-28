@@ -188,10 +188,10 @@ public class RazunaService
 				JSONObject obj=new JSONObject();
 				obj.put("Name", owner.getName());
 				obj.put("Id",owner.getId());
-				obj.put("divisionOfOwnership", owner.getDivisonOfOwnership());
-				obj.put("primayPhone", owner.getPrimaryPhone());
+				obj.put("divisionOfOwnership", owner.getDivisionOfOwnership());
+				obj.put("primaryPhone", owner.getPrimaryPhone());
 				obj.put("secondaryPhone", owner.getSecondaryPhone());
-				obj.put("primayEmail", owner.getPrimaryEmail());
+				obj.put("primaryEmail", owner.getPrimaryEmail());
 				obj.put("secondaryEmail", owner.getSecondaryEmail());
 				if(owner.getOwnerType().equalsIgnoreCase("RECORDING"))
 				{

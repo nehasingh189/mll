@@ -85,7 +85,7 @@ public class RazunaUtility {
 		if(smd.getPrimary_genre()!=null)
 		{
 			JSONArray arr=new JSONArray();
-			arr.put(conf.RAZUNA_PRIMAY_GENRE);
+			arr.put(conf.RAZUNA_PRIMARY_GENRE);
 			arr.put(smd.getPrimary_genre());
 			customFields.put(arr);
 		}
@@ -154,7 +154,7 @@ public class RazunaUtility {
 		if(smd.has("primary_genre"))
 		{
 			JSONArray arr=new JSONArray();
-			arr.put(conf.RAZUNA_PRIMAY_GENRE);
+			arr.put(conf.RAZUNA_PRIMARY_GENRE);
 			arr.put(smd.get("primary_genre"));
 			customFields.put(arr);
 		}

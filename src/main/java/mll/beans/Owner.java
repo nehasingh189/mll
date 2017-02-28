@@ -9,7 +9,7 @@ public class Owner implements Serializable
 	private Integer id;
 	private String songId;
 	private String name;
-	private String divisonOfOwnership;	 
+	private String divisionOfOwnership;
 	private String ownerType;
 	private String primaryPhone;
 	private String secondaryPhone;	 
@@ -38,11 +38,11 @@ public class Owner implements Serializable
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDivisonOfOwnership() {
-		return divisonOfOwnership;
+	public String getDivisionOfOwnership() {
+		return divisionOfOwnership;
 	}
-	public void setDivisonOfOwnership(String divisonOfOwnership) {
-		this.divisonOfOwnership = divisonOfOwnership;
+	public void setDivisionOfOwnership(String divisionOfOwnership) {
+		this.divisionOfOwnership = divisionOfOwnership;
 	}
 	public String getOwnerType() {
 		return ownerType;

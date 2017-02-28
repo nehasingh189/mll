@@ -36,7 +36,7 @@ public class UpdateSongMetaDataServlet extends HttpServlet{
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				result="update unsuccessfull, please try again";
+				result="update unsuccessful, please try again";
 				 response.setContentType("application/html");
 					PrintWriter out = response.getWriter();
 					out.print(result);

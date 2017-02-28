@@ -41,7 +41,7 @@ public class LoginDAO {
                     null != login.getUser().getEmailId() && null != login.getUser().getPassword()
                     && !"".equals(login.getUser().getEmailId()) && !"".equals(null != login.getUser().getPassword())) {
 
-			    // Get user that matches email and password crednetials
+			    // Get user that matches email and password credentials
 			    Query query = session.createQuery("from User u where u.emailId=:emailId and u.password=:password");
 				query.setString("emailId", login.getUser().getEmailId());
 				query.setString("password", login.getUser().getPassword());

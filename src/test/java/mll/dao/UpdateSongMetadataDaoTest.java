@@ -30,7 +30,7 @@ public class UpdateSongMetadataDaoTest {
 	public void TestUpdateSongWithWriterInfo() throws JSONException
 	{
 		JSONObject obj=new JSONObject();
-		obj.put("primayPhone", "8578299424");
+		obj.put("primaryPhone", "8578299424");
 		obj.put("Name","sai mahanth");
 		obj.put("divisionOfOwnership","full");
 		obj.put("Id","2");
@@ -44,7 +44,7 @@ public class UpdateSongMetadataDaoTest {
 	public void TestUpdateSongWithRecordingInfo() throws JSONException
 	{
 		JSONObject obj=new JSONObject();
-		obj.put("primayPhone", "8578299424");
+		obj.put("primaryPhone", "8578299424");
 		obj.put("Name","sai mahanth");
 		obj.put("divisionOfOwnership","full");
 		obj.put("Id","1");
