@@ -147,7 +147,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ProfileServlet</servlet-name>
-    <url-pattern>/ProfileServlet/</url-pattern>
+    <url-pattern>/ProfileServlet/*</url-pattern>
   </servlet-mapping>
   
     <servlet>

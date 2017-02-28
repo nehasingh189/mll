@@ -1,4 +1,5 @@
-<div> 
+<script src="../../../../../tests/registration/components/musician-registration-form.controller.test.js"></script>
+<div>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-2">
@@ -17,25 +18,6 @@
     </div>
 
     <form name="ctrl.registrationForm" class="form-horizontal" novalidate>
-        <div class="form-group has-feedback"
-             ng-class="{ 'has-success': ctrl.registrationForm.username.$valid && ctrl.registrationForm.$submitted,
-                         'has-error': ctrl.registrationForm.username.$invalid && ctrl.registrationForm.$submitted }">
-             <div class="col-xs-10 col-xs-offset-1">
-                 <div class="input-group">
-                     <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                     <input type="text" name="username" class="form-control" ng-model="ctrl.data.userName"
-                            placeholder="User Name" required />
-                 </div>
-
-                <div class="alert alert-danger" role="alert"
-                     ng-show="ctrl.registrationForm.username.$invalid && ctrl.registrationForm.$submitted">
-                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                    <span ng-show="ctrl.registrationForm.username.$error.required">
-                        Please, provide a user name!
-                    </span>
-                </div>
-            </div>
-        </div>
 
         <div class="form-group has-feedback"
              ng-class="{ 'has-success': ctrl.registrationForm.email.$valid && ctrl.registrationForm.$submitted,

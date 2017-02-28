@@ -58,9 +58,9 @@
                 views: {
                     left: { template: '' },
                     center: {
-                        controller: 'MusicianRegistrationController as ctrl',
+                        controller: 'MusicianRegistrationFormController as ctrl',
                         templateProvider: function($templateCache) {
-                            return $templateCache.get('musician-registration.view.html');
+                            return $templateCache.get('musician-registration-form.template.html');
                         }
                     },
                     right: { template: '' }
@@ -84,8 +84,8 @@
                     }
                 }
             })
-            .state('user', {
-                url: '/user/profile/id/:id',
+            .state('admin', {
+                url: '/admin/profile/id/:id',
                 views: {
                     left: {
                         controller: 'SidebarController as ctrl',

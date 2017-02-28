@@ -8,7 +8,7 @@ public class Login implements Serializable {
 	
 	private static final long serialVersionUID = 4923954637381909334L;
 	public static final String musicianType = "musician";
-	public static final String adminUserType = "user";
+	public static final String adminUserType = "admin";
 	public static final String arUserType = "arUser";
 	
 	private User user = new User();

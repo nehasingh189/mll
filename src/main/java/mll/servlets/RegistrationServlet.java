@@ -32,8 +32,8 @@ public class RegistrationServlet extends HttpServlet
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		HttpSession session=request.getSession();
-		System.out.println("FOR SESSION    " + responseObject.get("userId"));
-		session.setAttribute("userId", responseObject.get("userId"));
+		System.out.println("FOR SESSION    " + responseObject.get("emailId"));
+		session.setAttribute("emailId", responseObject.get("emailId"));
 		out.print(responseObject);
 		out.flush();
 	}

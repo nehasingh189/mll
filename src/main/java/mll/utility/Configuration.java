@@ -1,7 +1,6 @@
 package mll.utility;
 
-public class Configuration 
-{
+public class Configuration {
     public final String USER_NAME_FOR_EMAIL = "medialicensinglab@gmail.com";
     public final String PASSWOD_FOR_EMAIL = "mll@team19";
     public final String EMAIL_ADDRESS_FOR_SUPPORT = "medialicensinglab@gmail.com";
@@ -11,32 +10,28 @@ public class Configuration
     
     
     //RAZUNA Configuration Details
-    /*public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
+    public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
     public final String Razuna_API_URL="http://35.163.173.243:8080/razuna/global/api2/";
-    public final String RAZUNA_KEY = "9F697883197D45EE987BEEB71510EC36";*/
+    public final String RAZUNA_KEY = "9F697883197D45EE987BEEB71510EC36";
 
     //RAZUNA Configuration Details local
-    public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
+    /*public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
     public final String Razuna_API_URL="http://localhost:8080/razuna/global/api2/";
-    public final String RAZUNA_KEY = "0488EB2CCA804FCCB1ECE1BBED7F91F4";
+    public final String RAZUNA_KEY = "0488EB2CCA804FCCB1ECE1BBED7F91F4";*/
     
     //Custom Fields Asset IDs aws Razuna
-    public final String RAZUNA_TITLE="B96CFCDD-5474-4256-A858CAD809A6140F";
-    public final String RAZUNA_BITS_PER_RATE="C5D79238-589F-4351-9148717D00C34C7C";
-    public final String RAZUNA_COPY_RIGHT_NUMBER="3959F6A0-6DDF-4F8B-A104D37119844E49";
-    public final String RAZUNA_COPY_RIGHT_DATE="19290F27-D46B-481C-B0ACA71472C8DACD";
-    public final String RAZUNA_PUBLISHING_COMPNAY="1C259712-C425-432B-935F38FEC6675E3E";
-    public final String RAZUNA_PRO="7BAB8049-AF7D-4677-941E8BD4542B6177";
-    public final String RAZUNA_LYRICS="07C8A9B5-9690-4D31-B656E38BC692B7ED";
-    public final String RAZUNA_PRIMARY_GENRE="2D73ACC9-7F15-4304-A660651CB565BFD6";
-    public final String RAZUNA_SEC_GENRE="E40B5755-03EF-4F67-A3BACC469D215B7E";
-    public final String RAZUNA_ARTISTS="AF9210CE-AEA7-41B6-821CADDABCFE1742";
-   
+    public final String RAZUNA_TITLE="A10E8DDA-7F16-4980-A9877BA0C3F544E0";
+    public final String RAZUNA_BITS_PER_RATE="6AA86E27-8297-4C4C-9C9E0565C9E26DC9";
+    public final String RAZUNA_COPY_RIGHT_NUMBER="6152EEC1-06B6-4E77-A44C46F3E1B5F77F";
+    public final String RAZUNA_COPY_RIGHT_DATE="79286C52-33C8-43E9-97BC3E53B1C51E68";
+    public final String RAZUNA_PUBLISHING_COMPNAY="061EA843-8301-4235-9CED0E8A94A59FA2";
+    public final String RAZUNA_PRO="D0302D91-E25E-498A-B8B89107CB16F34B";
+    public final String RAZUNA_LYRICS="1F9005CA-6094-460C-A5E5C05F7C378FA5";
+    public final String RAZUNA_PRIMAY_GENRE="7BBD3E02-D408-4D9D-9129D443394E057A";
+    public final String RAZUNA_SEC_GENRE="6C96E45B-18C1-44DA-8A7C46E3CE025569";
+    public final String RAZUNA_ARTISTS="F3441433-9F0A-4A8D-963E8892FA6D378E";
     
-    
-    
-    
-    //custom Fields Asset Ids loca razuna 
+    //custom Fields Asset Ids local razuna 
     /*public final String RAZUNA_TITLE="B8285E19-AEEC-44E9-9A77BC5A342DFEC0";
     public final String RAZUNA_BITS_PER_RATE="CEE60877-0483-4CB5-BD42B3C3CD669FAD";
     public final String RAZUNA_COPY_RIGHT_NUMBER="763B2AA4-0A45-4F6F-B204305265F24FA0";
@@ -48,7 +43,6 @@ public class Configuration
     public final String RAZUNA_SEC_GENRE="5C24E0AC-96FF-48CF-97BB37F502EEC365";
     public final String RAZUNA_ARTISTS="A5367524-F0C1-4A96-BADDC9E623CA787C";*/
     
-    
     //RAZUNA API METHODS
     public final String Razuna_CREATE_FOLDER_METHOD="folder.cfc?";
     public final String RAZUNA_CUSTOM_FIELD_METHOD="customfield.cfc";
@@ -56,9 +50,8 @@ public class Configuration
     public final String RAZUNA_SEARCH_METHOD="search.cfc";
     
     //Invite mail url
-    //public final String INVITE_URL= "http://35.163.135.77:8080/MLL/index.html#/";
+    public final String INVITE_URL= "http://35.163.135.77:8080/MLL/index.html#!/";
     
-    //Invite mail url local
-    public final String INVITE_URL= "http://localhost:8080/MLL-1.0/index.html#/";
-    
+    //Invite mail url local {{CHANGE THIS FOR YOUR OWN LOCAL INSTALLATION}}
+    //public final String INVITE_URL= "http://localhost:8080/MLL/index.html#!/";
 }
