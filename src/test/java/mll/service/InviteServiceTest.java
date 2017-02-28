@@ -65,7 +65,7 @@ public class InviteServiceTest {
     }
 
     @SuppressWarnings("unchecked")
-    public JSONObject getInviteGenerateJsonObject() {
+    public static JSONObject getInviteGenerateJsonObject() {
         JSONObject tokenJsonObject = new JSONObject();
 
         tokenJsonObject.put("actionType", "generate");
@@ -77,7 +77,7 @@ public class InviteServiceTest {
     }
 
     @SuppressWarnings("unchecked")
-    public JSONObject getInviteValidateJsonObject() {
+    public static JSONObject getInviteValidateJsonObject() {
         JSONObject tokenJsonObject = new JSONObject();
 
         tokenJsonObject.put("actionType", "validate");
