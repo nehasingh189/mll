@@ -51,6 +51,7 @@ html {
 .agreement { }
 .agreement__document {
     overflow-y: scroll;
+    background: white;
     height: 300px;
 }
 .agreement__confirmtion {}
