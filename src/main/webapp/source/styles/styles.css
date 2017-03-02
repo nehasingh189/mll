@@ -158,7 +158,7 @@ html {
 
 .italic-font {
 	font-style:italic;
-	font-family:cursive
+	font-family: sans-serif;
 }
 
 .card-container .card {
@@ -417,7 +417,7 @@ display: inline-block;
 	display: inline-block;
 }
 .navbar-brand {
-	font-family: cursive;
+	font-family: sans-serif;
 
 }
 
