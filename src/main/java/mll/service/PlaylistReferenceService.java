@@ -29,38 +29,33 @@ public class PlaylistReferenceService {
    */
   @SuppressWarnings({"unchecked", "null", "unused"})
   public JSONObject handlePlaylistReferenceRequest(HttpServletRequest request,
-      HttpServletResponse response) {
+                                                   HttpServletResponse response) {
 
     JSONObject responseObject = new JSONObject();
+    String parameter = request.getParameter("actionType");
+
     if (request.getSession().getAttribute("userId") != null) {
       int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
-      if (request.getParameter("actionType").equals("add")) {
+      if (parameter.equals("add")) {
         String playlistName = request.getParameter("playlistName");
         boolean isSuccess = addPlaylistForUser(userId, playlistName);
-        if (isSuccess) {
-          getUserPlayLists(userId, responseObject);
-          responseObject.put("isValid", true);
-        } else {
-          getUserPlayLists(userId, responseObject);
-          responseObject.put("isValid", false);
-        }
-      } else if (request.getParameter("actionType").equals("shared")) {
-        List<PlaylistReference> playlists = getSharedPlaylists();
-        JSONArray playlistReferences = convertToJson(playlists);
+        getUserPlayLists(userId, responseObject);
+        responseObject.put("isValid", isSuccess);
+      } else if (parameter.equals("shared")) {
+        JSONArray playlistReferences = convertToJson(new PlaylistReferenceDAO().getSharedPlaylists(true));
         responseObject.put("playlists", playlistReferences);
         responseObject.put("isValid", true);
-      } else if (request.getParameter("actionType").equals("get")) {
+      } else if (parameter.equals("get")) {
         getUserPlayLists(userId, responseObject);
         responseObject.put("isValid", true);
-      } else if (request.getParameter("actionType").equals("delete")) {
+      } else if (parameter.equals("delete")) {
         int playlistId = Integer.parseInt(request.getParameter("playlistId"));
         getUserPlayLists(userId, responseObject);
-        responseObject
-            .put("isValid", new PlaylistReferenceDAO().deletePlaylist(playlistId, userId));
-      } else if (request.getParameter("actionType").equals("addToShare")) {
+        responseObject.put("isValid", new PlaylistReferenceDAO().deletePlaylist(playlistId, userId));
+      } else if (parameter.equals("addToShare")) {
         int playlistId = Integer.parseInt(request.getParameter("playlistId"));
         responseObject = setPlaylistToGlobal(userId, playlistId);
-      } else if (request.getParameter("actionType").equals("unShare")) {
+      } else if (parameter.equals("unShare")) {
         int playlistId = Integer.parseInt(request.getParameter("playlistId"));
         responseObject = removeFromShare(userId, playlistId);
       }
@@ -78,12 +73,6 @@ public class PlaylistReferenceService {
     responseObject.put("playlists", playlistReferences);
   }
 
-  public List<PlaylistReference> getSharedPlaylists() {
-
-    boolean shared = true;
-    return new PlaylistReferenceDAO().getSharedPlaylists(shared);
-  }
-	
 	/*
 	 * This method takes in the user identifier and the playlist name and adds a 
 	 * new playlist for that user.
@@ -107,13 +96,12 @@ public class PlaylistReferenceService {
     playlistReference.setUserName(userName);
     playlistReference.setIsShared(false);
     playlistReference.setCreationDate(new Date());
-    boolean flag = playlistReferenceDAO.addPlaylist(playlistReference);
-    return flag;
+    return playlistReferenceDAO.addPlaylist(playlistReference);
   }
 
-	
+
 	/*
-	 * This method takes in the user identifier and returns the list of all 
+	 * This method takes in the user identifier and returns the list of all
 	 * playlists belonging to that user
 	 * Author: Vishal Sanjiv Kotak
 	 * Date: 11/26/2016
@@ -145,8 +133,8 @@ public class PlaylistReferenceService {
       object.put("isShared", playlistReference.get(i).getIsShared());
       DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
       object.put("creationDate", (playlistReference.get(i).getCreationDate().getMonth() + 1) + "-" +
-          playlistReference.get(i).getCreationDate().getDate() + "-" + (
-          playlistReference.get(i).getCreationDate().getYear() + 1900));
+              playlistReference.get(i).getCreationDate().getDate() + "-" + (
+              playlistReference.get(i).getCreationDate().getYear() + 1900));
       object.put("userName", playlistReference.get(i).getUserName());
       jsonArrayPlaylist.add(object);
     }
