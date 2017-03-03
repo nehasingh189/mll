@@ -1,6 +1,5 @@
 package mll.service;
 
-import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +12,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.junit.Test;
 import mll.beans.PlaylistReference;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 public class PlaylistReferenceServiceTest {
@@ -97,29 +100,6 @@ public class PlaylistReferenceServiceTest {
   public void testGetSharedPlaylist1() {
     try {
       assertEquals(true, new PlaylistReferenceService().getSharedPlaylists() != null);
-    } catch (Exception e) {
-
-    }
-  }
-
-  @Test
-  public void testDeletePlaylistForUser1() {
-    try {
-
-      int playlistId = 100000;
-      int userId = 100000;
-      assertEquals(false, new PlaylistReferenceService().deletePlaylistForUser(playlistId, userId));
-    } catch (Exception e) {
-
-    }
-  }
-
-  @Test
-  public void testDeletePlaylistForUser2() {
-    try {
-      int playlistId = -1;
-      int userId = -1;
-      assertEquals(false, new PlaylistReferenceService().deletePlaylistForUser(playlistId, userId));
     } catch (Exception e) {
 
     }
@@ -240,5 +220,62 @@ public class PlaylistReferenceServiceTest {
 
     }
   }
+
+  @Test
+  public void whenNotUseCaptorAnnotation_thenCorrect() {
+    List mockList = Mockito.mock(List.class);
+    ArgumentCaptor<String> arg = ArgumentCaptor.forClass(String.class);
+
+    mockList.add("one");
+    Mockito.verify(mockList).add(arg.capture());
+
+    assertEquals("one", arg.getValue());
+  }
+
+
+  @Test
+  public void testHandlePlayListValidUserAndAddNoSuccess() {
+    HttpServletRequest request = mock(HttpServletRequest.class);
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    HttpSession session = mock(HttpSession.class);
+    PlaylistReferenceService service = mock(PlaylistReferenceService.class);
+    when(request.getSession()).thenReturn(session);
+    when(session.getAttribute("userId")).thenReturn(9992123);
+    when(request.getParameter("actionType")).thenReturn("add");
+    when(request.getParameter("playlistName")).thenReturn("name");
+    when(service.addPlaylistForUser(9992123, "name")).thenReturn(false);
+    when(service.handlePlaylistReferenceRequest(request,response)).thenCallRealMethod();
+    JSONObject jsonResponse = service.handlePlaylistReferenceRequest(request, response);
+
+    assertEquals(jsonResponse.get("isValid"), false);
+    assertEquals(jsonResponse.get("playlist"), null);
+  }
+
+  @Test
+  public void testHandlePlaylistReferenceRequestForValidDelete() {
+    HttpServletRequest request = mock(HttpServletRequest.class);
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    HttpSession session = mock(HttpSession.class);
+
+    PlaylistReferenceService service = new PlaylistReferenceService();
+
+    when(request.getParameter("actionType")).thenReturn("delete");
+
+  }
+
+  @Test
+  public void testHandlePlayListNullUserId() {
+    HttpServletRequest request = mock(HttpServletRequest.class);
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    HttpSession session = mock(HttpSession.class);
+    when(request.getSession()).thenReturn(session);
+    when(session.getAttribute("userId")).thenReturn(null);
+
+    PlaylistReferenceService service = new PlaylistReferenceService();
+    JSONObject jsonResponse = service.handlePlaylistReferenceRequest(request, response);
+    assertEquals(jsonResponse.get("isValid"), false);
+    assertEquals(jsonResponse.get("playlist"), null);
+  }
+
 
 }

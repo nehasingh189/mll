@@ -19,8 +19,10 @@ import mll.dao.PlaylistReferenceDAO;
 
 public class PlaylistReferenceService {
 
+  PlaylistReferenceDAO playlistReferenceDAO;
+
   /*
-	 * This method takes in the request object containing the type of request i.e. add/delete/get
+   * This method takes in the request object containing the type of request i.e. add/delete/get
    * and constructs the response object with the updated playlist.
    * Author: Vishal Sanjiv Kotak
    * Date: 11/26/2016
@@ -36,14 +38,10 @@ public class PlaylistReferenceService {
         String playlistName = request.getParameter("playlistName");
         boolean isSuccess = addPlaylistForUser(userId, playlistName);
         if (isSuccess) {
-          List<PlaylistReference> playlists = getAllPlaylistsForUser(userId);
-          JSONArray playlistReferences = convertToJson(playlists);
-          responseObject.put("playlists", playlistReferences);
+          getUserPlayLists(userId, responseObject);
           responseObject.put("isValid", true);
         } else {
-          List<PlaylistReference> playlists = getAllPlaylistsForUser(userId);
-          JSONArray playlistReferences = convertToJson(playlists);
-          responseObject.put("playlists", playlistReferences);
+          getUserPlayLists(userId, responseObject);
           responseObject.put("isValid", false);
         }
       } else if (request.getParameter("actionType").equals("shared")) {
@@ -52,17 +50,13 @@ public class PlaylistReferenceService {
         responseObject.put("playlists", playlistReferences);
         responseObject.put("isValid", true);
       } else if (request.getParameter("actionType").equals("get")) {
-        List<PlaylistReference> playlists = getAllPlaylistsForUser(userId);
-        JSONArray playlistReferences = convertToJson(playlists);
-        responseObject.put("playlists", playlistReferences);
+        getUserPlayLists(userId, responseObject);
         responseObject.put("isValid", true);
       } else if (request.getParameter("actionType").equals("delete")) {
         int playlistId = Integer.parseInt(request.getParameter("playlistId"));
-        boolean flag = deletePlaylistForUser(playlistId, userId);
-        List<PlaylistReference> playlists = getAllPlaylistsForUser(userId);
-        JSONArray playlistReferences = convertToJson(playlists);
-        responseObject.put("playlists", playlistReferences);
-        responseObject.put("isValid", true);
+        getUserPlayLists(userId, responseObject);
+        responseObject
+            .put("isValid", new PlaylistReferenceDAO().deletePlaylist(playlistId, userId));
       } else if (request.getParameter("actionType").equals("addToShare")) {
         int playlistId = Integer.parseInt(request.getParameter("playlistId"));
         responseObject = setPlaylistToGlobal(userId, playlistId);
@@ -78,12 +72,10 @@ public class PlaylistReferenceService {
     return responseObject;
   }
 
-
-  public boolean deletePlaylistForUser(int playlistId, int userId) {
-
-    boolean flag = new PlaylistReferenceDAO().deletePlaylist(playlistId, userId);
-    return flag;
-
+  private void getUserPlayLists(int userId, JSONObject responseObject) {
+    List<PlaylistReference> playlists = getAllPlaylistsForUser(userId);
+    JSONArray playlistReferences = convertToJson(playlists);
+    responseObject.put("playlists", playlistReferences);
   }
 
   public List<PlaylistReference> getSharedPlaylists() {
@@ -101,15 +93,17 @@ public class PlaylistReferenceService {
 
 
   public boolean addPlaylistForUser(int userId, String playlistName) {
+    String userName = new ArUserDAO().getUserName(userId);
+    if (userName == null) {
+      return false;
+    }
+
     PlaylistReferenceDAO playlistReferenceDAO = new PlaylistReferenceDAO();
     PlaylistReference playlistReference = new PlaylistReference();
     playlistReference.setId(0);
     playlistReference.setPlaylistName(playlistName);
     playlistReference.setUserId(userId);
-    String userName = new ArUserDAO().getUserName(userId);
-    if (userName == null) {
-      return false;
-    }
+
     playlistReference.setUserName(userName);
     playlistReference.setIsShared(false);
     playlistReference.setCreationDate(new Date());
