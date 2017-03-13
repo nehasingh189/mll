@@ -166,30 +166,6 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="form-group has-feedback"
-			ng-class="{ 'has-success': writerForm.musicianRole.$valid && ctrl.ownerForm.$submitted,
-                             'has-error': writerForm.musicianRole.$invalid && ctrl.ownerForm.$submitted }">
-			<label class="col-xs-3 asterisk-label"> Role <span
-				class="glyphicon glyphicon-question-sign"
-				uib-tooltip="Tooltip to be added"></span>
-			</label>
-			<div class="col-xs-7">
-				<select name="musicianRole" class="form-control"
-					ng-model="songwriter.musicianRole"
-					ng-options="role for role in ctrl.musicianRoles"
-					ng-change="ctrl.selectRole(role)" required>
-					<option value="">Select Role...</option>
-				</select>
-				<div class="alert alert-danger" role="alert"
-					ng-show="ctrl.ownerForm.musicianRole.$invalid && ctrl.ownerForm.$submitted">
-					<span class="glyphicon glyphicon-exclamation-sign"
-						aria-hidden="true"></span> <span
-						ng-show="ctrl.ownerForm.musicianRole.$error.required">
-						Please, select a role! </span>
-				</div>
-			</div>
-		</div>
 		</ng-form>
 	</div>
 

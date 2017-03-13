@@ -394,7 +394,6 @@ public class SubmissionService {
             owner.setSecondaryEmail((String) recorder.get("secondaryEmail"));
             owner.setPrimaryPhone((String) recorder.get("primaryPhone"));
             owner.setSecondaryPhone((String) recorder.get("secondaryPhone"));
-            owner.setContribution((String) recorder.get("contribution"));
             owner.setOwner_percent((Long) recorder.get("ownershipPercent"));
             owner.setRole((String) recorder.get("MusicianRole"));
 
