@@ -1,20 +1,6 @@
 <form name="ctrl.ownerForm" class="form-horizontal form-tab" autocomplete="on" novalidate>
 
 <legend>Song Ownership Information</legend>
-	<!--  <legend>Ownership Information</legend>-->
-	
-	<div>
-			<label class="col-xs-3">Band </label>
-			<div class="col-xs-7">
-				<select name="band" class="form-control"
-					  ng-model="ctrl.selectedBand"
-					ng-options="band.name for band in ctrl.bands"
-					ng-change="ctrl.getBandDetails(ctrl.selectedBand)">
-					<option value="">Select Band...</option>
-				</select>
-			</div>
-		</div>
-		
 		
 	<div ng-repeat="songwriter in ctrl.data.songwriters">
 		<ng-form name="writerForm"> <legend class="inner-legend">
