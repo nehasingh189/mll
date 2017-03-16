@@ -410,15 +410,25 @@
                             return $templateCache.get('sidebar.template.html');
                         }
                     },
-                   center: { template:
-                        `<div class="well well-lg aboutmll">
+                   center: { template: `<div class="well well-lg aboutmll">
                        
 						    <h2><i> About Media Licensing Lab</i></h2>
                             <p>
-                               The Media Licensing Lab (MLL) is a Northeastern University initiative to establish the first student-run music licensing program in the United States. The MLL links musicians, student A&R representatives, the Northeastern community, and the music industry.
-Selected musicians are invited by A&R student representatives to upload their music into the MLL platform. Students evaluate the music and license the best songs into tv shows, film, video games, and other media.
-The MLL provides students with real-world music licensing experience, exposes musicians to a wider audience, and enables music licensees to discover the perfect piece of music for their project, at a fraction of the cost of typical content libraries.
-                            </p><hr>
+                            Welcome to the first beta-test phase of the launch of Northeastern University’s Media Licensing Laboratory (ML-Lab), a prototype library featuring music created by independent musicians. You are invited join this effort, and upload your music onto our Platform.
+                            <br>
+                            <br>    
+                            One of our long term goals is to launch the first student run music Licensing Program in the country so students can place great independent music in all manner of media, including movies, television shows, video games and commercials.
+                            <br>
+                            <br>
+                            Participation in the ML-Lab is non-exclusive, you retain all rights in your music, and you are free to withdraw from Licensing Program at any time.
+                            <br>
+                            <br>
+                            We are anxious to get your feedback about your experience with the Platform, so we ask that you send any feedback and bug reports promptly so that we can improve the Platform.
+                            <br>
+                            <br>
+                            Thanks for your participation in this exciting, one-of-a-kind initiative. 
+                            </p>
+                            <!--<hr>
 <p><b><u>Team members:-</u></b><br>
 Ashish Kumar <<a href="mailto:kumar.as@husky.neu.edu">kumar.as@husky.neu.edu</a>><br>
 Dishant Shah <<a href="mailto:shah.dis@husky.neu.edu">shah.dis@husky.neu.edu</a>><br>
@@ -429,7 +439,7 @@ Shivani Gowrishankar <<a href="mailto:gowrishankar.s@husky.neu.edu">gowrishankar
 Naomi Joshi <<a href="mailto:joshi.nao@husky.neu.edu">joshi.nao@husky.neu.edu</a>><br>
 Sai Mahanth Maddela <<a href="mailto:maddela.s@husky.neu.edu">maddela.s@husky.neu.edu</a>><br>
 Satya Akhil Chowdary Kuchipudi <<a href="mailto:kuchipudi.s@husky.neu.edu">kuchipudi.s@husky.neu.edu</a>>
-</p>
+</p>-->
                         </div>`
                     }
                     

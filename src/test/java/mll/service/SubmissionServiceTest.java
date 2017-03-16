@@ -59,18 +59,6 @@ public class SubmissionServiceTest {
     }
 
     @Test
-    public void testPopulateSongRecorders() throws Exception {
-        SubmissionService service = new SubmissionService();
-        Metadata metadata = new Metadata();
-        assertEquals(true, service.populateSongRecorders(null, null) == null);
-        assertEquals(true, service.populateSongRecorders(metadata, null) == metadata);
-        assertEquals(true, service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().size() == 1);
-        assertEquals("Test", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getName());
-        assertEquals("primary@neu.edu", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryEmail());
-        assertEquals("123-456-7890", service.populateSongRecorders(metadata, getRecorderJsonObject()).getOwners().get(0).getPrimaryPhone());
-    }
-
-    @Test
     public void testPopulateSongWriters() throws Exception {
         SubmissionService service = new SubmissionService();
         Metadata metadata = new Metadata();

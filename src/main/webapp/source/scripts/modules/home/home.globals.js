@@ -11,10 +11,9 @@
     // State of the music upload form
     let musicForms = {
         currentId: 0,
-        submitFormId: 4,
+        submitFormId: 3,
         data: [
             {title: 'Recording Information', isActive: true},
-            {title: 'Master Owner Information', isActive: false},
             {title: 'Song Ownership Information', isActive: false},
             {title: 'Recording Upload', isActive: false},
             {title: 'Summary', isActive: false}

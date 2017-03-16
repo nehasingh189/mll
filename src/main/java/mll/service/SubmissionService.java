@@ -123,9 +123,6 @@ public class SubmissionService {
         // Populate Song Writers Information
         populateSongWriters(metadata, ownershipInformation);
 
-        // Populate Song Recorders Information
-        populateSongRecorders(metadata, soundInformation);
-
         // set Json Object For Nuxeo
         metadata.setMetadataJson(mainObject);
 
@@ -193,9 +190,6 @@ public class SubmissionService {
 
         // Populate Song Writers Information
         populateSongWriters(metadata, ownershipInformation);
-
-        // Populate Song Recorders Information
-        populateSongRecorders(metadata, soundInformation);
 
         // createJsonObject For Nuxeo
         JSONObject mainObject = new JSONObject();
@@ -348,9 +342,10 @@ public class SubmissionService {
             JSONObject writer = (JSONObject) songwriters.get(i);
             Owner owner = new Owner();
 
-            owner.setDivisionOfOwnership("Half");
+            // The commented lines are no longer needed after MLP-170
+            //owner.setDivisionOfOwnership("Half");
             owner.setName((String) writer.get("name"));
-            owner.setOwnerType("WRITER");
+            //owner.setOwnerType("WRITER");
             owner.setPrimaryEmail((String) writer.get("primaryEmail"));
             owner.setSecondaryEmail((String) writer.get("secondaryEmail"));
             owner.setPrimaryPhone((String) writer.get("primaryPhone"));
@@ -358,45 +353,6 @@ public class SubmissionService {
             owner.setContribution((String) writer.get("contribution"));
             owner.setOwner_percent((Long) writer.get("ownershipPercent"));
             owner.setRole((String) writer.get("MusicianRole"));
-
-            metadata.getOwners().add(owner);
-        }
-
-        return metadata;
-    }
-
-    /**
-     * This method takes metadata object and json object as input
-     * and fetches the sound recorders information from json array.
-     *
-     * @author Dhaval Patel
-     * @version 1.0
-     * @since 2016-03-25
-     */
-    public Metadata populateSongRecorders(Metadata metadata, JSONObject soundInformation) throws Exception {
-        if (null == metadata) {
-            return null;
-        }
-
-        if (null == soundInformation) {
-            return metadata;
-        }
-
-        JSONArray recorders = (JSONArray) soundInformation.get("soundOwners");
-        for (int i = 0; i < recorders.size(); i++) {
-            JSONObject recorder = (JSONObject) recorders.get(i);
-            Owner owner = new Owner();
-
-            owner.setDivisionOfOwnership("Half");
-            owner.setName((String) recorder.get("name"));
-            owner.setOwnerType("RECORDING");
-            owner.setPrimaryEmail((String) recorder.get("primaryEmail"));
-            owner.setSecondaryEmail((String) recorder.get("secondaryEmail"));
-            owner.setPrimaryPhone((String) recorder.get("primaryPhone"));
-            owner.setSecondaryPhone((String) recorder.get("secondaryPhone"));
-            owner.setContribution((String) recorder.get("contribution"));
-            owner.setOwner_percent((Long) recorder.get("ownershipPercent"));
-            owner.setRole((String) recorder.get("MusicianRole"));
 
             metadata.getOwners().add(owner);
         }
