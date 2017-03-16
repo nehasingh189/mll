@@ -1,4 +1,4 @@
-package mll.servlet;
+package mll.servlets;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.junit.Test;
-import mll.servlets.PlaylistReferenceServlet;
 
 public class PlaylistReferenceServletTest {
 	

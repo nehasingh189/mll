@@ -35,7 +35,7 @@
 					<select ng-change=model.selectPlaylist(playlist) ng-model="playlist" class="gridColor" ng-show="model.playlistExist"> 
       					<option ng-repeat="playlist in model.playlists" value="{{playlist}}">{{playlist.playlistName}}</option>
 			    	</select>
-			    	</br>
+			    	<br>
 			    	<div ng-show="!model.playlistExist">
 			    		You have no playlist
 			    		<button ng-click="model.addNewPlaylist()" class="btn tomatobttn"> Add new playlist</button>
@@ -43,7 +43,7 @@
 					<span class="glyphicon glyphicon-plus"
 						ng-click="model.addToPlayList(track.assetId)" ng-show="model.playlistExist">
 					</span>
-					</br>
+					<br>
 				</td>	
 			</tr>		
 

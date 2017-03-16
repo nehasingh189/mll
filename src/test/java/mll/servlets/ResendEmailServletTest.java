@@ -1,4 +1,4 @@
-package mll.servlet;
+package mll.servlets;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.junit.Test;
-
-import mll.servlets.ResendEmailServlet;
 
 public class ResendEmailServletTest {
 

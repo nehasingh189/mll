@@ -65,45 +65,48 @@ describe("Music File Uploader Controller:", function() {
         }
     );
 
-    it("'next' call should set the 2nd form as active", function () {
+    it("'next' call should set the 2nd page as active", function () {
         ctrl.next();
 
         expect(ctrl.forms.currentId).toBe(1);
-
         expect(ctrl.forms.data[0].isActive).toBeFalsy();
-
         expect(ctrl.forms.data[1].isActive).toBeTruthy();
-
         expect(ctrl.forms.data[2].isActive).toBeFalsy();
+        expect(ctrl.forms.data[3].isActive).toBeFalsy();
     });
 
-    it("2nd call to 'next' function should set the 3rd form as active", function () {
+    it("2nd call to 'next' function should set the 3rd page as active", function () {
         ctrl.next();
         ctrl.next();
 
         expect(ctrl.forms.currentId).toBe(2);
-
         expect(ctrl.forms.data[0].isActive).toBeFalsy();
-
         expect(ctrl.forms.data[1].isActive).toBeFalsy();
-
         expect(ctrl.forms.data[2].isActive).toBeTruthy();
-
         expect(ctrl.forms.data[3].isActive).toBeFalsy();
     });
 
-    it("'previous' call should set the 2nd form as active", function () {
+    it("3nd call to 'next' function should set the 4th page as active", function () {
+        ctrl.next();
+        ctrl.next();
+        ctrl.next();
+
+        expect(ctrl.forms.currentId).toBe(3);
+        expect(ctrl.forms.currentId).toEqual(ctrl.forms.submitFormId);
+        expect(ctrl.forms.data[0].isActive).toBeFalsy();
+        expect(ctrl.forms.data[1].isActive).toBeFalsy();
+        expect(ctrl.forms.data[2].isActive).toBeFalsy();
+        expect(ctrl.forms.data[3].isActive).toBeTruthy();
+    });
+
+    it("'previous' call should set the 2nd page as active", function () {
         ctrl.next();
         ctrl.next();
 
         ctrl.previous();
-
         expect(ctrl.forms.currentId).toBe(1);
-
         expect(ctrl.forms.data[0].isActive).toBeFalsy();
-
         expect(ctrl.forms.data[1].isActive).toBeTruthy();
-
         expect(ctrl.forms.data[2].isActive).toBeFalsy();
     });
 
@@ -111,9 +114,7 @@ describe("Music File Uploader Controller:", function() {
         ctrl.again();
 
         expect(ctrl.forms.currentId).toBe(0);
-
         expect(ctrl.forms.data[0].isActive).toBeTruthy();
-
         expect(ctrl.forms.data[1].isActive).toBeFalsy();
     });
 

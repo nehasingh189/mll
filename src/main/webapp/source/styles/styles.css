@@ -51,6 +51,7 @@ html {
 .agreement { }
 .agreement__document {
     overflow-y: scroll;
+    background: white;
     height: 300px;
 }
 .agreement__confirmtion {}
@@ -157,7 +158,7 @@ html {
 
 .italic-font {
 	font-style:italic;
-	font-family:cursive
+	font-family: sans-serif;
 }
 
 .card-container .card {
@@ -416,7 +417,7 @@ display: inline-block;
 	display: inline-block;
 }
 .navbar-brand {
-	font-family: cursive;
+	font-family: sans-serif;
 
 }
 

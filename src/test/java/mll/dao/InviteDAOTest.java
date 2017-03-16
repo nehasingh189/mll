@@ -6,127 +6,60 @@ import org.junit.Test;
 
 import mll.beans.Invite;
 
-public class InviteDAOTest 
-{
-	
-	@Test
-	public void testGenerateInvite1() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.generateInvite(null) == null);
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	@Test
-	public void testGenerateInvite2() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.generateInvite(new Invite()).getIsGenerated() == false);
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	@Test
-	public void testGenerateInvite3() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.generateInvite(new Invite()).getToken().getToken() == null);
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	@Test
-	public void testValidateInvite1() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.validateInvite(null) == null);
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	@Test
-	public void testValidateInvite2() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.validateInvite(new Invite()).getIsValid() == false);
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	@Test
-	public void testValidateInvite3() 
-	{
-		try 
-		{
-			InviteDAO dao = new InviteDAO();
-			assertEquals(true, dao.validateInvite(new Invite()).getMessage().equals("Invalid Token."));
-		} 
-		catch (Exception e) 
-		{
-		}
-	}
-	
-	
-	@Test
+public class InviteDAOTest {
+
+    @Test
+    public void testGenerateInviteWithEmptyInvite() {
+        try {
+            InviteDAO dao = new InviteDAO();
+            assertEquals(true, dao.generateInvite(null) == null);
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void testGenerateInviteInitialState() {
+        try {
+            InviteDAO dao = new InviteDAO();
+            Invite invite = dao.generateInvite(new Invite());
+            assertEquals(true, !invite.getIsGenerated());
+            assertEquals(true, invite.getToken().getToken() == null);
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void testValidateInviteWithEmptyInvite() {
+        try {
+            InviteDAO dao = new InviteDAO();
+            assertEquals(true, dao.validateInvite(null) == null);
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
+    public void testValidateInviteInitialState() {
+        try {
+            InviteDAO dao = new InviteDAO();
+            Invite invite = dao.validateInvite(new Invite());
+            assertEquals(true, invite.getIsValid() == false);
+            assertEquals(true, invite.getMessage().equals("Invalid Token."));
+        } catch (Exception e) {
+        }
+    }
+
+    @Test
     public void testCheckEmail1() {
 
-        try 
-        {
+        try {
             InviteDAO dao = new InviteDAO();
+            assertEquals(true, dao.checkEmailId(null) == true);
+            assertEquals(true, dao.checkEmailId("") == true);
             assertEquals(true, dao.checkEmailId("xyz@gmail.com") == true);
-        }
-        catch(Exception e)
-        {            
-        }
-    }
-
-    public void testCheckEmail2() {
-        
-        try 
-        {
-            InviteDAO dao = new InviteDAO();
-            assertEquals(true, dao.checkEmailId(null)==true);
-        }
-        catch(Exception e)
-        {
-            
+            assertEquals(true, dao.checkEmailId("testAdmin@gmail.com") == false);
+            assertEquals(true, dao.checkEmailId("testMusician@gmail.com") == false);
+        } catch (Exception e) {
         }
     }
 
-
-     @Test
-    public void testCheckEmail3() {
-        
-        try 
-        {
-            InviteDAO dao = new InviteDAO();
-            assertEquals(true, dao.checkEmailId("")==true);
-        }
-        catch(Exception e)
-        {
-            
-        }
-    }   
-        
 }

@@ -64,7 +64,7 @@ public class UpdateSongMetadataDAO {
 	
 	public int update(JSONObject obj, Session session, Transaction tx ) throws JSONException, HibernateException
 	{
-		String divison_of_ownership=new String();
+		String division_of_ownership=new String();
 		String primary_phone_no=new String();
 		String secondary_phone_no=new String();
 		String primary_email_id = new String();
@@ -73,22 +73,22 @@ public class UpdateSongMetadataDAO {
 		 int id = Integer.parseInt(obj.getString("Id"));
 		 String name=obj.getString("Name");
 		 if(obj.has("divisionOfOwnership"))
-			  divison_of_ownership= obj.getString("divisionOfOwnership");
-		 if(obj.has("primayPhone"))	 
-		  primary_phone_no=obj.getString("primayPhone");
+			  division_of_ownership= obj.getString("divisionOfOwnership");
+		 if(obj.has("primaryPhone"))
+		  primary_phone_no=obj.getString("primaryPhone");
 		 if(obj.has("secondaryPhone"))
 		  secondary_phone_no=obj.getString("secondaryPhone");
-		 if(obj.has("primayEmail"))
-		  primary_email_id=obj.getString("primayEmail");
+		 if(obj.has("primaryEmail"))
+		  primary_email_id=obj.getString("primaryEmail");
 		 if(obj.has("secondaryEmail"))
 		  secondary_email_id = obj.getString("secondaryEmail");
 		 
-		 Query query=session.createQuery("update Owner owner set owner.name= :name, owner.divisonOfOwnership= :divisonOfOwnership,"
+		 Query query=session.createQuery("update Owner owner set owner.name= :name, owner.divisionOfOwnership= :divisionOfOwnership,"
 		 		+ "owner.primaryPhone= :primaryPhone,owner.secondaryPhone= :secondaryPhone,owner.primaryEmail= :primaryEmail,"
 		 		+ "owner.secondaryEmail= :secondaryEmail where owner.id= :id");
 		 	
 		 query.setParameter("name", name);
-		 query.setParameter("divisonOfOwnership", divison_of_ownership);
+		 query.setParameter("divisionOfOwnership", division_of_ownership);
 		 query.setParameter("primaryPhone", primary_phone_no);
 		 query.setParameter("secondaryPhone", secondary_phone_no);
 		 query.setParameter("primaryEmail", primary_email_id);

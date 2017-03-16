@@ -16,11 +16,21 @@ let uglify = require('gulp-uglify');
 let usemin = require('gulp-usemin');
 
 /**
+ * Default task
+ *      Runs gulp build
+ */
+gulp.task('default', (done) => {
+    runSequence('build', function() {
+        done();
+    })
+});
+
+/**
  * Build Task
  *      Cleans the dist and rebuilds files
  */
 gulp.task('build', (done) => {
-    runSequence('cleanup', ['fonts', 'templates'], 'usemin', function() {
+    runSequence('cleanup', 'fonts', 'usemin', function() {
         done();
     })
 });
@@ -29,9 +39,8 @@ gulp.task('build', (done) => {
  * Clean-Up Task
  *      Deletes the dist directory and the generated index file
  */
-gulp.task('cleanup', (done) => {
-    del(['./dist', './index.html']);
-    done();
+gulp.task('cleanup', () => {
+    return del(['./dist', './index.html']);
 });
 
 /**
@@ -39,7 +48,7 @@ gulp.task('cleanup', (done) => {
  *      Automatically watches files and rebuilds if there is a change
  */
 gulp.task('develop', (done) => {
-    gulp.watch('./source/*.*', { interval: 1000 }, ['build']);
+    gulp.watch('./source/**', ['build']);
     console.log('Develop is running! Make some changes in ./source/');
     console.log('CTRL^C to exit');
 });
@@ -53,7 +62,7 @@ gulp.task('fonts', () => {
         .pipe(gulp.dest('./dist/fonts'));
     gulp.src('./bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
         .pipe(gulp.dest('./dist/fonts'));
-    gulp.src('./source/fonts/*.*')
+    return gulp.src('./source/fonts/*.*')
         .pipe(gulp.dest('./dist/fonts'));
 });
 
@@ -77,10 +86,11 @@ gulp.task('templates', () => {
             module: 'mllApp.templates',
             standalone: true,
             filename: 'templates.module.js',
-            transformUrl: (url) => url.slice(url.lastIndexOf('/') + 1)
-            /*transformUrl: (url) => {
-                return  url.substr(url.lastIndexOf('\\') + 1);
-            }*/
+            // Use the appropriate line below depending on your operating system.
+            // UNCOMMENT THIS LINE FOR LINUX OR MAC
+            transformUrl: (url) => { return url.slice(url.lastIndexOf('/') + 1); }
+            // UNCOMMENT THIS LINE FOR WINDOWS
+            //transformUrl: (url) => { return  url.substr(url.lastIndexOf('\\') + 1); }
         }))
         .pipe(gulp.dest('./source/scripts/modules/templates/'));
 });
@@ -98,7 +108,7 @@ gulp.task('test', function (done) {
 /**
  * Usemin Task
  *      Runs the usemin library to consolidate all the source files.
- *      Then generates index files with refenrences to the current build.
+ *      Then generates index files with references to the current build.
  */
 gulp.task('usemin', ['templates'], function () {
     return gulp.src('./source/index.html')
