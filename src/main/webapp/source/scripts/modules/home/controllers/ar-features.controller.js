@@ -68,7 +68,6 @@
         				    onRegisterApi: function(gridApi){
         				      model.gridApi = gridApi;
         				    },
-        					paginationPageSizes: [1,2,3],
         					columnDefs: 
         					[
         					  { field: 'emailId', displayName: 'Email', width: "60%"},

@@ -190,3 +190,4 @@ src/test/test.iml
 src/main/webapp/index.html
 src/main/webapp/source/scripts/modules/templates/templates.module.js
 src/main/main.iml
+src/main/resources/hibernate.cfg.xml
