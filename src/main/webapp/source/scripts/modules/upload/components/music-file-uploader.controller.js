@@ -35,10 +35,8 @@
         this.prepare = (data) => {
             let obj = {
                 generalInformation: data.generalInformation,
-                ownershipInformation: data.ownershipInformation,
-                soundInformation: data.soundInformation
+                ownershipInformation: data.ownershipInformation
             };
-
             obj.isDirect = data.fileInformation.isDirect;
             obj.file = (obj.isDirect) ? data.fileInformation.file : data.fileInformation.file.link;
 

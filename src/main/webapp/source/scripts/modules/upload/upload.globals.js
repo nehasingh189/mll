@@ -71,19 +71,6 @@
             pubCompany: '',
             pro: ''
         },
-        soundInformation: {
-            soundOwners: [
-                {
-                    name: '',
-                    primaryEmail: '',
-                    primaryPhone: '',
-                    secondaryPhone: '',
-                    contribution: '',
-                    ownershipPercent: 0,
-                    musicianRole: ''
-                }
-            ]
-        },
         serverInformation: {}
     };
 
