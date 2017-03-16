@@ -13,10 +13,17 @@ describe("Music Ownership Information form Controller:", function() {
 
     beforeEach(inject(function ($controller) {
         data = {
-            songwriters: [ { name: '', primaryEmail: '', primaryPhone: '', secondaryPhone: '' } ],
-            copyright: '',
-            pubCompany: '',
-            pro: ''
+            songwriters: [{
+                name: '',
+                primaryEmail: '',
+                primaryPhone: '',
+                secondaryPhone: '',
+                contribution:'',
+                ownershipPercent: 0,
+                pubCompany: '',
+                pro: ''
+            }],
+            copyright: ''
         };
 
         ctrl = $controller('MusicOwnerInformationFormController', {},
@@ -59,6 +66,10 @@ describe("Music Ownership Information form Controller:", function() {
         expect(ctrl.data.songwriters[length - 1].secondaryPhone).toEqual('');
         expect(ctrl.data.songwriters[length - 1].primaryEmail).toEqual('');
         expect(ctrl.data.songwriters[length - 1].secondaryEmail).toEqual('');
+        expect(ctrl.data.songwriters[length - 1].contribution).toEqual('');
+        expect(ctrl.data.songwriters[length - 1].ownershipPercent).toEqual(0);
+        expect(ctrl.data.songwriters[length - 1].pubCompany).toEqual('');
+        expect(ctrl.data.songwriters[length - 1].pro).toEqual('');
     });
 
     it("'removeWriter' should remove a specific 'songwriter' object", function () {
@@ -141,5 +152,32 @@ describe("Music Ownership Information form Controller:", function() {
         ctrl.reset();
 
         expect(ctrl.onPrevious).toHaveBeenCalled();
+    });
+
+    it("'validateOwnershipPercentage' should not validate if ownership doesn't add up to 100", function() {
+        ctrl.ownerForm.$validateOwnership = null;
+
+        ctrl.validateOwnershipPercentage();
+        expect(ctrl.ownerForm.$validateOwnership).toBe(false);
+
+        ctrl.data.songwriters[0].ownershipPercent = 99;
+
+        ctrl.validateOwnershipPercentage();
+        expect(ctrl.ownerForm.$validateOwnership).toBe(false);
+    });
+
+    it("'validateOwnershipPercentage' function should validate when ownership adds up to 100", function() {
+        ctrl.ownerForm.$validateOwnership = null;
+        ctrl.data.songwriters[0].ownershipPercent = 100;
+
+        ctrl.validateOwnershipPercentage();
+        expect(ctrl.ownerForm.$validateOwnership).toBe(true);
+
+        ctrl.addWriter();
+        ctrl.data.songwriters[0].ownershipPercent = 30;
+        ctrl.data.songwriters[1].ownershipPercent = 70;
+
+        ctrl.validateOwnershipPercentage();
+        expect(ctrl.ownerForm.$validateOwnership).toBe(true);
     });
 });
