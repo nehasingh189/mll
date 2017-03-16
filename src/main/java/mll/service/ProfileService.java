@@ -28,19 +28,17 @@ public class ProfileService {
 
   @SuppressWarnings("unchecked")
   public JSONObject uploadBandDetails(HttpServletRequest request, HttpServletResponse response) {
-    if (request.equals(null)) {
+    if (request == null) {
       return null;
     }
     JSONObject responseObject = new JSONObject();
-    JSONObject OwnerandBand = new JSONObject();
+    JSONObject ownerAndBand;
     HttpSession session = request.getSession();
     Integer musician_id = (Integer) session.getAttribute("musician_id");
-    System.out.println("Musician " + musician_id);
     try {
-
-      OwnerandBand = populateMetadataBeansFromRequest(request);
-      if (null != OwnerandBand && !OwnerandBand.isEmpty()) {
-        dao.saveMetadata(OwnerandBand, musician_id);
+      ownerAndBand = populateMetadataBeansFromRequest(request);
+      if (null != ownerAndBand && !ownerAndBand.isEmpty()) {
+        dao.saveMetadata(ownerAndBand, musician_id);
         responseObject.put("isUploaded", true);
         responseObject.put("message", "Band Information successfully uploaded");
 
@@ -59,24 +57,24 @@ public class ProfileService {
   public JSONObject populateMetadataBeansFromRequest(HttpServletRequest request) throws Exception {
 //		List<Metadata> metadatas = new ArrayList<Metadata>();
 //		Metadata metadata =  new Metadata();
-    JSONObject OwnerandBand = new JSONObject();
-
+    JSONObject ownerAndBand = new JSONObject();
     StringBuffer requestStr = new StringBuffer();
     BufferedReader reader = request.getReader();
-    String line = null;
+    String line;
+
     while ((line = reader.readLine()) != null) {
       requestStr.append(line);
     }
 
     JSONParser parser = new JSONParser();
+
     JSONObject mainObject = (JSONObject) parser.parse(requestStr.toString());
     JSONObject ownershipInformation = (JSONObject) mainObject.get("ownershipInformation");
-    System.out.println("ownershipInformation " + ownershipInformation);
 
     // Populate Song Writers Information
-    populateSongWriters(OwnerandBand, ownershipInformation);
+    populateSongWriters(ownerAndBand, ownershipInformation);
 
-    return OwnerandBand;
+    return ownerAndBand;
   }
 
   @SuppressWarnings("unchecked")
@@ -88,13 +86,16 @@ public class ProfileService {
 
     JSONArray songwriters = (JSONArray) ownershipInformation.get("songwriters");
     OwnerandBand.put("bandName", ownershipInformation.get("bandName"));
-    List<Owner> owners = new ArrayList<Owner>();
-    for (int i = 0; i < songwriters.size(); i++) {
-      JSONObject writer = (JSONObject) songwriters.get(i);
+    List<Owner> owners = new ArrayList<>();
+    for (Object songwriter : songwriters) {
+      JSONObject writer = (JSONObject) songwriter;
+      System.out.println("...........................................");
+      System.out.println(writer);
+      System.out.println("...........................................");
       Owner owner = new Owner();
 
       owner.setDivisionOfOwnership("Half");
-      owner.setName((String) writer.get("name"));
+      owner.setName((String) writer.get("firstName") + " " + (String) writer.get("lastName"));
       owner.setOwnerType("WRITER");
       owner.setPrimaryEmail((String) writer.get("primaryEmail"));
       owner.setSecondaryEmail((String) writer.get("secondaryEmail"));
@@ -102,7 +103,7 @@ public class ProfileService {
       owner.setSecondaryPhone((String) writer.get("secondaryPhone"));
       owner.setContribution((String) writer.get("contribution"));
       owner.setOwner_percent((Long) writer.get("ownershipPercent"));
-      owner.setRole((String) writer.get("MusicianRole"));
+      owner.setRole((String) writer.get("musicianRole"));
 
       owners.add(owner);
     }

@@ -77,12 +77,8 @@
         ownershipInformation: {
             bandName: '',
             songwriters: [{
-                name: '',
-                primaryEmail: '',
-                primaryPhone: '',
-                secondaryPhone: '',
-                contribution: '',
-                ownershipPercent: 0,
+                firstName: '',
+                lastName: '',
                 musicianRole: ''
             }]
         }

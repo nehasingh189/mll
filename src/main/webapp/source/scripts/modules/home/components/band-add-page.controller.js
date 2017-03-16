@@ -14,9 +14,8 @@
     	this.data = angular.copy(bandData);
     	
         this.addWriter = () => this.data.ownershipInformation.songwriters.push({
-            name: '', primaryPhone: '', secondaryPhone: '', primaryEmail: '', secondaryEmail: '', contribution:'', ownershipPercent: 0, musicianRole:''
+            firstName: '', lastName: '', musicianRole:''
         });
-
         this.selectContribution = (contribution) => { if(!contribution) this.data.contribution = null; };
         
         this.selectRole = (role) => { if(!role) this.data.musicianRole = null; };
