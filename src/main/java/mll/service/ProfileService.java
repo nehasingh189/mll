@@ -89,9 +89,6 @@ public class ProfileService {
     List<Owner> owners = new ArrayList<>();
     for (Object songwriter : songwriters) {
       JSONObject writer = (JSONObject) songwriter;
-      System.out.println("...........................................");
-      System.out.println(writer);
-      System.out.println("...........................................");
       Owner owner = new Owner();
 
       owner.setDivisionOfOwnership("Half");
