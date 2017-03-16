@@ -184,3 +184,9 @@ src/main/webapp/gulpfile.js
 /src/main/java/mll/utility/Configuration.java
 iml
 test.txt
+src/main/webapp/gulpfile.js
+src/main/resources/hibernate.cfg.xml
+src/test/test.iml
+src/main/webapp/index.html
+src/main/webapp/source/scripts/modules/templates/templates.module.js
+src/main/main.iml
