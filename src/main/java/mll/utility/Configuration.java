@@ -8,6 +8,7 @@ public class Configuration {
     public final String FROM_EMAIL_ADDRESS = "medialicensinglab@gmail.com";
     public final String FROM_NAME = "Media Team";
     
+    public final String FEEDBACK_EMAIL_ADDRESS = "northeastern.mll.feedback@gmail.com";
     
     //RAZUNA Configuration Details
     public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
