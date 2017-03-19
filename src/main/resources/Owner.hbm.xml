@@ -18,7 +18,7 @@
 		</property>
 
 		<property name="divisionOfOwnership">
-			<column name="division_of_ownership" length="16" not-null="true" />
+			<column name="divison_of_ownership" length="16" not-null="true" />
 		</property>
 		
 		<property name="ownerType">
