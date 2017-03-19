@@ -17,9 +17,9 @@
     
     <!--  Database Configuration Server -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://medialicencinglab.chrkvax4awjg.us-west-2.rds.amazonaws.com:3306/medialicensinglab</property>
-    <property name="hibernate.connection.username">root</property>
-    <property name="hibernate.connection.password">12345678</property>
+    <property name="hibernate.connection.url">jdbc:mysql://35.163.135.77:3306/medialicensinglab</property>
+    <property name="hibernate.connection.username">mll_user</property>
+    <property name="hibernate.connection.password">LZF+7XUt8uTZCQx1CmVt2LuUJTzr/JLDxTmJjOPptGJxBwZbnJtVMA==</property>
     
     <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
     
