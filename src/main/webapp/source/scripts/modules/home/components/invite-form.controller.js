@@ -5,17 +5,26 @@
         .module('mllApp.home')
         .controller('InviteFormController', InviteFormController);
 
-    InviteFormController.$inject = ['$timeout', 'inviteTokenService', 'authenticationService'];
+    InviteFormController.$inject = ['$timeout', 'inviteTokenService', 'arUserInvitationBody', 'musicianInvitationBody', 'authenticationService'];
 
-    function InviteFormController($timeout, inviteTokenService, authenticationService) {
+    function InviteFormController($timeout, inviteTokenService, arUserInvitationBody, musicianInvitationBody, authenticationService) {
         this.data = {
-            userId: +authenticationService.details.data.id
+            userId: +authenticationService.details.data.id,
+            messageBody: musicianInvitationBody // default to musician invitation
         };
 
         this.types = [
             { label: 'AR User', value: 'user' },
             { label: 'Musician', value: 'musician' }
         ];
+
+        this.changeInviteMessage = () => {
+            if (this.data.inviteType === 'user') {
+                this.data.messageBody = arUserInvitationBody;
+            } else if (this.data.inviteType === 'musician') {
+                this.data.messageBody = musicianInvitationBody;
+            }
+        };
 
         this.invite = () => {
             if (this.form.$invalid) this.form.$submitted = true;
