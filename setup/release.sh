@@ -47,9 +47,6 @@ fi
 
 echo "Inserting Razuna API key and IDs"
 
-echo ${WORK_DIR}
-
-
 sed -i "s/RAZUNA_TITLE=\".*\"/RAZUNA_TITLE=\"$TITLE_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 sed -i "s/RAZUNA_BITS_PER_RATE=\".*\"/RAZUNA_BITS_PER_RATE=\"$BITS_PER_RATE_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 sed -i "s/RAZUNA_COPY_RIGHT_NUMBER=\".*\"/RAZUNA_COPY_RIGHT_NUMBER=\"$COPYRIGHT_NUMBER_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
@@ -61,9 +58,9 @@ sed -i "s/RAZUNA_PRIMARY_GENRE=\".*\"/RAZUNA_PRIMARY_GENRE=\"$PRIMARY_GENRE_ID\"
 sed -i "s/RAZUNA_SEC_GENRE=\".*\"/RAZUNA_SEC_GENRE=\"$SECONDARY_GENRE_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 sed -i "s/RAZUNA_ARTISTS=\".*\"/RAZUNA_ARTISTS=\"$ARTISTS_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 
-sed -i "RAZUNA_URL=\".*\"/RAZUNA_URL=\"http://localhost:8081/razuna/raz1/dam/index.cfm\"" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
-sed -i "RAZUNA_API_URL=\".*\"/RAZUNA_API_URL=\"http://localhost:8081/razuna/global/api2/\"" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
-sed -i "RAZUNA_KEY=\".*\"/RAZUNA_KEY=\"$RAZUNA_KEY\"" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
+sed -i "RAZUNA_URL=\".*\"/RAZUNA_URL=\"http://localhost:8081/razuna/raz1/dam/index.cfm\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
+sed -i "RAZUNA_API_URL=\".*\"/RAZUNA_API_URL=\"http://localhost:8081/razuna/global/api2/\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
+sed -i "RAZUNA_KEY=\".*\"/RAZUNA_KEY=\"$RAZUNA_KEY\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 
 
 mvn -Dmaven.test.skip=true clean package
