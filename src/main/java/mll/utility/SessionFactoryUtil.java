@@ -17,7 +17,7 @@ public class SessionFactoryUtil
 	 {
 		 try {
 			 // Read the key from file to decrypt password
-			 String key = Files.readFirstLine(new File(System.getenv("JASYPT_LOCATION")), StandardCharsets.UTF_8);
+			 String key = Files.readFirstLine(new File("/jasypt_pass"), StandardCharsets.UTF_8);
 			 StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 			 encryptor.setPassword(key);
 
@@ -30,6 +30,7 @@ public class SessionFactoryUtil
 		 catch (Throwable ex) 
 		 {
 			 System.err.println("Initial SessionFactory creation failed." + ex);
+			 ex.printStackTrace();
 			 throw new ExceptionInInitializerError(ex);
 		 }
 	 }

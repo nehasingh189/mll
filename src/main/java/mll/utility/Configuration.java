@@ -11,13 +11,13 @@ public class Configuration {
     public final String FEEDBACK_EMAIL_ADDRESS = "northeastern.mll.feedback@gmail.com";
     
     //RAZUNA Configuration Details
-    public final String RAZUNA_URL = "http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
-    public final String Razuna_API_URL="http://35.163.173.243:8080/razuna/global/api2/";
-    public final String RAZUNA_KEY = "9F697883197D45EE987BEEB71510EC36";
+    public final String RAZUNA_URL="http://35.163.173.243:8080/razuna/raz1/dam/index.cfm";
+    public final String RAZUNA_API_URL="http://35.163.173.243:8080/razuna/global/api2/";
+    public final String RAZUNA_KEY="9F697883197D45EE987BEEB71510EC36";
 
     //RAZUNA Configuration Details local
     /*public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
-    public final String Razuna_API_URL="http://localhost:8080/razuna/global/api2/";
+    public final String RAZUNA_API_URL="http://localhost:8080/razuna/global/api2/";
     public final String RAZUNA_KEY = "0488EB2CCA804FCCB1ECE1BBED7F91F4";*/
     
     //Custom Fields Asset IDs aws Razuna
@@ -25,7 +25,7 @@ public class Configuration {
     public final String RAZUNA_BITS_PER_RATE="6AA86E27-8297-4C4C-9C9E0565C9E26DC9";
     public final String RAZUNA_COPY_RIGHT_NUMBER="6152EEC1-06B6-4E77-A44C46F3E1B5F77F";
     public final String RAZUNA_COPY_RIGHT_DATE="79286C52-33C8-43E9-97BC3E53B1C51E68";
-    public final String RAZUNA_PUBLISHING_COMPNAY="061EA843-8301-4235-9CED0E8A94A59FA2";
+    public final String RAZUNA_PUBLISHING_COMPANY="061EA843-8301-4235-9CED0E8A94A59FA2";
     public final String RAZUNA_PRO="D0302D91-E25E-498A-B8B89107CB16F34B";
     public final String RAZUNA_LYRICS="1F9005CA-6094-460C-A5E5C05F7C378FA5";
     public final String RAZUNA_PRIMARY_GENRE="7BBD3E02-D408-4D9D-9129D443394E057A";
@@ -37,7 +37,7 @@ public class Configuration {
     public final String RAZUNA_BITS_PER_RATE="CEE60877-0483-4CB5-BD42B3C3CD669FAD";
     public final String RAZUNA_COPY_RIGHT_NUMBER="763B2AA4-0A45-4F6F-B204305265F24FA0";
     public final String RAZUNA_COPY_RIGHT_DATE="AA0A51E3-1F43-4999-9BEB97FB1D87DB0A";
-    public final String RAZUNA_PUBLISHING_COMPNAY="B18DD8C2-28D3-443B-893B831B36069C9A";
+    public final String RAZUNA_PUBLISHING_COMPANY="B18DD8C2-28D3-443B-893B831B36069C9A";
     public final String RAZUNA_PRO="A850B9B1-9009-4881-A273F3BC6F58BDAD";
     public final String RAZUNA_LYRICS="00ADDE47-FC23-4852-91E5543CB8F182F1";
     public final String RAZUNA_PRIMARY_GENRE="E56AFF86-20FC-4A54-B1D3FAFBCB6BB7BA";

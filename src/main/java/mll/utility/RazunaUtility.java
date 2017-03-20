@@ -99,7 +99,7 @@ public class RazunaUtility {
 		if(smd.getPublishing_company()!=null)
 		{
 			JSONArray arr=new JSONArray();
-			arr.put(conf.RAZUNA_PUBLISHING_COMPNAY);
+			arr.put(conf.RAZUNA_PUBLISHING_COMPANY);
 			arr.put(smd.getPublishing_company());
 			customFields.put(arr);
 		}
@@ -147,7 +147,7 @@ public class RazunaUtility {
 		if(smd.has("publishing_company"))
 		{
 			JSONArray arr=new JSONArray();
-			arr.put(conf.RAZUNA_PUBLISHING_COMPNAY);
+			arr.put(conf.RAZUNA_PUBLISHING_COMPANY);
 			arr.put(smd.get("publishing_company"));
 			customFields.put(arr);
 		}
