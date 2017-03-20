@@ -47,6 +47,8 @@ fi
 
 echo "Inserting Razuna API key and IDs"
 
+echo ${WORK_DIR}
+
 
 sed -i "s/RAZUNA_TITLE=\".*\"/RAZUNA_TITLE=\"$TITLE_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
 sed -i "s/RAZUNA_BITS_PER_RATE=\".*\"/RAZUNA_BITS_PER_RATE=\"$BITS_PER_RATE_ID\"/g" ${WORK_DIR}/mll/src/main/java/mll/utility/Configuration.java
