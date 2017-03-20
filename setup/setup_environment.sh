@@ -36,7 +36,7 @@ echo "If you have already run this script, please exit now (Ctrl-c)"
 sleep 5
 
 cd "$WORK_DIR"
-apt-get update && apt-get -y install default-jdk maven tomcat8 build-essential
+apt-get update && apt-get -y install default-jdk maven tomcat8 build-essential git
 service tomcat8 stop
 export JAVA_HOME=/usr/lib/jvm/default-java
 echo "export JAVA_HOME=$JAVA_HOME" >> /etc/environment
