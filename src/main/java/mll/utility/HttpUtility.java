@@ -35,7 +35,7 @@ public class HttpUtility {
 		try {
 
 			DefaultHttpClient httpClient = new DefaultHttpClient();
-			httpost = new HttpPost(conf.Razuna_API_URL + methodName);
+			httpost = new HttpPost(conf.RAZUNA_API_URL + methodName);
 			
 			
 				   

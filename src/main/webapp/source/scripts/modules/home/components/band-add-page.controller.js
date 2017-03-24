@@ -20,7 +20,7 @@
         
         this.selectRole = (role) => { if(!role) this.data.musicianRole = null; };
         
-        this.removeWriter = (i) => this.data.songwriters.splice(i, 1);
+        this.removeWriter = (i) => this.data.ownershipInformation.songwriters.splice(i, 1);
         this.submit = () => {
         	var res = musicianProfilePageSerivce.addBand(this.data);
         	$state.reload;

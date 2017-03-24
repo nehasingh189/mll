@@ -14,6 +14,7 @@ import mll.utility.Configuration;
 
 public class MailService
 {
+	
 	Configuration conf = new Configuration();
 	
 	/**
@@ -77,6 +78,23 @@ public class MailService
 		catch (Exception e) 
 		{
 			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * This method takes a String and sends it to the designated
+	 * feedback email specified at the top of the file
+	 */
+	public void sendFeedback(String content)
+	{
+		Boolean isMailSent = false;
+		try
+		{
+			sendMail(conf.FEEDBACK_EMAIL_ADDRESS, "Feedback from Media Licensing Lab", content);
+		}
+		catch(Exception e)
+		{
+			throw e;
 		}
 	}
 }

@@ -82,6 +82,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.5.5-Final</version>
@@ -223,7 +229,7 @@
         					<npmVersion>3.10.10</npmVersion>
         				</configuration>
         				</execution>
-	                	<execution>
+	                	<!--<execution>
 	                		<id>npm install</id>
 	                    	<goals>
 	                    		<goal>npm</goal>
@@ -248,7 +254,7 @@
 	                    	<configuration>
 	                    		<arguments>default</arguments>
 	                    	</configuration>
-	                	</execution>
+	                	</execution>-->
             		</executions>
          		</plugin>
 		 		<plugin>
