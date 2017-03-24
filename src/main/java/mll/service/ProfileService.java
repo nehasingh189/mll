@@ -78,14 +78,15 @@ public class ProfileService {
   }
 
   @SuppressWarnings("unchecked")
-  public JSONObject populateSongWriters(JSONObject OwnerandBand, JSONObject ownershipInformation) throws Exception {
+  public JSONObject populateSongWriters(JSONObject ownerAndBand, JSONObject ownershipInformation) throws Exception {
 
     if (null == ownershipInformation) {
-      return OwnerandBand;
+      return ownerAndBand;
     }
 
     JSONArray songwriters = (JSONArray) ownershipInformation.get("songwriters");
-    OwnerandBand.put("bandName", ownershipInformation.get("bandName"));
+    ownerAndBand.put("bandName", ownershipInformation.get("bandName"));
+
     List<Owner> owners = new ArrayList<>();
     for (Object songwriter : songwriters) {
       JSONObject writer = (JSONObject) songwriter;
@@ -104,8 +105,8 @@ public class ProfileService {
 
       owners.add(owner);
     }
-    OwnerandBand.put("owners", owners);
+    ownerAndBand.put("owners", owners);
 
-    return OwnerandBand;
+    return ownerAndBand;
   }
 }
