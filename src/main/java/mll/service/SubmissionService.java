@@ -342,10 +342,11 @@ public class SubmissionService {
             JSONObject writer = (JSONObject) songwriters.get(i);
             Owner owner = new Owner();
 
-            // The commented lines are no longer needed after MLP-170
-            //owner.setDivisionOfOwnership("Half");
+            // TODO: Remove requirements for divisionOfOwnership and OwnerType from the database
+            // Not needed after MLP-170
+            owner.setDivisionOfOwnership("Half");
             owner.setName((String) writer.get("name"));
-            //owner.setOwnerType("WRITER");
+            owner.setOwnerType("WRITER");
             owner.setPrimaryEmail((String) writer.get("primaryEmail"));
             owner.setSecondaryEmail((String) writer.get("secondaryEmail"));
             owner.setPrimaryPhone((String) writer.get("primaryPhone"));

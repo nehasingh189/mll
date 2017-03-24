@@ -61,6 +61,7 @@ public class RazunaServiceTest
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println("foldierID" + folderId);
 		assertEquals(folderId.length(), 32);
 	}
 	

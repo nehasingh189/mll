@@ -16,7 +16,7 @@
         function submitCloud (data) {
         	console.log("music upload service**");
             console.log(data);
-            return $http.post(musicUrl.direct, data);
+            return $http.post(musicUrl.cloud, data);
         }
 
         function submitDirect(data, fileProp) {
@@ -27,7 +27,7 @@
 
             console.log("music upload service");
             console.log(fd);
-            return $http.post(musicUrl.cloud, fd, {
+            return $http.post(musicUrl.direct, fd, {
                 transformRequest: angular.identity,
                 headers: {
                     'Content-Type': undefined

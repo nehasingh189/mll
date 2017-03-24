@@ -8,14 +8,13 @@
     <!-- Hibernate dialect -->
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 
-	<!--  Database Configuration Local
-    	<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    	<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medialicensinglab</property>
-    	<property name="hibernate.connection.username">root</property>
-    	<property name="hibernate.connection.password"></property>
-    -->
+	<!--  Database Configuration Local -->
+    <!--<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medialicensinglab</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>-->
     
-    <!--  Database Configuration Server -->
+    <!-- Database Configuration Server -->
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/medialicensinglab</property>
     <property name="hibernate.connection.username">mll_user</property>
@@ -32,6 +31,11 @@
 	<property name="connection.provider_class">
    org.hibernate.connection.C3P0ConnectionProvider</property>
     <!-- no "connection.pool_size" entry! -->
+
+
+    <!--<property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="use_sql_comments">true</property>-->
 
   	<!-- Enable Hibernate's automatic session context management -->
  	<property name="current_session_context_class">thread</property>
