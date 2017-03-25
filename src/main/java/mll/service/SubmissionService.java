@@ -225,6 +225,8 @@ public class SubmissionService {
         song.setCopyright_number((String) ownershipInformation.get("copyright"));
         song.setPublishing_company((String) ownershipInformation.get("pubCompany"));
         song.setPro((String) ownershipInformation.get("pro"));
+        song.setOwnerType((String) generalInformation.get("ownerType"));
+        song.setTrackType((String) generalInformation.get("trackType"));
         song.setPrimary_genre((String) generalInformation.get("primaryGenre"));
         song.setSecondary_genre((String) generalInformation.get("secondaryGenre"));
         song.setFileName(fileName);

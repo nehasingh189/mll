@@ -22,7 +22,8 @@ public class SubmissionServiceTest {
 
         // Tests that each metadata field is set properly
         Metadata populatedMetadata1 = service.populateSong(metadata, getGeneralInfoJsonObject(), getOwnerInfoJsonObject(), "dropboxURL", null, "myFilename");
-        assertEquals(true, populatedMetadata1.getSongMetadata().getBeats_per_rate() == 3L);
+        assertEquals(true, populatedMetadata1.getSongMetadata().getOwnerType().equals("testOwnerType"));
+        assertEquals(true, populatedMetadata1.getSongMetadata().getTrackType().equals("testTrackType"));
         assertEquals(true, populatedMetadata1.getSongMetadata().getTitle().equals("testSongTitle"));
         assertEquals(true, populatedMetadata1.getSongMetadata().getCopyright_number().equals("copyright"));
         assertEquals(true, populatedMetadata1.getSongMetadata().getPublishing_company().equals("pubCompany"));
@@ -77,10 +78,11 @@ public class SubmissionServiceTest {
         JSONArray artists = new JSONArray();
         artists.add(jor);
         JSONObject jo = new JSONObject();
-        jo.put("beatRate", 3L);
         jo.put("title", "testSongTitle");
         jo.put("artists", artists);
         jo.put("userId", 1L);
+        jo.put("ownerType", "testOwnerType");
+        jo.put("trackType", "testTrackType");
         jo.put("primaryGenre", "Alternative");
         jo.put("secondaryGenre", "Classical");
         jo.put("pubCompany", "pubCompany");

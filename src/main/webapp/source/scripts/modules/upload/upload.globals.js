@@ -84,6 +84,12 @@
         'Lyrics and Music'
     ];
 
+    // Enumeration of the different ownership types
+    let ownerTypes = [
+        'Artist',
+        'Account Holder (me)'
+    ];
+
     // Enumeration of the different track types
     let trackTypes = [
         'Vocal',
@@ -104,7 +110,8 @@
         'Woodwinds',
         'Strings'
     ];
-    
+
+    // HTTP endpoints for direct-file and cloud uploads
     let musicUrl = {
         direct: '/MLL/SubmissionServlet',
         cloud: '/MLL/SubmissionServlet'
@@ -118,7 +125,8 @@
         .constant('musicData', musicData)
         .constant('musicSize', musicSize)
         .constant('musicContributions', musicContributions)
-        .constant('trackTypes', trackTypes)
         .constant('musicianRoles', musicianRoles)
-        .constant('musicUrl', musicUrl);
+        .constant('musicUrl', musicUrl)
+        .constant('trackTypes', trackTypes)
+        .constant('ownerTypes', ownerTypes);
 })(window.angular);
