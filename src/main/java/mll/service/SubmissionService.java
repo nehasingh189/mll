@@ -221,7 +221,6 @@ public class SubmissionService {
         }
 
         SongMetadata song = new SongMetadata();
-        song.setBeats_per_rate((Long) generalInformation.get("beatRate"));
         song.setTitle((String) generalInformation.get("title"));
         song.setCopyright_number((String) ownershipInformation.get("copyright"));
         song.setPublishing_company((String) ownershipInformation.get("pubCompany"));

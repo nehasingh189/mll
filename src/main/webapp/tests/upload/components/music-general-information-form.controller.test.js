@@ -14,7 +14,6 @@ describe("Music General Information form Controller:", function() {
         data = {
             title: '',
             artists: [ { name: '' } ],
-            beatRate: 0,
             primaryGenre: '',
             secondaryGenre: ''
         };

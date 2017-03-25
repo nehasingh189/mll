@@ -51,28 +51,6 @@
     </div>
 
     <hr/>
-
-    <div class="form-group has-feedback"
-         ng-class="{ 'has-success': ctrl.generalForm.beatRate.$valid && ctrl.generalForm.$submitted,
-                     'has-error': ctrl.generalForm.beatRate.$invalid && ctrl.generalForm.$submitted }">
-        <label for="beat-rate" class="col-xs-2">
-            Beat Rate/Minute <span class="glyphicon glyphicon-question-sign" uib-tooltip="Tooltip to be added"></span>
-        </label>
-        <div class="col-xs-10">
-            <input type="number" name="beatRate" class="form-control" id="beat-rate"
-                   ng-model="ctrl.data.beatRate" min="0" max="320" required />
-            <div class="alert alert-danger" role="alert"
-                 ng-show="ctrl.generalForm.beatRate.$invalid && ctrl.generalForm.$submitted">
-                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span ng-show="ctrl.generalForm.beatRate.$error.min">
-                    Beat rate could not be below zero!
-                </span>
-                <span ng-show="ctrl.generalForm.beatRate.$error.max">
-                    Beat rate could not exceed 320!
-                </span>
-            </div>
-        </div>
-    </div>
     
     <div class="form-group">
         <label class="col-xs-2">
