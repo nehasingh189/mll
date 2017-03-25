@@ -1,5 +1,36 @@
 <form name="ctrl.generalForm" class="form-horizontal form-tab" novalidate>
     <legend>General Information</legend>
+
+    <div ng-repeat="artist in ctrl.data.artists">
+        <ng-form name="artistForm">
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': artistForm.artist.$valid && ctrl.generalForm.$submitted,
+                             'has-error': artistForm.artist.$invalid && ctrl.generalForm.$submitted }">
+                <label class="col-xs-2 asterisk-label">Artist/Band&nbsp;<span ng-show="$index">#{{$index + 1}}</span></label>
+                <div class="col-xs-8">
+                    <input type="text" name="artist" class="form-control" ng-model="artist.name" required />
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="artistForm.artist.$invalid && ctrl.generalForm.$submitted">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="artistForm.artist.$error.required">
+                            Please, provide an artist/band name!
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a class="btn btn-danger" ng-show="$index" ng-click="ctrl.removeArtist($index)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a class="btn btn-success" ng-click="ctrl.addArtist()">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </a>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+
+    <hr />
+
     <div class="form-group has-feedback"
          ng-class="{ 'has-success': ctrl.generalForm.title.$valid && ctrl.generalForm.$submitted,
                      'has-error': ctrl.generalForm.title.$invalid && ctrl.generalForm.$submitted }">
@@ -20,36 +51,6 @@
     </div>
 
     <hr/>
-
-    <div ng-repeat="artist in ctrl.data.artists">
-        <ng-form name="artistForm">
-            <div class="form-group has-feedback"
-                 ng-class="{ 'has-success': artistForm.artist.$valid && ctrl.generalForm.$submitted,
-                             'has-error': artistForm.artist.$invalid && ctrl.generalForm.$submitted }">
-                <label class="col-xs-2 asterisk-label">Artist&nbsp;<span ng-show="$index">#{{$index + 1}}</span></label>
-                <div class="col-xs-8">
-                    <input type="text" name="artist" class="form-control" ng-model="artist.name" required />
-                    <div class="alert alert-danger" role="alert"
-                         ng-show="artistForm.artist.$invalid && ctrl.generalForm.$submitted">
-                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                        <span ng-show="artistForm.artist.$error.required">
-                            Please, provide an artist name!
-                        </span>
-                    </div>
-                </div>
-                <div class="col-xs-2 text-right">
-                    <a class="btn btn-danger" ng-show="$index" ng-click="ctrl.removeArtist($index)">
-                        <span class="glyphicon glyphicon-trash"></span>
-                    </a>
-                    <a class="btn btn-success" ng-click="ctrl.addArtist()">
-                        <span class="glyphicon glyphicon-plus-sign"></span>
-                    </a>
-                </div>
-            </div>
-        </ng-form>
-    </div>
-
-    <hr />
 
     <div class="form-group has-feedback"
          ng-class="{ 'has-success': ctrl.generalForm.beatRate.$valid && ctrl.generalForm.$submitted,
