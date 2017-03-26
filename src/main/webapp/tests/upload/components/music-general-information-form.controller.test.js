@@ -13,7 +13,10 @@ describe("Music General Information form Controller:", function() {
     beforeEach(inject(function ($controller) {
         data = {
             title: '',
-            artists: [ { name: '' } ],
+            artists: [{ name: '' }],
+            trackType: '',
+            ownerType: '',
+            contributions: [],
             primaryGenre: '',
             secondaryGenre: ''
         };
@@ -108,6 +111,35 @@ describe("Music General Information form Controller:", function() {
         ctrl.removeArtist(index);
 
         expect(ctrl.data.artists.length).toBe(before);
+    });
+
+    it("'toggleContribution' should add a contribution if it does not exist", function() {
+        ctrl.toggleContribution('Guitar');
+
+        expect(ctrl.data.contributions.length).toBe(1);
+        expect(ctrl.data.contributions[0].type).toBe('Guitar');
+
+        ctrl.toggleContribution('Drums');
+
+        expect(ctrl.data.contributions.length).toBe(2);
+        expect(ctrl.data.contributions[1].type).toBe('Drums');
+    });
+
+    it("'toggleContribution' should remove a specific contribution object", function() {
+        ctrl.toggleContribution('Bass');
+        ctrl.toggleContribution('Guitar');
+        ctrl.toggleContribution('Drums');
+        ctrl.toggleContribution('Vocals');
+
+        ctrl.toggleContribution('Guitar');
+
+        expect(ctrl.data.contributions.length).toBe(3);
+        expect(ctrl.data.contributions[1].type).toBe('Drums');
+
+        ctrl.toggleContribution('Drums');
+
+        expect(ctrl.data.contributions.length).toBe(2);
+        expect(ctrl.data.contributions[1].type).toBe('Vocals');
     });
 
     it("'selectGenre' function should not change 'secondaryGenre' parameter", function () {

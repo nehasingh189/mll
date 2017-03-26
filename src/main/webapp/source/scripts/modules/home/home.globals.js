@@ -27,9 +27,11 @@
         generalInformation: {
             title: '',
             artists: [
-                {name: ''}
+                { name: '' }
             ],
-            beatRate: 0,
+            trackType: '',
+            ownerType: '',
+            contributions: [],
             primaryGenre: '',
             secondaryGenre: ''
         },

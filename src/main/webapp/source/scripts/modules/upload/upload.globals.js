@@ -49,9 +49,13 @@
         generalInformation: {
             title: '',
             artists: [
-                {name: ''}
+                { name: '' }
             ],
-            beatRate: 0,
+            trackType: '',
+            ownerType: '',
+            contributions: [
+                { type: '' }
+            ],
             primaryGenre: '',
             secondaryGenre: ''
         },
@@ -97,18 +101,32 @@
         'Vocal/Instrumental'
     ];
 
-    // Enumeration of the different roles/positions in a band
-    let musicianRoles = [
-        'Vocals',
-        'Guitar',
-        'Bass',
-        'Drums',
-        'Keyboard',
-        'Backup Vocals',
-        'Percussion',
+    // Enumeration of the different instruments for recording contributions
+    let contributionTypes = [
+        'Acoustic Bass',
+        'Acoustic Guitar',
+        'Acoustic Piano',
+        'Acoustic Strings',
+        'Ambient Sounds',
+        'Background Vocals',
+        'Banjo',
         'Brass',
-        'Woodwinds',
-        'Strings'
+        'Classical Instruments',
+        'Electric Bass',
+        'Electric Guitar',
+        'Electric Keyboards',
+        'Exotic Instrumentation',
+        'Horn(s)',
+        'Industrial Sounds',
+        'Organ',
+        'Percussion',
+        'Rhythmic Loops',
+        'Samples',
+        'Synthesizers',
+        'Vocal Female',
+        'Vocal Harmonies',
+        'Vocal Male',
+        'Woodwinds'
     ];
 
     // HTTP endpoints for direct-file and cloud uploads
@@ -119,13 +137,13 @@
 
     angular
         .module('mllApp.upload')
+        .constant('contributionTypes', contributionTypes)
         .constant('musicFormats', musicFormats)
         .constant('musicGenres', musicGenres)
         .constant('musicForms', musicForms)
         .constant('musicData', musicData)
         .constant('musicSize', musicSize)
         .constant('musicContributions', musicContributions)
-        .constant('musicianRoles', musicianRoles)
         .constant('musicUrl', musicUrl)
         .constant('trackTypes', trackTypes)
         .constant('ownerTypes', ownerTypes);
