@@ -170,6 +170,9 @@ hs_err_pid*
 # Git config file
 .gitconfig
 
+# DB password key
+jasypt_pass
+
 # Project generated files
 src/main/webapp/index.html
 src/main/webapp/bower_components
@@ -179,14 +182,12 @@ src/main/webapp/node_modules
 src/main/webapp/source/scripts/modules/templates
 
 # Project files that are specific to each developer
+src/main/resources/log4j.properties
 MLL.iml
 src/main/webapp/gulpfile.js
 /src/main/java/mll/utility/Configuration.java
 iml
 test.txt
-src/main/webapp/gulpfile.js
 src/main/resources/hibernate.cfg.xml
 src/test/test.iml
-src/main/webapp/index.html
-src/main/webapp/source/scripts/modules/templates/templates.module.js
 src/main/main.iml
