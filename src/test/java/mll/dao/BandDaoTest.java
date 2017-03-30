@@ -3,8 +3,6 @@ package mll.dao;
 import org.json.JSONArray;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
-
 import static org.junit.Assert.assertEquals;
 
 /**

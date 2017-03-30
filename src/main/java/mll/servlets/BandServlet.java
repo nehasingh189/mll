@@ -1,12 +1,10 @@
 package mll.servlets;
 
 import org.json.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,8 +22,7 @@ public class BandServlet {
     service = new BandService();
   }
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-  {
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     JSONArray responseObject = service.getBands(request, response);
 
     response.setContentType("application/json");
@@ -34,8 +31,7 @@ public class BandServlet {
     out.flush();
   }
 
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-  {
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request, response);
   }
 

@@ -27,14 +27,14 @@ public class BandDao {
     try {
       session = SessionFactoryUtil.getSessionFactory().getCurrentSession();
       tx = session.beginTransaction();
-      ObjectMapper mapper=new ObjectMapper();
+      ObjectMapper mapper = new ObjectMapper();
 
       Query query = session.createQuery("FROM mll.beans.Band a WHERE a.musician_id=:id");
       query.setParameter("id", musicianId);
 
       List<Band> bands = query.list();
 
-      for(Band band : bands) {
+      for (Band band : bands) {
         JSONObject obj = new JSONObject(mapper.writeValueAsString(band));
         bandArray.put(obj);
       }
@@ -42,7 +42,7 @@ public class BandDao {
       session.disconnect();
       return bandArray;
 
-    } catch(Exception e) {
+    } catch (Exception e) {
       e.printStackTrace();
       session.disconnect();
       return null;

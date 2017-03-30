@@ -18,6 +18,7 @@ import javax.servlet.http.HttpSession;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
+
 /**
  * Created by William Guo on 3/30/2017.
  */
@@ -41,6 +42,7 @@ public class BandServletTest {
 
     servlet = new BandServlet();
   }
+
   @Test
   public void testDoGetWithValidMusicianIds() {
     try {
