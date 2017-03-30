@@ -128,7 +128,7 @@ describe("Music File Uploader Controller:", function() {
 
     it("'again' call should clear general information", function () {
         ctrl.data = directData;
-        ctrl.data.generalInformation.title = 'Song Title';
+        ctrl.data.generalInformation.title = 'Recording Title';
 
         ctrl.again();
 

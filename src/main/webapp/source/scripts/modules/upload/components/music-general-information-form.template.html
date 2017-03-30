@@ -35,7 +35,7 @@
          ng-class="{ 'has-success': ctrl.generalForm.title.$valid && ctrl.generalForm.$submitted,
                      'has-error': ctrl.generalForm.title.$invalid && ctrl.generalForm.$submitted }">
         <label for="general-title" class="col-xs-3 asterisk-label">
-            Song Title
+            Recording Title
         </label>
         <div class="col-xs-9">
             <input type="text" name="title" class="form-control" id="general-title"
@@ -44,7 +44,7 @@
                  ng-show="ctrl.generalForm.title.$invalid && ctrl.generalForm.$submitted">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span ng-show="ctrl.generalForm.title.$error.required">
-                    Please, provide a song title!
+                    Please, provide a recording title!
                 </span>
             </div>
         </div>
