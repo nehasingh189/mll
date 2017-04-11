@@ -30,7 +30,7 @@ gulp.task('default', (done) => {
  *      Cleans the dist and rebuilds files
  */
 gulp.task('build', (done) => {
-    runSequence('cleanup', 'fonts', 'usemin', function() {
+    runSequence('cleanup', 'resources', 'usemin', function() {
         done();
     })
 });
@@ -54,16 +54,16 @@ gulp.task('develop', (done) => {
 });
 
 /**
- * Fonts Task
- *      Generates the fonts folder in the dist
+ * Resources Task
+ *      Generates the fonts and images folders in the dist
  */
-gulp.task('fonts', () => {
+gulp.task('resources', () => {
     gulp.src('./bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}*')
         .pipe(gulp.dest('./dist/fonts'));
     gulp.src('./bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
         .pipe(gulp.dest('./dist/fonts'));
-    return gulp.src('./source/fonts/*.*')
-        .pipe(gulp.dest('./dist/fonts'));
+    return gulp.src('./source/images/*.*')
+        .pipe(gulp.dest('./dist/images'));
 });
 
 /**
@@ -88,9 +88,9 @@ gulp.task('templates', () => {
             filename: 'templates.module.js',
             // Use the appropriate line below depending on your operating system.
             // UNCOMMENT THIS LINE FOR LINUX OR MAC
-            transformUrl: (url) => { return url.slice(url.lastIndexOf('/') + 1); }
+            //transformUrl: (url) => { return url.slice(url.lastIndexOf('/') + 1); }
             // UNCOMMENT THIS LINE FOR WINDOWS
-            //transformUrl: (url) => { return  url.substr(url.lastIndexOf('\\') + 1); }
+            transformUrl: (url) => { return  url.substr(url.lastIndexOf('\\') + 1); }
         }))
         .pipe(gulp.dest('./source/scripts/modules/templates/'));
 });
