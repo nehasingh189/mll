@@ -79,7 +79,7 @@
     };
 
     // Maximum allowed size of a music file
-    let musicSize = 10 * 1024 * 1024;
+    let musicSize = 30 * 1024 * 1024;
 
     // Enumeration of the various types of contributions to a song
     let musicContributions = [

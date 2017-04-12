@@ -58,12 +58,12 @@ describe("Music File Form Controller:", function() {
         expect(ctrl.validateFormat('placebo.wav')).toBeTruthy();
     });
 
-    it("'validateSize' should return 'false' for '11MB'", function() {
-        expect(ctrl.validateSize(11 * 1024 * 1024)).toBeFalsy();
+    it("'validateSize' should return 'false' for '31MB'", function() {
+        expect(ctrl.validateSize(31 * 1024 * 1024)).toBeFalsy();
     });
 
-    it("'validateSize' should return 'true' for '10MB", function() {
-        expect(ctrl.validateSize(10 * 1024 * 1024)).toBeTruthy();
+    it("'validateSize' should return 'true' for '30MB", function() {
+        expect(ctrl.validateSize(30 * 1024 * 1024)).toBeTruthy();
     });
 
     it("'selectDropbox' should set 'data' field and mark 'form.invalid' flag as 'false'", function() {
