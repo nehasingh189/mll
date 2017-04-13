@@ -88,10 +88,9 @@ gulp.task('templates', () => {
             filename: 'templates.module.js',
             // Use the appropriate line below depending on your operating system.
             // UNCOMMENT THIS LINE FOR LINUX OR MAC
-
-            //transformUrl: (url) => { return url.slice(url.lastIndexOf('/') + 1); }
+            transformUrl: (url) => { return url.slice(url.lastIndexOf('/') + 1); }
             // UNCOMMENT THIS LINE FOR WINDOWS
-            transformUrl: (url) => { return  url.substr(url.lastIndexOf('\\') + 1); }
+            //transformUrl: (url) => { return  url.substr(url.lastIndexOf('\\') + 1); }
         }))
         .pipe(gulp.dest('./source/scripts/modules/templates/'));
 });
