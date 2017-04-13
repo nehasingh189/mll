@@ -36,9 +36,5 @@
             this.data.permissions.browse = data.browse;
             this.data.permissions.upload = data.upload;
         }
-
-        function updateBands(bands) {
-            this.data.bands = bands;
-        }
     }
 })(window.angular);

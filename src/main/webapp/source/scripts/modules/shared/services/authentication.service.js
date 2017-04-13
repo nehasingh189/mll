@@ -32,10 +32,5 @@
 
             $cookies.putObject(authDetailsKey, this.details);
         }
-
-        function updateBands(bands) {
-            this.details.updateBands(bands);
-            //$cookies.putObject(authDetailsKey, this.details);
-        }
     }
 })(window.angular);
