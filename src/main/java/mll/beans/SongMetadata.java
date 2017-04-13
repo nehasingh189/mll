@@ -3,21 +3,23 @@ package mll.beans;
 import java.util.Date;
 
 public class SongMetadata {
- 
-	private String title;
+
+	private String artists;
 	private long beats_per_rate;
+	private byte[] content;
 	private String copyright_number;
 	private String copyright_date;
-	private String publishing_company;
-	private String pro;
-	private String lyrics;
-	private String primary_genre;
-	private String secondary_genre;
-	private String fileName;
-	private byte[] content;
 	private String contentURL;
+	private String fileName;
+	private String lyrics;
+	private String ownerType;
+	private String primary_genre;
+	private String pro;
+	private String publishing_company;
+	private String secondary_genre;
 	private String sourceOfContent;
-	private String artists;
+	private String title;
+	private String trackType;
 	private long userId;
 	
 	public String getTitle() {
@@ -111,6 +113,18 @@ public class SongMetadata {
 	}
 	public void setUserId(long i) {
 		this.userId = i;
+	}
+	public String getOwnerType() {
+		return ownerType;
+	}
+	public void setOwnerType(String o) {
+		this.ownerType = o;
+	}
+	public String getTrackType() {
+		return trackType;
+	}
+	public void setTrackType(String t) {
+		this.trackType = t;
 	}
 	
 }

@@ -49,9 +49,13 @@
         generalInformation: {
             title: '',
             artists: [
-                {name: ''}
+                { name: '' }
             ],
-            beatRate: 0,
+            trackType: '',
+            ownerType: '',
+            contributions: [
+                { type: '' }
+            ],
             primaryGenre: '',
             secondaryGenre: ''
         },
@@ -75,13 +79,19 @@
     };
 
     // Maximum allowed size of a music file
-    let musicSize = 10 * 1024 * 1024;
+    let musicSize = 30 * 1024 * 1024;
 
     // Enumeration of the various types of contributions to a song
     let musicContributions = [
         'Lyrics',
         'Music',
         'Lyrics and Music'
+    ];
+
+    // Enumeration of the different ownership types
+    let ownerTypes = [
+        'Artist',
+        'Account Holder (me)'
     ];
 
     // Enumeration of the different track types
@@ -91,20 +101,35 @@
         'Vocal/Instrumental'
     ];
 
-    // Enumeration of the different roles/positions in a band
-    let musicianRoles = [
-        'Vocals',
-        'Guitar',
-        'Bass',
-        'Drums',
-        'Keyboard',
-        'Backup Vocals',
-        'Percussion',
+    // Enumeration of the different instruments for recording contributions
+    let contributionTypes = [
+        'Acoustic Bass',
+        'Acoustic Guitar',
+        'Acoustic Piano',
+        'Acoustic Strings',
+        'Ambient Sounds',
+        'Background Vocals',
+        'Banjo',
         'Brass',
-        'Woodwinds',
-        'Strings'
+        'Classical Instruments',
+        'Electric Bass',
+        'Electric Guitar',
+        'Electric Keyboards',
+        'Exotic Instrumentation',
+        'Horn(s)',
+        'Industrial Sounds',
+        'Organ',
+        'Percussion',
+        'Rhythmic Loops',
+        'Samples',
+        'Synthesizers',
+        'Vocal Female',
+        'Vocal Harmonies',
+        'Vocal Male',
+        'Woodwinds'
     ];
-    
+
+    // HTTP endpoints for direct-file and cloud uploads
     let musicUrl = {
         direct: '/MLL/SubmissionServlet',
         cloud: '/MLL/SubmissionServlet'
@@ -112,13 +137,14 @@
 
     angular
         .module('mllApp.upload')
+        .constant('contributionTypes', contributionTypes)
         .constant('musicFormats', musicFormats)
         .constant('musicGenres', musicGenres)
         .constant('musicForms', musicForms)
         .constant('musicData', musicData)
         .constant('musicSize', musicSize)
         .constant('musicContributions', musicContributions)
+        .constant('musicUrl', musicUrl)
         .constant('trackTypes', trackTypes)
-        .constant('musicianRoles', musicianRoles)
-        .constant('musicUrl', musicUrl);
+        .constant('ownerTypes', ownerTypes);
 })(window.angular);

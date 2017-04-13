@@ -37,5 +37,8 @@
             this.data.permissions.upload = data.upload;
         }
 
+        function updateBands(bands) {
+            this.data.bands = bands;
+        }
     }
 })(window.angular);

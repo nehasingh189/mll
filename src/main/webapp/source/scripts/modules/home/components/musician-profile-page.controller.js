@@ -18,8 +18,11 @@
 
         this.authService = authenticationService;
         var userId = this.authService.details.data.id;
-        //var allBands = this.authService.details.data.bands;
-        var allBands = musicianProfilePageSerivce.getBandsActual(userId);
+        this.authService.updateBands(musicianProfilePageSerivce.getBandsActual(userId));
+        var allBands = this.authService.details.data.bands;
+        console.log('omg it works');
+        //var allBands = musicianProfilePageSerivce.getBandsActual(userId);
+
         this.user = {
             userId: +this.userId,
             details: '',
@@ -28,8 +31,8 @@
 
         this.user.details = musicianProfilePageSerivce.getProfile(this.user.userId);
 
-        this.user.bands = musicianProfilePageSerivce.getBandsActual(this.user.userId);
-        //this.user.bands = this.authService.details.data.bands;
+        //this.user.bands = musicianProfilePageSerivce.getBandsActual(this.user.userId);
+        this.user.bands = this.authService.details.data.bands;
         //musicianProfilePageSerivce.getBandsActual(this.user.userId);
         this.addBand = () => {
             $state.go("addBand", {id: userId}, {reload: true});
