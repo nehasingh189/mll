@@ -191,3 +191,9 @@ test.txt
 src/main/resources/hibernate.cfg.xml
 src/test/test.iml
 src/main/main.iml
+src/main/resources/hibernate.cfg.xml
+src/main/webapp/source/scripts/modules/templates/templates.module.js
+jasypt_pass
+src/main/resources/hibernate.cfg.xml
+src/main/webapp/index.html
+src/main/java/mll/utility/SessionFactoryUtil.java

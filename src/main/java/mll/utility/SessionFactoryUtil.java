@@ -17,7 +17,7 @@ public class SessionFactoryUtil
 	 {
 		 try {
 			 // Read the key from file to decrypt password
-			 String key = Files.readFirstLine(new File("/jasypt_pass"), StandardCharsets.UTF_8);
+			 String key = Files.readFirstLine(new File("E:\\Music-Licensing-Laboratory\\jasypt_pass"), StandardCharsets.UTF_8);
 			 StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 			 encryptor.setPassword(key);
 
