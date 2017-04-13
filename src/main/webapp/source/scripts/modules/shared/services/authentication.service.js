@@ -32,5 +32,6 @@
 
             $cookies.putObject(authDetailsKey, this.details);
         }
+
     }
 })(window.angular);

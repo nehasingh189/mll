@@ -10,6 +10,7 @@
     function musicianProfilePageSerivce($http, addBandUrl, getBandDetailsUrl) {
         return {
             getBands: getBands,
+            getBandsActual : getBandsActual,
             getBandDetails: getBandDetails,
             addBand: addBand,
             getProfile: getProfile,
@@ -20,7 +21,7 @@
         
         function getBands(id) {
         	console.log("in getBands");
-        	var bands = ['ABC', 'PQR', 'XYZ'];
+            var bands = ['ABC', 'PQR', 'XYZ'];
         	console.log(bands);
         	return bands;
         }
@@ -62,7 +63,7 @@
                 	ownershipPercent: 50,
                 	musicianRole: "Vocal"
                 };
-        	console.log(user);
+        	//console.log(user);
         	return user;
         }
         
@@ -73,13 +74,17 @@
         function editBands() {
         	console.log("in editBands");
         }
-//        function getBands() {
-//        	return $http.post(musicianUrl)
-//                .then((response) => {
-//                    return response.data;
-//                })
-//                .catch((rejection) => rejection);
-//        }
+
+        function getBandsActual(id) {
+        	return $http.post('/MLL/BandServletActual', id)
+                .then((response) => {
+                    console.log('-----------muscianProfilePageSerivce-------------');
+                    console.log(response.data);
+                    console.log('-----------muscianProfilePageSerivce-------------');
+                    return response.data;
+                })
+                .catch((rejection) => rejection);
+        }
 //        
 //        function searchSongs(searchTitle) {
 //        	var mSearchUrl = searchUrl + searchTitle;

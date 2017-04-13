@@ -36,5 +36,6 @@
             this.data.permissions.browse = data.browse;
             this.data.permissions.upload = data.upload;
         }
+
     }
 })(window.angular);
