@@ -13,28 +13,24 @@ import org.json.simple.JSONObject;
 
 import mll.service.SubmissionService;
 
-public class SubmissionServlet extends HttpServlet
-{
-	private static final long serialVersionUID = 1L;
-	SubmissionService subService = null;
-	
-	public void init(ServletConfig config) throws ServletException 
-	{
-		subService = new SubmissionService();
-	}
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  
-	{
-        JSONObject responseObject = subService.uploadMedia(request, response);
-        
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		out.print(responseObject);
-		out.flush();
-	}
+public class SubmissionServlet extends HttpServlet {
+  private static final long serialVersionUID = 1L;
+  SubmissionService subService = null;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-	{
-		doGet(request, response);
-	}
+  public void init(ServletConfig config) throws ServletException {
+    subService = new SubmissionService();
+  }
+
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    JSONObject responseObject = subService.uploadMedia(request, response);
+
+    response.setContentType("application/json");
+    PrintWriter out = response.getWriter();
+    out.print(responseObject);
+    out.flush();
+  }
+
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
 }

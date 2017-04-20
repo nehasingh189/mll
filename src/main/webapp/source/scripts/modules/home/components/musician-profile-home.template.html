@@ -1,67 +1,16 @@
 
-<div class="container-fluid" align="center">
+<div class="container-fluid">
    <!--   <h1 class="page-header">{{ctrl.user.details.firstName}}&nbsp;{{ctrl.user.details.lastName}}&nbsp;</h1>-->
 
     <br/>
     <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle img-responsive"> 
     </div>
     <div class=" col-md-9 col-lg-9 "> 
-        <!--  <table class="table table-user-information">
-            <tbody>
-                <tr>
-                    <td>Username: </td>
-                    <td>{{ctrl.user.details.username}} </td>
-                </tr>
-                <tr>
-                    <td>First Name: </td>
-                    <td>{{ctrl.user.details.firstName}}</td>
-                </tr>
-                <tr>
-                    <td>Last Name: </td>
-                    <td>{{ctrl.user.details.lastName}}</td>
-                </tr>
-                <tr>
-                    <td>Primary Phone: </td>
-                    <td>{{ctrl.user.details.primaryPhone}}</td>
-                </tr>
-                <tr>
-                    <td>Secondary Phone: </td>
-                    <td>{{ctrl.user.details.secondaryPhone}}</td>
-                </tr>
-                <tr>
-                    <td>Primary Email: </td>
-                    <td>{{ctrl.user.details.primaryEmail}}</td>
-                </tr>
-                <tr>
-                    <td>Secondary Email: </td>
-                    <td>{{ctrl.user.details.secondaryEmail}}</td>
-                </tr>
-                <tr>
-                    <td>Contribution: </td>
-                    <td>{{ctrl.user.details.contribution}}</td>
-                </tr>
-                <tr>
-                    <td>Ownership (%): </td>
-                    <td>{{ctrl.user.details.ownershipPercent}}%</td>
-                </tr>
-                <tr>
-                    <td>Role: </td>
-                    <td>{{ctrl.user.details.musicianRole}}</td>
-                </tr>
-                <tr>
-                    <td>BANDS: </td>
-                    <td>
-                        <ul ng-repeat="band in ctrl.user.bands">
-                            <li>{{band}}</li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table> -->
-        <h4><i>Bands :</i></h4>
+        <h4><i>Artists/Bands :</i></h4>
+
         <div ng-show="ctrl.user.bands">
-        	<ul ng-repeat="band in ctrl.user.bands">
-            	<li>{{band.name}}</li>
+        	<ul>
+            	<li ng-repeat="band in ctrl.user.bands">{{band.name}}</li>
         	</ul>
         </div>
         
@@ -71,7 +20,7 @@
         
         <div class="form-group">
 		<div class="col-xs-3">
-			<button class="btn btn-block btn-primary" ng-click="ctrl.addBand()">Add Band</button>
+			<button class="btn btn-block btn-primary" ng-click="ctrl.addBand()">Add Artist/Band</button>
 		</div>
 	</div>
     </div>

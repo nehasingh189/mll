@@ -160,4 +160,18 @@
     <servlet-name>BandServlet</servlet-name>
     <url-pattern>/BandServlet/*</url-pattern>
   </servlet-mapping>
+
+
+  <servlet>
+    <description></description>
+    <display-name>BandServletActual</display-name>
+    <servlet-name>BandServletActual</servlet-name>
+    <servlet-class>mll.servlets.BandServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>BandServletActual</servlet-name>
+    <url-pattern>/BandServletActual/*</url-pattern>
+  </servlet-mapping>
+
+
 </web-app>
