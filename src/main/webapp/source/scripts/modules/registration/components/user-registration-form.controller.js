@@ -13,6 +13,7 @@
         ];
 
     function UserRegistrationFormController($state, regService, genres, genders, colleges, affiliations, regTypes) {
+        const hash = window.location.hash;
         this.genres = genres;
         this.genders = genders;
         this.colleges = colleges;
@@ -20,16 +21,19 @@
 
         this.data = {
             type: regTypes.user,
-            token: this.inviteToken
+            // TODO: find out where this.inviteToken is being set
+            //token: this.inviteToken
+            token: hash.substr(hash.lastIndexOf("/") + 1)
         };
 
         this.register = () => {
-            if (this.registrationForm.$invalid) this.registrationForm.$submitted = true;
-
-            else
+            if (this.registrationForm.$invalid) {
+                this.registrationForm.$submitted = true;
+            } else {
                 regService.register(this.data)
                     .then((response) => this.processResponse(response))
                     .catch((rejection) => this.displayError(rejection));
+            }
         };
 
         this.processResponse = (data) => {
