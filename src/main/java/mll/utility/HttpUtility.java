@@ -201,11 +201,14 @@ public class HttpUtility {
 		return null;
 	}
 	
-	public JSONArray readResponseForCustomFields(HttpResponse response,HashMap<String,JSONObject> songsdata) throws ParseException, JSONException, IOException
+	public JSONArray readResponseForCustomFields(
+			HttpResponse response,
+			HashMap<String,JSONObject> songsdata) throws ParseException, JSONException, IOException
 	{
 				
 		JSONObject metadata=new JSONObject();
 		JSONArray columnarray=new JSONArray();
+
 		JSONArray songsarray=new JSONArray();
 		System.out.println(songsdata.size());
 		if(response!=null)
@@ -226,7 +229,7 @@ public class HttpUtility {
 				{
 					
 					JSONArray metaarray=datarry.getJSONArray(i);
-					String id=metaarray.getString(4);
+					String id=metaarray.getString(4); //initially 4
 					JSONObject song=songsdata.get(id);
 					if(metaarray.get(2) != null){
 						

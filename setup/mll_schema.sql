@@ -44,7 +44,13 @@ CREATE TABLE `AdminUser` (
 
 LOCK TABLES `AdminUser` WRITE;
 /*!40000 ALTER TABLE `AdminUser` DISABLE KEYS */;
-INSERT INTO `AdminUser` VALUES (1,'akhil','k','NEU','MS','M','Rock',22,'MS','CS'),(7,'Dishant','Shah','College of Computer and Information Science','Graduate Student','Male','Christian & Gospel',24,' ',' '),(43,'Dishant','Shah','College of Engineering','Graduate Student','Male','Latino',59,' ',' '),(45,'ashish','kumar','College of Arts, Media and Design','Graduate Student','Male','Blues',12,' ',' '),(46,'Ashish','Kumar','College of Engineering','Undergraduate Student','Male','Folk / Americana',34,' ',' '),(54,'sam','sam','College of Arts, Media and Design','Graduate Student','Male','Blues',12,' ',' '),(91,'Test','Test','NEU','PhD','Male','Metal',22,'CS',NULL);
+INSERT INTO `AdminUser` VALUES (1,'akhil','k','NEU','MS','M','Rock',22,'MS','CS'),
+(7,'Dishant','Shah','College of Computer and Information Science','Graduate Student','Male','Christian & Gospel',24,' ',' '),
+(43,'Dishant','Shah','College of Engineering','Graduate Student','Male','Latino',59,' ',' '),
+(45,'ashish','kumar','College of Arts, Media and Design','Graduate Student','Male','Blues',12,' ',' '),
+(46,'Ashish','Kumar','College of Engineering','Undergraduate Student','Male','Folk / Americana',34,' ',' '),
+(54,'sam','sam','College of Arts, Media and Design','Graduate Student','Male','Blues',12,' ',' '),
+(91,'Test','Test','NEU','PhD','Male','Metal',22,'CS',NULL);
 /*!40000 ALTER TABLE `AdminUser` ENABLE KEYS */;
 UNLOCK TABLES;
 

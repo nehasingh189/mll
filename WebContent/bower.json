@@ -1,0 +1,18 @@
+{
+  "name": "mll",
+  "description": "Project desciption",
+  "main": "index.html",
+  "authors": [
+    "Neha"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -87,6 +87,23 @@
 			<version>1.9.2</version>
 		</dependency>
 
+
+		<!--NEHA
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>US_export_policy</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>local_policy</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		NEHA-END-->
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -290,7 +307,7 @@
 					<artifactId>tomcat7-maven-plugin</artifactId>
 					<version>2.2</version>
 					<configuration>
-						<url>http://35.163.135.77:8080/manager/text</url>
+						<url>http:localhost:8082/manager/text</url>
 						<server>TomcatServer</server>
 						<path>/Music2</path>
 					</configuration>

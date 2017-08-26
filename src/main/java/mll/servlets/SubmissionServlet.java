@@ -22,8 +22,8 @@ public class SubmissionServlet extends HttpServlet {
   }
 
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    System.out.println("FILE UPLOAD!!!!! ---- NEHA ");
     JSONObject responseObject = subService.uploadMedia(request, response);
-
     response.setContentType("application/json");
     PrintWriter out = response.getWriter();
     out.print(responseObject);

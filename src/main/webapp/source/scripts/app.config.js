@@ -124,6 +124,48 @@
                     }
                 }
             })
+            //NEHA
+            .state('adminfeedback', {
+                url: '/feedback',
+
+                views: {
+                    left: {
+                        controller: 'SidebarController as ctrl',
+                        templateProvider: function ($templateCache) {
+                            return $templateCache.get('sidebar.template.html');
+                        }
+                    },
+                    center: {
+                        controller: 'ArhomeController as ctrl',
+                        templateProvider: function($templateCache) {
+                            return $templateCache.get('feedback-admin-listing.template.html');
+                        }
+                    },
+                    right: { template: '' }
+                },
+                resolve: {
+                    userId: function($state, $stateParams, $q, $timeout, authenticationService) {
+                        let deferred = $q.defer();
+
+                        $timeout(() => {
+                            if (!authenticationService.details.isAuth) {
+                                $state.go('login');
+                                deferred.reject();
+                            }
+
+                            else if (!authenticationService.details.data.permissions.browse) {
+                                $state.go(authenticationService.details.data.type,
+                                    { id: authenticationService.details.data.id });
+                                deferred.reject();
+                            }
+
+                            else deferred.resolve(+$stateParams.id);
+                        }, 0);
+
+                        return deferred.promise;
+                    }
+                }
+            })            //NEHA-END
             .state('arUser', {
                 url: '/arUser/profile/id/:id',
                 views: {

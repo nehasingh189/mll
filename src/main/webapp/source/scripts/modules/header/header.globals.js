@@ -7,6 +7,8 @@
 
     let logoutLink = { text: 'Log Out' };
 
+    let feedbackLink = { text: 'Feedback',href: 'feedback' };
+
     let uploadLink = { text: 'Upload', href: 'musicianUpload' };
 
     let navigationLinks = [
@@ -18,6 +20,7 @@
         .module('mllApp.header')
         .constant('homeLink', homeLink)
         .constant('loginLink', loginLink)
+        .constant('feedbackLink', feedbackLink)
         .constant('logoutLink', logoutLink)
         .constant('uploadLink', uploadLink)
         .constant('navigationLinks', navigationLinks);

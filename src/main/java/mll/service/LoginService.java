@@ -15,8 +15,10 @@ import mll.utility.Encryption;
 public class LoginService {
   LoginDAO dao;
 
+
+
   public LoginService() {
-    dao = new LoginDAO();
+    dao = new LoginDAO(); System.out.println("login service::: java");
   }
 
   /**
@@ -92,6 +94,7 @@ public class LoginService {
    */
   public Login populateUserDetails(JSONObject jo) {
     Login login = null;
+
     if (null != jo) {
       login = new Login();
       login.getUser().setEmailId((String) jo.get("emailId"));

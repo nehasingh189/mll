@@ -37,6 +37,9 @@ public class LoginServlet extends HttpServlet {
          * put error message and print on console.
          */
 
+        System.out.println("login page!!!");
+        System.out.println(login.toString());
+
         if (login.isValidUser()) {
             responseObject.put("isValidUser", true);
             responseObject.put("type", login.getType());
@@ -47,8 +50,11 @@ public class LoginServlet extends HttpServlet {
 
             if (login.getType() == Login.musicianType) {
                 responseObject.put("name", login.getMusician().getName());
+                System.out.println(login.getMusician().getName());
                 session.setAttribute("folder_id", login.getMusician().getFolderId());
+                System.out.println(login.getMusician().getFolderId());
                 session.setAttribute("musician_id", login.getMusician().getId());
+                System.out.println(login.getMusician().getId());
                 responseObject.put("bands", login.getBands());
                 System.out.println("bands " + login.getBands());
             } else {

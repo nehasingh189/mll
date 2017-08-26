@@ -42,7 +42,7 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 echo "export JAVA_HOME=$JAVA_HOME" >> /etc/environment
 
 echo "Please enter the Jasypt password. This can be found on Confluence."
-read -p "Jasypt Password: " JASYPT_PASS
+read -p "Jasypt Password: " IeGQbKMF5t61waH6dqhs7hMo
 touch /jasypt_pass
 echo ${JASYPT_PASS} > /jasypt_pass
 echo "export JASYPT_LOCATION=/jasypt_pass" >> /etc/environment

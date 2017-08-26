@@ -6,9 +6,9 @@
         .controller('HeaderController', HeaderController);
 
     HeaderController.$inject =
-        ['$state', 'homeLink', 'loginLink', 'logoutLink', 'uploadLink', 'navigationLinks', 'authenticationService'];
+        ['$state', 'homeLink','feedbackLink','loginLink', 'logoutLink', 'uploadLink', 'navigationLinks', 'authenticationService'];
 
-    function HeaderController($state, homeLink, loginLink, logoutLink, uploadLink, navLinks, authenticationService) {
+    function HeaderController($state, homeLink, feedbackLink, loginLink, logoutLink, uploadLink, navLinks, authenticationService) {
 
         this.authService = authenticationService;
 
@@ -16,13 +16,17 @@
         this.loginLink = loginLink;
         this.logoutLink = logoutLink;
         this.uploadLink = uploadLink;
-
+        this.feedbackLink = feedbackLink;
         this.navLinks = navLinks;
 
         this.logout = () => {
             this.authService.clear();
 
             $state.go(loginLink.href);
+        };
+
+        this.feedback = () => {
+            $state.go(feedbackLink.href, {}, { reload: true });
         };
 
         this.home = () => {
