@@ -125,8 +125,8 @@
                 }
             })
             //NEHA
-            .state('adminfeedback', {
-                url: '/feedback',
+            .state('feedback', {
+                url: '/musician/feedback',
 
                 views: {
                     left: {
@@ -136,9 +136,9 @@
                         }
                     },
                     center: {
-                        controller: 'ArhomeController as ctrl',
+                        controller: 'MusicianFeedbackController as ctrl',
                         templateProvider: function($templateCache) {
-                            return $templateCache.get('feedback-admin-listing.template.html');
+                            return $templateCache.get('feedback-user-form.template.html');
                         }
                     },
                     right: { template: '' }
@@ -153,11 +153,11 @@
                                 deferred.reject();
                             }
 
-                            else if (!authenticationService.details.data.permissions.browse) {
-                                $state.go(authenticationService.details.data.type,
+                           /* else if (!authenticationService.details.data.permissions.browse) {
+                               $state.go(authenticationService.details.data.type,
                                     { id: authenticationService.details.data.id });
                                 deferred.reject();
-                            }
+                            }*/
 
                             else deferred.resolve(+$stateParams.id);
                         }, 0);
