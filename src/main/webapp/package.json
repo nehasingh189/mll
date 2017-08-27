@@ -27,8 +27,8 @@
     "karma-junit-reporter": "^0.4.2",
     "karma-phantomjs-launcher": "^1.0.2",
     "karma-spec-reporter": "0.0.26",
-    "phantomjs": "^2.1.7",
-    "phantomjs-prebuilt": "^2.1.7",
+    //"phantomjs": "^2.1.7",
+    //"phantomjs-prebuilt": "^2.1.7",
     "run-sequence": "^1.2.2",
     "yargs": "^6.6.0"
   },
