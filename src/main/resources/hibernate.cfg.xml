@@ -49,5 +49,6 @@
         <mapping resource="Folder.hbm.xml" />
         <mapping resource="PlaylistReference.hbm.xml"/>
         <mapping resource="Band.hbm.xml" />
+        <mapping resource="Feedback.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

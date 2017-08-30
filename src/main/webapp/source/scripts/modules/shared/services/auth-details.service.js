@@ -30,8 +30,12 @@
             this.isAuth = true;
 
             this.data.id = data.userId;
+            this.data.emailid = data.email,
             this.data.type = data.type;
-	        this.data.bands = data.bands; //Medhavi
+            this.data.isMusician = data.type == "musician";
+            this.data.isAdmin = data.type == "admin";
+
+            this.data.bands = data.bands; //Medhavi
             this.data.permissions = {};
             this.data.permissions.browse = data.browse;
             this.data.permissions.upload = data.upload;

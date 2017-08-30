@@ -25,8 +25,8 @@ public class FeedbackServlet extends HttpServlet
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  
 	{
-		
-		JSONObject responseObject = subService.handleFeedbackRequest(request, response);
+		FeedbackService feedbackService = new FeedbackService();
+		JSONObject responseObject = feedbackService.uploadFeedbackDetails(request, response);
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		out.print(responseObject);

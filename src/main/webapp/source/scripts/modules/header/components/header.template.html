@@ -32,9 +32,15 @@
                     </li>
 
 
-                    <li ng-show="ctrl.authService.details.isAuth">
+                    <li ng-show="ctrl.authService.details.data.isMusician">
                         <a class="ablackwhite" href ng-click="ctrl.feedback()">
                             <span class="ablackwhite" ng-bind="ctrl.feedbackLink.text"></span>
+                        </a>
+                    </li>
+
+                    <li ng-show="ctrl.authService.details.data.isAdmin">
+                        <a class="ablackwhite" href ng-click="ctrl.feedbacklist()">
+                            <span class="ablackwhite" ng-bind="ctrl.feedbackListLink.text"></span>
                         </a>
                     </li>
 

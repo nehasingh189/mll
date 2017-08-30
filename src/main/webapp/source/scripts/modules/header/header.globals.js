@@ -9,6 +9,8 @@
 
     let feedbackLink = { text: 'Feedback',href: 'feedback' };
 
+    let feedbackListLink = { text: 'FeedbackListLink',href: 'feedbacklist' };
+
     let uploadLink = { text: 'Upload', href: 'musicianUpload' };
 
     let navigationLinks = [
@@ -21,6 +23,7 @@
         .constant('homeLink', homeLink)
         .constant('loginLink', loginLink)
         .constant('feedbackLink', feedbackLink)
+        .constant('feedbackListLink',feedbackListLink)
         .constant('logoutLink', logoutLink)
         .constant('uploadLink', uploadLink)
         .constant('navigationLinks', navigationLinks);

@@ -119,6 +119,29 @@
     <servlet-name>DeleteAssetServlet</servlet-name>
     <url-pattern>/DeleteAssetServlet/*</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>FeedbackServlet</display-name>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <servlet-class>mll.servlets.FeedbackServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FeedbackServlet</servlet-name>
+    <url-pattern>/FeedbackServlet/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <description></description>
+    <display-name>GetFeedbacksServlet</display-name>
+    <servlet-name>GetFeedbacksServlet</servlet-name>
+    <servlet-class>mll.servlets.GetFeedbacksServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetFeedbacksServlet</servlet-name>
+    <url-pattern>/GetFeedbacksServlet/*</url-pattern>
+  </servlet-mapping>
+
   <servlet>
     <description></description>
     <display-name>ResendEmailServlet</display-name>

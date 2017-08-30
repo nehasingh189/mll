@@ -7,13 +7,13 @@ package mll.beans;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Feedback {
+public class Feedback implements Serializable{
 
     private Integer id;
-    private String feedbackMsg;
-    private Integer userId;
+    private String feedbackmsg;
+    private String emailId;
+    private Integer userid;
     private Timestamp time;
-
 
     public Integer getId() {
         return id;
@@ -23,20 +23,28 @@ public class Feedback {
         this.id = id;
     }
 
-    public String getFeedbackMsg() {
-        return feedbackMsg;
+    public String getFeedbackmsg() {
+        return feedbackmsg;
     }
 
-    public void setFeedbackMsg(String feedbackMsg) {
-        this.feedbackMsg = feedbackMsg;
+    public void setFeedbackmsg(String feedbackmsg) {
+        this.feedbackmsg = feedbackmsg;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getEmailId() {
+        return emailId;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public Timestamp getTime() {
@@ -46,6 +54,11 @@ public class Feedback {
     public void setTime(Timestamp time) {
         this.time = time;
     }
+
+
+
+
+
 
 
 

@@ -6,11 +6,14 @@
         .controller('HeaderController', HeaderController);
 
     HeaderController.$inject =
-        ['$state', 'homeLink','feedbackLink','loginLink', 'logoutLink', 'uploadLink', 'navigationLinks', 'authenticationService'];
+        ['$state', 'homeLink','feedbackLink','feedbackListLink','loginLink', 'logoutLink', 'uploadLink', 'navigationLinks', 'authenticationService'];
 
-    function HeaderController($state, homeLink, feedbackLink, loginLink, logoutLink, uploadLink, navLinks, authenticationService) {
+    function HeaderController($state, homeLink, feedbackLink,feedbackListLink, loginLink, logoutLink, uploadLink, navLinks, authenticationService) {
 
         this.authService = authenticationService;
+
+
+        //console.log(this.ismusician);
 
         this.homeLink = homeLink;
         this.loginLink = loginLink;
@@ -18,6 +21,8 @@
         this.uploadLink = uploadLink;
         this.feedbackLink = feedbackLink;
         this.navLinks = navLinks;
+        this.feedbackListLink = feedbackListLink;
+
 
         this.logout = () => {
             this.authService.clear();
@@ -27,6 +32,10 @@
 
         this.feedback = () => {
             $state.go(feedbackLink.href, {}, { reload: true });
+        };
+
+        this.feedbacklist = () => {
+            $state.go(feedbackListLink.href, {}, { reload: true });
         };
 
         this.home = () => {

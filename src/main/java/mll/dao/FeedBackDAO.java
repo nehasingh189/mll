@@ -7,6 +7,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -18,10 +20,13 @@ import java.util.List;
  */
 public class FeedBackDAO {
 
-    public List<Feedback> getAllFeedbacks() {
+    public JSONArray getAllFeedbacks() {
         // we add songs from db to this variable and return this
         Session session = null;
         Transaction tx = null;
+
+        JSONArray feedbackArray = new JSONArray();
+
         List<Feedback> feedbacks = null;
 
         try
@@ -29,43 +34,45 @@ public class FeedBackDAO {
             // Initialize the session and transaction
             session = SessionFactoryUtil.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
+            ObjectMapper mapper = new ObjectMapper();
 
             // query to get all feedbacks ids for id
             Query query = session.createQuery("FROM mll.beans.Feedback");
 
             feedbacks =  query.list();
 
-            // Commit the transaction if all the data is successfully saved
-            tx.commit();
-        }
-        catch(Exception e)
-        {
-            if(null != tx)
-            {
-                tx.rollback();
+            for(Feedback feedback:feedbacks){
+                JSONObject obj = new JSONObject(mapper.writeValueAsString(feedback));
+                feedbackArray.put(obj);
             }
-            e.printStackTrace();
-            throw e;
-        }
 
-       return feedbacks;
+
+            session.disconnect();
+            return feedbackArray;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            session.disconnect();
+            return null;
+        }
 
     }
 
 
-    public boolean addSongPlaylist(Feedback feedback)
-    {
-        if(feedback == null || feedback.getFeedbackMsg()==null || feedback.getFeedbackMsg().trim() == "")
-            return false;
+
+    public void saveMetadata(Feedback feedback) {
+
+//        if(feedback == null || feedback.getFeedbackMsg()==null || feedback.getFeedbackMsg().trim() == "")
+//            return false;
 
         Session session = null;
         Transaction tx = null;
-
+// id id auto yo i know :P have to write a hql query there .i.s . wsaooching
+        // there is something call genrate native
         try
         {
             session = SessionFactoryUtil.getSessionFactory().getCurrentSession();
             tx = session.beginTransaction();
-
             session.save(feedback);
             session.getTransaction().commit();
             if (!tx.wasCommitted()) {
@@ -78,7 +85,7 @@ public class FeedBackDAO {
             {
                 tx.rollback();
             }
-            return false;
+//            return false;
             // Error message for integrity constraint violation
         }
         catch(Exception e)
@@ -87,10 +94,9 @@ public class FeedBackDAO {
             {
                 tx.rollback();
             }
-            return false;
+//            return false;
             //
         }
 
-        return true;
     }
 }
