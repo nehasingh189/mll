@@ -36,7 +36,7 @@ source $1
 
 echo "Installing MLL"
 cd ${WORK_DIR}
-git clone https://github.ccs.neu.edu/CS4500Sp17/Music-Licensing-Laboratory.git mll
+git clone https://github.com/nehasingh189/mll.git mll
 cd mll
 
 
