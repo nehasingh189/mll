@@ -6,10 +6,7 @@ import org.hibernate.cfg.Configuration;
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
 import java.io.File;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.sql.SQLSyntaxErrorException;
 
 public class SessionFactoryUtil 
 {
@@ -31,8 +28,8 @@ public class SessionFactoryUtil
 			 StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
 			 encryptor.setPassword(key);
 
-			 String encrypted_pass = encryptor.encrypt("NortheasternMLLdatabase_user123#");
-			 System.out.println(encrypted_pass);
+			// String encrypted_pass = encryptor.encrypt("NortheasternMLLdatabase_user123#");
+			 //System.out.println(encrypted_pass);
 
 			 // Create the SessionFactory from hibernate.cfg.xml
 			 Configuration configuration = new Configuration().configure();
