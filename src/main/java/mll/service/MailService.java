@@ -64,6 +64,7 @@ public class MailService
 					return new PasswordAuthentication(conf.USER_NAME_FOR_EMAIL, conf.PASSWOD_FOR_EMAIL);
 				}
 			});
+			System.out.println(session);
 			System.out.println("mail session created!!!");
 
 			Message message = new MimeMessage(session);
@@ -77,6 +78,7 @@ public class MailService
 		}
 		catch (Exception e) 
 		{
+			System.out.println("caught exception");
 			e.printStackTrace();
 		}
 	}
