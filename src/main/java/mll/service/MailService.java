@@ -56,7 +56,7 @@ public class MailService
 			props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 			props.put("mail.smtp.auth", "true");
 			props.put("mail.smtp.port", "465");
-			Session session = Session.getInstance(props, new javax.mail.Authenticator() 
+			Session session = Session.getInstance(props, new javax.mail.Authenticator()
 			{
 				@Override
 				protected PasswordAuthentication getPasswordAuthentication() 
@@ -64,6 +64,7 @@ public class MailService
 					return new PasswordAuthentication(conf.USER_NAME_FOR_EMAIL, conf.PASSWOD_FOR_EMAIL);
 				}
 			});
+			System.out.println("mail session created!!!");
 
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(conf.FROM_EMAIL_ADDRESS, conf.FROM_NAME));
@@ -71,7 +72,7 @@ public class MailService
 			message.setSubject(subjectLine);
 			//message.setText(msg);
 			message.setContent(msg, "text/html; charset=utf-8");
-
+			System.out.println(message);
 			Transport.send(message);
 		}
 		catch (Exception e) 
