@@ -1,31 +1,7 @@
 package mll.utility;
 
 public class Configuration {
-    public final String USER_NAME_FOR_EMAIL = "medialicensinglab@gmail.com";
-     public final String
-             PASSWOD_FOR_EMAIL = "mll@team19";
-    public final String EMAIL_ADDRESS_FOR_SUPPORT = "medialicensinglab@gmail.com";
-    public final String FROM_EMAIL_ADDRESS = "medialicensinglab@gmail.com";
-    public final String FROM_NAME = "Media Team";
-
-//    public final String USER_NAME_FOR_EMAIL = "singh.ne@husky.neu.edu";
-//    public final String PASSWOD_FOR_EMAIL = "Renu12#";
-//    public final String EMAIL_ADDRESS_FOR_SUPPORT = "singh.ne@husky.neu.edu";
-//    public final String FROM_EMAIL_ADDRESS = "singh.ne@husky.neu.edu";
-//    public final String FROM_NAME = "Media Team";
-    public final String FEEDBACK_EMAIL_ADDRESS = "northeastern.mll.feedback@gmail.com";
-
-    //RAZUNA Configuration Details
-//    public final String RAZUNA_URL = "http://35.163.135.77:8081/razuna/raz1/dam/index.cfm";
-//    public final String RAZUNA_API_URL = "http://35.163.135.77:8081/razuna/global/api2/";
-//    public final String RAZUNA_KEY = "67CB2FB1C14A47579A18089214A22FFA";
-
-
-    //RAZUNA Configuration Details :: NEHA
-    public final String RAZUNA_URL = "http://128.31.22.157:8081/razuna/raz1/dam/index.cfm";
-    public final String RAZUNA_API_URL = "http://128.31.22.157:8081/razuna/global/api2/";
-    public final String RAZUNA_KEY = "E756FF1F1E9649D58DDA309324FAC84D";
-
+    
     //RAZUNA Configuration Details local {{CHANGE THESE FOR YOUR OWN LOCAL INSTALLATION}}
 //    public final String RAZUNA_URL = "http://localhost:8080/razuna/raz1/dam/index.cfm";
 //    public final String RAZUNA_API_URL="http://localhost:8080/razuna/global/api2/";
